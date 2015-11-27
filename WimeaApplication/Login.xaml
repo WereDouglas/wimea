@@ -1,0 +1,16 @@
+﻿<Window x:Class="WimeaApplication.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" Height="338.007" Width="503.008" WindowStyle="None">
+    <Grid>
+        <Image Height="100" Margin="189,13,171,0" VerticalAlignment="Top" Source="image/logo.fw.png"/>
+        <Label Content="AWS" Margin="247,115,176,0" VerticalAlignment="Top"/>
+        <Label Content="E-mail" Margin="70,146,319,0" VerticalAlignment="Top"/>
+        <Label Content="Password" Margin="70,177,319,0" VerticalAlignment="Top" RenderTransformOrigin="-0.306,-0.125"/>
+        <TextBox Height="23" Margin="181,146,92,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="181,177,92,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button Content="Cancel" Margin="305,205,92,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Cancel"/>
+        <Button Content="Login" Margin="181,205,219,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Click"/>
+
+    </Grid>
+</Window>

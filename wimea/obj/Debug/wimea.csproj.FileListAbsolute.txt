@@ -1,0 +1,15 @@
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\wimea.exe.config
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\wimea.exe
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\wimea.pdb
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea.csprojResolveAssemblyReference.cache
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\App.g.cs
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea_MarkupCompile.cache
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea.Properties.Resources.resources
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea.csproj.GenerateResource.Cache
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea.exe
+c:\users\douglas\documents\visual studio 2013\Projects\wimea\wimea\obj\Debug\wimea.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\BLToolkit.4.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\BLToolkit.Data.DataProvider.SqlCe.4.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\linq2db.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\System.Data.SqlServerCe.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\wimea\bin\Debug\linq2db.pdb

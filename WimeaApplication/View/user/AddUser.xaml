@@ -1,0 +1,34 @@
+﻿<Window x:Class="WimeaApplication.View.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+         ContentRendered="Window_ContentRendered"
+        Title="Add user" Height="373.09" Width="461.677"  Icon="/WimeaApplication;component/image/logo.fw.png" WindowStyle="None">
+
+    <Grid IsHitTestVisible="True" Margin="0,0,2,0">
+        <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,53,0,0"/>
+        <Label x:Name="lblQuestion" Margin="68,9,432,391">
+
+        </Label>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0"/>
+        <Button IsDefault="True" x:Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="172,230,0,0" Content="Save" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83"/>
+        <Button IsCancel="True" MinWidth="60" Content="_Cancel" Margin="262,231,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="23" x:Name="nameTxtBx" Margin="174,79,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Name}" VerticalAlignment="Top" Width="124" RenderTransformOrigin="-1.893,1.016"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="116,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.214,0.731"/>
+        <TextBox HorizontalAlignment="Left" x:Name="emailTxtBx" Height="23" Margin="174,48,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Email}" VerticalAlignment="Top" Width="124" RenderTransformOrigin="-1.893,1.016"/>
+        <Label Content="Station" HorizontalAlignment="Left" Margin="119,141,0,0" VerticalAlignment="Top" Width="48"/>
+        <ComboBox HorizontalAlignment="Left"  x:Name="stationTxtCbx"  SelectedValue="{Binding CurrentUser.Station}" SelectedValuePath="Content"  ItemsSource="{Binding Stations}"  Margin="172,145,0,0" VerticalAlignment="Top" Width="126" RenderTransformOrigin="0.302,-0.056">
+           
+        </ComboBox>
+        <ComboBox  ItemsSource="{Binding Roles}" x:Name="roleTxtBx"  SelectedValue="{Binding CurrentUser.Role}" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="172,180,0,0" VerticalAlignment="Top" Width="126" RenderTransformOrigin="0.302,-0.056">
+            <ComboBoxItem Content="O/C"/>
+            <ComboBoxItem Content="Observer"/>
+        </ComboBox>
+        <Label Content="Role" HorizontalAlignment="Left" Margin="125,176,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" x:Name="contactTxtBx" Height="23" Margin="174,112,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Contact}" VerticalAlignment="Top" Width="124" RenderTransformOrigin="-1.893,1.016"/>
+        <Label Content="Contact" HorizontalAlignment="Left" Margin="116,110,0,0" VerticalAlignment="Top"/>
+    </Grid>
+
+</Window>

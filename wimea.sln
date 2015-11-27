@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wimea", "wimea\wimea.csproj", "{7411339F-3344-42D1-B4A2-C98BCD3F57AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WimeaLibrary", "WimeaLibrary\WimeaLibrary.csproj", "{80639726-2076-43AA-A86D-222B82B164BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WimeaApplication", "WimeaApplication\WimeaApplication.csproj", "{C2CA566C-CEB0-4B44-8C9E-B56189C7BC62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7411339F-3344-42D1-B4A2-C98BCD3F57AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7411339F-3344-42D1-B4A2-C98BCD3F57AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7411339F-3344-42D1-B4A2-C98BCD3F57AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7411339F-3344-42D1-B4A2-C98BCD3F57AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80639726-2076-43AA-A86D-222B82B164BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80639726-2076-43AA-A86D-222B82B164BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80639726-2076-43AA-A86D-222B82B164BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80639726-2076-43AA-A86D-222B82B164BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2CA566C-CEB0-4B44-8C9E-B56189C7BC62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CA566C-CEB0-4B44-8C9E-B56189C7BC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CA566C-CEB0-4B44-8C9E-B56189C7BC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CA566C-CEB0-4B44-8C9E-B56189C7BC62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
