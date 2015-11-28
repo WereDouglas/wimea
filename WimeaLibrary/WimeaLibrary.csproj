@@ -46,6 +46,8 @@
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\Encryption.cs" />
     <Compile Include="Helpers\Validator.cs" />
+    <Compile Include="Metar.cs" />
+    <Compile Include="MetarCollection.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="StationCollection.cs" />
     <Compile Include="User.cs" />

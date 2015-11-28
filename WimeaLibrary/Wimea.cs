@@ -35,11 +35,26 @@ namespace WimeaLibrary
           }
       }
 
+      private MetarCollection _metars;
+      public MetarCollection Metars
+      {
+          get
+          {
+              if (!_metars.IsLoaded)
+                  _metars.Refresh();
+              _metars.Load();
+              return _metars;
+          }
+      }
+
+
+
        public Wimea():base(null)
         {
            
             _users = new UserCollection(this);
             _stations = new StationCollection(this);
+            _metars = new MetarCollection(this);
            
         }
       

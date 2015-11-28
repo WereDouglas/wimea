@@ -88,8 +88,8 @@
         <TextBlock x:Name="lblName" Margin="346,5,0,0" TextAlignment="Center" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="#FF0A518F" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="214"><InlineUIContainer>
         		
         	</InlineUIContainer></TextBlock>
-        <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="142" Margin="0,3,5,0" />
-        <Label Content="Search by name" HorizontalAlignment="Right" Margin="0,6,142,0" VerticalAlignment="Top" Width="105"/>
+        <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="146" Margin="0,0,1,0" />
+        <Label Content="Search by name" HorizontalAlignment="Right" Margin="0,0,152,0" VerticalAlignment="Top" Width="95" Height="27"/>
         <Button Content="Print" HorizontalAlignment="Left" Command="{Binding AddCommand}" Margin="204,4,0,0" x:Name="print"  VerticalAlignment="Top" Width="56" Height="21" Click="print_Click">
             <Button.Template>
                 <ControlTemplate>

@@ -4,96 +4,110 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d"
-	Title="MetarPage" Background="White" Width="1573.534" Height="453.383">
+	Title="MetarPage" Background="White" MinWidth="800" MinHeight="500" Height="532.836">
 
     <Grid>
         <Label Content="Station" HorizontalAlignment="Left" Margin="215,8,0,0" VerticalAlignment="Top" Width="48"/>
-        <ComboBox HorizontalAlignment="Left" Margin="273,10,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056"/>
+        <ComboBox HorizontalAlignment="Left" Margin="273,10,0,0" Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
         <Label Content="Select date" HorizontalAlignment="Left" Margin="14,7,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Margin="87,10,0,0" VerticalAlignment="Top" Width="122"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="400,7,0,0" VerticalAlignment="Top"/>
-        <Grid HorizontalAlignment="Left" Height="73" Margin="8,41,0,0" VerticalAlignment="Top" Width="1554">
-            <Label Content="METAR/SPECI" HorizontalAlignment="Left" Margin="4,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="W1W1" HorizontalAlignment="Left" Margin="394,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="CCCC" HorizontalAlignment="Left" Margin="90,7,0,0" VerticalAlignment="Top"/>
-            <Label Content="YYGGggz" HorizontalAlignment="Left" Margin="138,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.1,0.704"/>
-            <Label Content="Dddff/fm/fm" HorizontalAlignment="Left" Margin="205,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="N1CCh1h1NnCChhhNhCChhh" HorizontalAlignment="Left" Margin="444,7,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-            <Label Content="WW or CAVOK" HorizontalAlignment="Left" Margin="285,7,0,0" VerticalAlignment="Top"/>
-            <Label Content="Air temperature" HorizontalAlignment="Left" Margin="622,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="RH(%)" HorizontalAlignment="Left" Margin="721,7,0,0" VerticalAlignment="Top"/>
-            <Label Content="DP" HorizontalAlignment="Left" Margin="769,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="WB" HorizontalAlignment="Left" Margin="799,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="TT" HorizontalAlignment="Left" Margin="832,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="/" HorizontalAlignment="Left" Margin="864,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="TdTd" HorizontalAlignment="Left" Margin="879,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="QNH(hpa)" HorizontalAlignment="Left" Margin="922,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="QNH(in)" HorizontalAlignment="Left" Margin="991,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="QFE(hpa)" HorizontalAlignment="Left" Margin="1049,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="QFE(in)" HorizontalAlignment="Left" Margin="1122,6,0,0" VerticalAlignment="Top"/>
-            <Label Content="RE W1W1" HorizontalAlignment="Left" Margin="1188,6,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="92,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="139,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="205,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="288,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="439,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="615,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="714,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="764,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="799,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="834,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
-            <Label Content="/" HorizontalAlignment="Left" Margin="864,31,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="879,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="925,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="996,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="1049,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="1122,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.09,0.613"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="1188,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" RenderTransformOrigin="0.09,0.613"/>
-        </Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.302,-0.056"/>
-        <ComboBox HorizontalAlignment="Left" Margin="405,75,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.302,-0.056"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="1267,75,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid  AutoGenerateColumns="False"  Margin="10,119,10,0"  CanUserAddRows="False"
-    		x:Name="dataGridEvaluation"  Background="{x:Null}" RowBackground="LightYellow"
-    		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1"
-    		VerticalScrollBarVisibility="Visible" SelectionMode="Extended" Height="324" VerticalAlignment="Top"  HorizontalGridLinesBrush="#FFC5C5C5" VerticalGridLinesBrush="#FFC5C5C5" SelectionChanged="dataGridEvaluation_SelectionChanged" >
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="Gray"  />
+        <Label Content="Label" Name="stationNumber" HorizontalAlignment="Left" Margin="400,7,0,0" VerticalAlignment="Top"/>
+        <ScrollViewer Height="401" Margin="0,122,0,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible" >
+            <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
+        		x:Name="MetarGrid"  Background="{x:Null}" RowBackground="LightYellow" 
+        		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
+        		SelectionMode="Extended" Height="auto" VerticalAlignment="Top" Width="auto"  HorizontalGridLinesBrush="#FFC5C5C5" VerticalGridLinesBrush="#FFC5C5C5" SelectionChanged="dataGridEvaluation_SelectionChanged" >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Gray"  />
 
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="#" Binding="{Binding Id}" Visibility="Hidden"/>
-                <DataGridTextColumn Header="METAR/SPECI" Width="100"  Binding="{Binding Company_name}"/>
-                <DataGridTextColumn Header="CCCC" Width="50"  Binding="{Binding Application_name}"/>
-                <DataGridTextColumn Header="YYGGggz" Width="80"  Binding="{Binding Budget,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="Dddff/fm/fm" Width="100"  Binding="{Binding Hardware,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="WW or CAVOK" Width="100"  Binding="{Binding Software,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="W1W1" Width="80"  Binding="{Binding Operational,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="N1CCh1h1NnCChhhNhCChhh" Width="220"  Binding="{Binding Objectives,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="Air temperature" Width="100"  Binding="{Binding Finance,StringFormat={}{0:n0}}"/>
-                <DataGridTextColumn Header="RH(%)" Width="80"  Binding="{Binding Candidate}"/>
-                <DataGridTextColumn Header="DP" Width="60"  Binding="{Binding Adoption}"/>
-                <DataGridTextColumn Header="WB" Width="60"  Binding="{Binding Skill}"/>
-                <DataGridTextColumn Header="TT/TdTd" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTextColumn Header="QNH(hpa)" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTextColumn Header="QNH(in)" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTextColumn Header="QFE(hpa)" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTextColumn Header="QFE(in)" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTextColumn Header="RE W1W1" Width="70"  Binding="{Binding Pricing}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Button Content="Delete" Margin="3"  Width="50" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
-                								CommandParameter="{Binding}" Click="deleteClick"/>
-                            </Grid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#" Binding="{Binding Id}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="METAR/SPECI" Width="100" Binding="{Binding Types}" />
+                    <DataGridTextColumn Header="CCCC" Width="50"  Binding="{Binding Station}"/>
+                    <DataGridTextColumn Header="YYGGggz" Width="80"  Binding="{Binding Datetimes}"/>
+                    <DataGridTextColumn Header="Dddff/fm/fm" Width="100"  Binding="{Binding Direction}"/>
+                    <DataGridTextColumn Header="WW or CAVOK" Width="100"  Binding="{Binding Visibility}"/>
+                    <DataGridTextColumn Header="W1W1" Width="80"  Binding="{Binding Weather}"/>
+                    <DataGridTextColumn Header="N1CCh1h1NnCChhhNhCChhh" Width="220"  Binding="{Binding Cloud}"/>
+                    <DataGridTextColumn Header="Air temperature" Width="100"  Binding="{Binding Temperature}"/>
+                    <DataGridTextColumn Header="RH(%)" Width="80"  Binding="{Binding Humidity}"/>
+                    <DataGridTextColumn Header="DP" Width="60"  Binding="{Binding Dew}"/>
+                    <DataGridTextColumn Header="WB" Width="60"  Binding="{Binding Wet}"/>
+                    <DataGridTextColumn Header="TT/TdTd" Width="70"  Binding="{Binding Temperature}"/>
+                    <DataGridTextColumn Header="QNH(hpa)" Width="70"  Binding="{Binding Stationhpa}"/>
+                    <DataGridTextColumn Header="QNH(in)" Width="70"  Binding="{Binding Stationhpa}"/>
+                    <DataGridTextColumn Header="QFE(hpa)" Width="70"  Binding="{Binding Seahpa}"/>
+                    <DataGridTextColumn Header="QFE(in)" Width="70"  Binding="{Binding Seahpa}"/>
+                    <DataGridTextColumn Header="RE W1W1" Width="70"  Binding="{Binding Recent}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Delete" Margin="3"  Width="50" Click="deleteClick"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <ScrollViewer Margin="0,39,0,0" HorizontalScrollBarVisibility="Visible" Height="78" VerticalAlignment="Top" >
+            <Grid Height="58" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" Width="1401" >
+                <Label Content="METAR/SPECI" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="W1W1" HorizontalAlignment="Left" Margin="344,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="CCCC" HorizontalAlignment="Left" Margin="80,7,0,0" VerticalAlignment="Top"/>
+                <Label Content="YYGGggz" HorizontalAlignment="Left" Margin="116,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.1,0.704"/>
+                <Label Content="Dddff/fm/fm" HorizontalAlignment="Left" Margin="172,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="N1CCh1h1NnCChhhNhCChhh" HorizontalAlignment="Left" Margin="389,6,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                <Label Content="WW or CAVOK" HorizontalAlignment="Left" Margin="250,7,0,0" VerticalAlignment="Top"/>
+                <Label Content="Air temperature" HorizontalAlignment="Left" Margin="562,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="RH(%)" HorizontalAlignment="Left" Margin="661,7,0,0" VerticalAlignment="Top"/>
+                <Label Content="DP" HorizontalAlignment="Left" Margin="709,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="WB" HorizontalAlignment="Left" Margin="739,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="TT" HorizontalAlignment="Left" Margin="772,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="/" HorizontalAlignment="Left" Margin="804,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="TdTd" HorizontalAlignment="Left" Margin="819,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="QNH(hpa)" HorizontalAlignment="Left" Margin="862,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="QNH(in)" HorizontalAlignment="Left" Margin="919,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="QFE(hpa)" HorizontalAlignment="Left" Margin="974,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="QFE(in)" HorizontalAlignment="Left" Margin="1045,6,0,0" VerticalAlignment="Top"/>
+                <Label Content="RE W1W1" HorizontalAlignment="Left" Margin="1114,6,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Name="codeTxtBx" Height="23" Margin="75,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="42" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="DatetimeTxtBx" Margin="119,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="WindDirectionTxtBx" Margin="182,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="VisibilityTxtBx" Margin="255,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="CloudTxtBx" Margin="389,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="AirTempTxtBx" Margin="563,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="HumidityTxtBx" Margin="666,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.09,0.613" LostFocus="HumidityTxtBx_LostFocus"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="DewTxtBx" Margin="707,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="WetTxtBx" Margin="740,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="TtTxtBx" Margin="771,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="/" HorizontalAlignment="Left" Margin="802,30,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="TdTxtBx" Margin="816,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="StationHpaTxtBx" Margin="854,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.09,0.613" LostFocus="StationHpaTxtBx_LostFocus"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="StationHpaInTxtBx" Margin="924,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="SeaHpaTxtBx" Margin="980,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.09,0.613" LostFocus="SeaHpaTxtBx_LostFocus"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="SeaHpaInTxtBx" Margin="1053,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Name="RecentTxtBx" Margin="1120,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" RenderTransformOrigin="0.09,0.613"/>
+                <ComboBox HorizontalAlignment="Left" Margin="344,34,0,0" Name="weatherTxtBx" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.302,-0.056">
+                    <ComboBoxItem Content="Fg"/>
+                    <ComboBoxItem Content="Hz"/>
+                    <ComboBoxItem Content="RA"/>
+                    <ComboBoxItem Content="Ts"/>
+                </ComboBox>
+                <Button Content="Submit" HorizontalAlignment="Left" Margin="1187,34,0,0" Width="75" Click="Button_Click" Height="20" VerticalAlignment="Top"/>
+                <ComboBox HorizontalAlignment="Left" Name="typeTxtBx" Margin="2,32,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.302,-0.056">
+                    <ComboBoxItem Content="METAR"/>
+                    <ComboBoxItem Content="SPECI"/>
+                </ComboBox>
+
+
+            </Grid>
+        </ScrollViewer>
+
 
     </Grid>
 </Page>
