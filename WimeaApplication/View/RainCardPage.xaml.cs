@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,8 +48,20 @@ namespace WimeaApplication.View
             using (var client = new WebClient())
             {
                 var json = client.DownloadString("http://localhost/weather/index.php/api/tasks/station/Makerere/format/json");
-                System.IO.File.WriteAllText(@"D:\path.txt", json);
-                List<Daily> model = JsonConvert.DeserializeObject<List<Daily>>(json);
+                System.IO.File.WriteAllText(@"D:\makerere.json", json);
+
+
+                string total = "";
+                string[] lines = System.IO.File.ReadAllLines(@"D:\makerere.json");
+                foreach (string line in lines)
+                {
+                    // Use a tab to indent each line of the file.
+                    total += line;
+                  
+                }
+
+
+                List<Daily> model = JsonConvert.DeserializeObject<List<Daily>>(total);
                 // TODO: do something with the model
                 System.Diagnostics.Debug.WriteLine(model.ElementAt(0).Thunder);
                 for (int d=0; d < model.Count; d++)
