@@ -46,6 +46,18 @@ namespace WimeaLibrary
               return _metars;
           }
       }
+      private DailyCollection _dailys;
+      public DailyCollection Dailys
+      {
+          get
+          {
+              if (!_dailys.IsLoaded)
+                  _dailys.Refresh();
+              _dailys.Load();
+              return _dailys;
+          }
+      }
+
 
 
 
@@ -55,6 +67,7 @@ namespace WimeaLibrary
             _users = new UserCollection(this);
             _stations = new StationCollection(this);
             _metars = new MetarCollection(this);
+            _dailys = new DailyCollection(this);
            
         }
       

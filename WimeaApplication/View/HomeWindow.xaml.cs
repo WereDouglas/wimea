@@ -57,5 +57,10 @@ namespace WimeaApplication
         {
             this.Close();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/RainCardPage.xaml", UriKind.Relative));
+        }
     }
 }

@@ -10,7 +10,7 @@
             <Frame x:Name="_mainFrame" NavigationUIVisibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" BorderBrush="#FF0F509F" DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
         </DockPanel>
-        <Button Content="Rainfall card" HorizontalAlignment="Right" Margin="0,143,807,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
+        <Button Content="Rainfall card" HorizontalAlignment="Right" Margin="0,143,807,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_4"/>
         <Button Content="Dekadal" HorizontalAlignment="Right" Margin="0,143,721,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Rainfall report" HorizontalAlignment="Right" Margin="0,143,620,0" VerticalAlignment="Top" Width="96" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Monthly" HorizontalAlignment="Right" Margin="0,143,554,0" VerticalAlignment="Top" Width="61" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
@@ -31,7 +31,7 @@
         <Button Content="Station" HorizontalAlignment="Right" Margin="0,143,325,0" VerticalAlignment="Top" Width="59" Click="Button_Click_2" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Elements" HorizontalAlignment="Right" Margin="0,143,263,0" VerticalAlignment="Top" Width="57" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Instruments" HorizontalAlignment="Right" Margin="0,143,177,0" VerticalAlignment="Top" Width="81" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
-        <Button Content="Daily" HorizontalAlignment="Right" Margin="0,143,965,0" VerticalAlignment="Top" Width="75" Click="Button_Click" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
+        <Button Content="Daily" Margin="0,143,965,0" VerticalAlignment="Top" Click="Button_Click" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" HorizontalAlignment="Right" Width="75"/>
         <Button Content="Metar" HorizontalAlignment="Right" Margin="0,143,889,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.083,0.604" Click="Button_Click_1" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Archive" HorizontalAlignment="Right" Margin="0,143,115,0" VerticalAlignment="Top" Width="57" Click="Button_Click_3" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="users" HorizontalAlignment="Right" Margin="0,143,53,0" VerticalAlignment="Top" Width="57" Click="Button_Click_5" RenderTransformOrigin="0.915,0.455" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>

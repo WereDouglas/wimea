@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Sample\WebApplication1\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -62,9 +65,13 @@
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\DBObject.cs" />
     <Compile Include="Helpers\ListViewPrinterBase.cs" />
+    <Compile Include="View\convertTextInputToVisibility.cs" />
     <Compile Include="ViewModel\ObservableObject.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="View\RainCardPage.xaml.cs">
+      <DependentUpon>RainCardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\station\AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
@@ -87,6 +94,14 @@
     <Compile Include="View\user\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RainCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\station\AddStation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

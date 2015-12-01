@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Daily.cs" />
+    <Compile Include="DailyCollection.cs" />
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\Encryption.cs" />
     <Compile Include="Helpers\Validator.cs" />
