@@ -60,13 +60,12 @@ namespace WimeaApplication.View
                   
                 }
 
-
                 List<Daily> model = JsonConvert.DeserializeObject<List<Daily>>(total);
                 // TODO: do something with the model
-                System.Diagnostics.Debug.WriteLine(model.ElementAt(0).Thunder);
+             
                 for (int d=0; d < model.Count; d++)
                 {
-                    System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Thunder);
+                    System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Actual);
                 }
             }
             
