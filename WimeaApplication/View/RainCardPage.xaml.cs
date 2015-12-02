@@ -118,21 +118,41 @@ namespace WimeaApplication.View
 
 
             totalsTxtBx.Text = totals.ToString();
+            
             twentyeightTxtBx.Text = filltext("21");
 
 
 
             threeTxtBx.Text = filltext("3");
+            twoTxtBx.Text = filltext("2");
+            seventTxtBx.Text=filltext("17");
+            sevenTxtBx.Text = filltext("7");
+            eightTxtBx.Text = filltext("8");
+            eighteenTxtBx.Text = filltext("18");
+            tenTxtBx.Text = filltext("10");
+            elevenTxtBx.Text = filltext("11");
+            thirtTxtBx.Text = filltext("13");
+            fiftTxtBx.Text = filltext("15");
+            sixtTxtBx.Text = filltext("16");
+            twentyTxtBx.Text = filltext("20");
+            twentyoneTxtBx.Text = filltext("21");
+            twentytwoTxtBx.Text = filltext("22");
+            twentythreeTxtBx.Text = filltext("23");
+            twentyFourTxtBx.Text = filltext("24");
+            twentyfiveTxtBx.Text = filltext("25");
+            twentysixTxtBx.Text = filltext("26");
+            twentysevenTxtBx.Text = filltext("27");
+            twentyeightTxtBx.Text = filltext("28");
+            twentynineTxtBx.Text = filltext("29");
+            thirtyTxtBx.Text = filltext("30");
+            thirtyoneTxtBx.Text = filltext("31");                
             fourTxtBx.Text = filltext("4");
             fiveTxtBx.Text = filltext("5");
             nineTxtBx.Text = filltext("9");
-
             sixTxtBx.Text = filltext("6");
             ninetTxtBx.Text = filltext("19");
-
             tweleveTxtBx.Text = filltext("12");
             twentyoneTxtBx.Text = filltext("21");
-
             twentythreeTxtBx.Text = filltext("23");
             fourtTxtBx.Text = filltext("14");
             thirtyoneTxtBx.Text = filltext("31");
