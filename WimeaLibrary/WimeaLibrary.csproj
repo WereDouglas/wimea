@@ -45,13 +45,17 @@
   <ItemGroup>
     <Compile Include="Daily.cs" />
     <Compile Include="DailyCollection.cs" />
+    <Compile Include="DailyOnline.cs" />
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\Encryption.cs" />
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Metar.cs" />
     <Compile Include="MetarCollection.cs" />
+    <Compile Include="MetarOnline.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="StationCollection.cs" />
+    <Compile Include="Syncs.cs" />
+    <Compile Include="SyncsCollection.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\DBObject.cs" />

@@ -60,7 +60,7 @@ namespace WimeaLibrary
                     u.Station = row["station"].ToString();
                     u.Maxs = row["maxs"].ToString();
                     u.Mins = row["mins"].ToString();
-                    u.Actual = row["actual"].ToString();
+                     u.Actual =  row["actual"].ToString();
                     u.Anemometer = row["anemometer"].ToString();
                     u.Wind = row["wind"].ToString();
                     u.Maxi = row["maxi"].ToString();

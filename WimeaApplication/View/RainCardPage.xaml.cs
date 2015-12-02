@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -25,79 +27,146 @@ namespace WimeaApplication.View
     /// </summary>
     public partial class RainCardPage : Page
     {
+        private Daily u;
+        private ObservableCollection<Station> _StationsList = null;
+        private List<Daily> metList = new List<Daily>();
         public RainCardPage()
         {
             InitializeComponent();
-           // RainfallCard.Navigate("http://localhost/weather/index.php/welcome/reports/");
+            RefreshUserList();
         }
+        private void RefreshUserList()
+        {
 
+
+            _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
+            stationTxtCbx.ItemsSource = null;
+            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
+
+            for (int p = 1; p < 13; p++)
+            {
+                monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
+            }
+
+
+
+        }
         private void stationTxtCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
+            stationNumber.Content = _StationsList.Where(c => c.Name == stationTxtCbx.SelectedItem.ToString()).Select(p => p.Code).SingleOrDefault().ToString();
 
+
+        }
+        List<Daily> metLists = new List<Daily>();
+        private void loadings(string station)
+        {
+            metList = new List<Daily>();
+            metLists = new List<Daily>();
+            //try
+            //{
+            string total = "";
+            string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "daily" + ".json");
+            foreach (string line in lines)
+            {
+
+                total += line;
+            }
+
+            List<DailyOnline> model = JsonConvert.DeserializeObject<List<DailyOnline>>(total);
+
+            for (int d = 0; d < model.Count; d++)
+            {
+                u = new Daily(null);
+                u.Station = model.ElementAt(d).Station;
+                u.Id = model.ElementAt(d).Id;
+                u.Maxs = model.ElementAt(d).Max;
+                u.Mins = model.ElementAt(d).Min;
+                u.Actual = model.ElementAt(d).Actual;
+                u.Anemometer = model.ElementAt(d).Anemometer;
+                u.Wind = model.ElementAt(d).Wind;
+                u.Maxi = model.ElementAt(d).Maxi;
+                u.Rain = model.ElementAt(d).Rain;
+                u.Thunder = model.ElementAt(d).Thunder;
+                u.Fog = model.ElementAt(d).Fog;
+                u.Haze = model.ElementAt(d).Haze;
+                u.Storm = model.ElementAt(d).Storm;
+                u.Quake = model.ElementAt(d).Quake;
+                u.Height = model.ElementAt(d).Height;
+                u.Duration = model.ElementAt(d).Duration;
+                u.Sunshine = model.ElementAt(d).Sunshine;
+                u.Radiationtype = model.ElementAt(d).Radiationtype;
+                u.Radiation = model.ElementAt(d).Radiation;
+                u.Evaptype1 = model.ElementAt(d).Evaptype1;
+                u.Evap1 = model.ElementAt(d).Evap1;
+                u.Evaptype2 = model.ElementAt(d).Evaptype2;
+                u.Evap2 = model.ElementAt(d).Evap2;
+                u.Users = model.ElementAt(d).User;
+                u.Dates = model.ElementAt(d).Date;
+                metList.Add(u);
+            }
+
+
+            metLists = new List<Daily>(metList.Where(c => Convert.ToDateTime(c.Dates).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Dates).Year.ToString() == yearTxtBx.Text));
+            double totals = 0;
+            foreach (var val in metLists)
+            {
+                totals += Convert.ToDouble(val.Actual);
+
+            }
+
+
+
+            totalsTxtBx.Text = totals.ToString();
+            twentyeightTxtBx.Text = filltext("21");
+
+
+
+            threeTxtBx.Text = filltext("3");
+            fourTxtBx.Text = filltext("4");
+            fiveTxtBx.Text = filltext("5");
+            nineTxtBx.Text = filltext("9");
+
+            sixTxtBx.Text = filltext("6");
+            ninetTxtBx.Text = filltext("19");
+
+            tweleveTxtBx.Text = filltext("12");
+            twentyoneTxtBx.Text = filltext("21");
+
+            twentythreeTxtBx.Text = filltext("23");
+            fourtTxtBx.Text = filltext("14");
+            thirtyoneTxtBx.Text = filltext("31");
+           
+          
+
+            // }
+            //catch (Exception ex)
+            //{
+
+            //     MessageBox.Show(ex.Message.ToString());
+            //    return;
+
+            //}
+
+        }
+        private string filltext(string value) { 
+          try
+            {
+            return    metLists.Where(c => Convert.ToDateTime(c.Dates).Day.ToString() == value).Select(p => p.Actual).SingleOrDefault().ToString();
+
+            }
+            catch
+            {
+                return null;
+
+
+            }
+        
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            loadings(stationTxtCbx.Text);
 
         }
-
-        private void Refresh_Click(object sender, RoutedEventArgs e)
-        {
-  
-         
-            using (var client = new WebClient())
-            {
-                var json = client.DownloadString("http://localhost/weather/index.php/api/tasks/station/Makerere/format/json");
-                System.IO.File.WriteAllText(@"D:\makerere.json", json);
-
-
-                string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\makerere.json");
-                foreach (string line in lines)
-                {
-                    // Use a tab to indent each line of the file.
-                    total += line;
-                  
-                }
-
-                List<Daily> model = JsonConvert.DeserializeObject<List<Daily>>(total);
-                // TODO: do something with the model
-             
-                for (int d=0; d < model.Count; d++)
-                {
-                    System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Actual);
-                }
-            }
-            
-            // string json = JsonConvert.SerializeObject(_data.ToArray());
-           // System.IO.File.WriteAllText(@"D:\path.txt", json);
-        }
-    
-        string GET(string url)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            try
-            {
-                WebResponse response = request.GetResponse();
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    return reader.ReadToEnd();
-                }
-            }
-            catch (WebException ex)
-            {
-                WebResponse errorResponse = ex.Response;
-                using (Stream responseStream = errorResponse.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
-                    String errorText = reader.ReadToEnd();
-                    // log errorText
-                }
-                throw;
-            }
-        }
-
-
     }
 }

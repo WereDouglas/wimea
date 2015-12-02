@@ -9,8 +9,9 @@ using WimeaLibrary.Helpers;
 
 namespace WimeaLibrary
 {
-  public  class Metar : DBObject
-    { 
+    public class Metar : DBObject
+    {
+
         public Metar(DBObject parent)
             : base(parent)
         {
@@ -29,10 +30,11 @@ namespace WimeaLibrary
         public string Station
         {
             get { return _station; }
-            set {
+            set
+            {
                 if (!Validator.IsNotEmpty(value))
-                    throw new Exception("Empty field Station name");                
-                    _station = value; 
+                    throw new Exception("Empty field Station name");
+                _station = value;
             }
         }
         private string _types;
@@ -161,11 +163,11 @@ namespace WimeaLibrary
             get { return _days; }
             set { _days = value; }
         }
-        
 
-       
-       
-     
+
+
+
+
         public override void Save()
         {
             if (Station == "" || Types == "")
@@ -182,7 +184,7 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@types", Types);
                 cmd.Parameters.AddWithValue("@datetimes", Datetimes);
                 cmd.Parameters.AddWithValue("@timezones", Timezones);
-                cmd.Parameters.AddWithValue("@direction",Direction);
+                cmd.Parameters.AddWithValue("@direction", Direction);
                 cmd.Parameters.AddWithValue("@speed", Speed);
                 cmd.Parameters.AddWithValue("@unit", Unit);
                 cmd.Parameters.AddWithValue("@visibility", Visibility);
@@ -193,37 +195,37 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@dew", Dew);
                 cmd.Parameters.AddWithValue("@wet", Wet);
                 cmd.Parameters.AddWithValue("@stationhpa", Stationhpa);
-                cmd.Parameters.AddWithValue("@seahpa",Seahpa);
+                cmd.Parameters.AddWithValue("@seahpa", Seahpa);
                 cmd.Parameters.AddWithValue("@recent", Recent);
                 cmd.Parameters.AddWithValue("@users", Users);
                 cmd.Parameters.AddWithValue("@days", Days);
                 ExecuteNonQuery(cmd);
-             
+
 
             }
 
         }
-        public void Update(string id, string name, string number, string code, string latitude, string longitude,string altitude,string type,string location,string status,string commissioned)
+        public void Update(string id, string name, string number, string code, string latitude, string longitude, string altitude, string type, string location, string status, string commissioned)
         {
 
-            
+
             SqlCeCommand cmd = con.CreateCommand();
             cmd.CommandText = "UPDATE [Metar] SET name='" + name + "',code='" + code + "',number='" + number + "',latitude='" + latitude + "',longitude ='" + longitude + "',altitude='" + altitude + "',type='" + type + "',location='" + location + "',status='" + status + "',commissioned='" + commissioned + "' WHERE id = '" + id + "'";
-           
-         
-        ExecuteNonQuery(cmd);            
+
+
+            ExecuteNonQuery(cmd);
 
         }
 
         public bool Delete(string Id)
         {
-            System.Diagnostics.Debug.Write(Id + "|");            
+            System.Diagnostics.Debug.Write(Id + "|");
             SqlCeCommand cmd = con.CreateCommand();
             cmd.CommandText = "DELETE FROM [metar] WHERE id ='" + Id + "'";
             try
             {
 
-               ExecuteNonQuery(cmd);
+                ExecuteNonQuery(cmd);
             }
             catch (SqlCeException ex)
             {
@@ -231,7 +233,7 @@ namespace WimeaLibrary
             }
             finally
             {
-               
+
             }
             return true;
 

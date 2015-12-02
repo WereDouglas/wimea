@@ -58,6 +58,18 @@ namespace WimeaLibrary
           }
       }
 
+      private SyncsCollection _syncs;
+      public SyncsCollection Syncs
+      {
+          get
+          {
+              if (!_syncs.IsLoaded)
+                  _syncs.Refresh();
+              _syncs.Load();
+              return _syncs;
+          }
+      }
+
 
 
 
@@ -68,6 +80,7 @@ namespace WimeaLibrary
             _stations = new StationCollection(this);
             _metars = new MetarCollection(this);
             _dailys = new DailyCollection(this);
+            _syncs = new SyncsCollection(this);
            
         }
       

@@ -69,8 +69,17 @@
     <Compile Include="ViewModel\ObservableObject.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="View\DailyReport.xaml.cs">
+      <DependentUpon>DailyReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MetarReport.xaml.cs">
+      <DependentUpon>MetarReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RainCardPage.xaml.cs">
       <DependentUpon>RainCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\station\AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
@@ -98,7 +107,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DailyReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MetarReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RainCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +259,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\synchronizes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

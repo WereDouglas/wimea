@@ -62,5 +62,25 @@ namespace WimeaApplication
         {
             _mainFrame.NavigationService.Navigate(new Uri("view/RainCardPage.xaml", UriKind.Relative));
         }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/SettingPage.xaml", UriKind.Relative));
+        }
+
+        private void reportS_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void reportD_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/DailyReport.xaml", UriKind.Relative));
+        }
+
+        private void reportM_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/MetarReport.xaml", UriKind.Relative));
+        }
     }
 }

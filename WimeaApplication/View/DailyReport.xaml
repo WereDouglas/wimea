@@ -1,0 +1,64 @@
+﻿<Page x:Class="WimeaApplication.DailyReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
+      mc:Ignorable="d"
+	Title="Daily weather records" MinWidth="800" MinHeight="600" Background="White" Height="417" >
+    <Page.Resources>
+
+
+
+    </Page.Resources>
+    <Grid Margin="0,0,0,10">
+        <Grid Height="42" VerticalAlignment="Top">
+            <Label Content="Station" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="48"/>
+            <ComboBox HorizontalAlignment="Left" Margin="63,10,0,0" x:Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
+            <Label Content="Info" x:Name="stationNumber" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="43" RenderTransformOrigin="2.081,0.728"/>
+            <Button Content="Generate" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="27" Click="Button_Click"/>
+            <Label Content="Month" HorizontalAlignment="Left" Margin="191,8,0,0" VerticalAlignment="Top"/>
+            <Label Content="Year" HorizontalAlignment="Left" Margin="323,9,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="254,12,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.302,-0.056" />
+            <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="23" Margin="361,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+        </Grid>
+        <ScrollViewer Height="533" Margin="0,47,0,0" VerticalAlignment="Top"  HorizontalScrollBarVisibility="Visible" >
+            <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
+        		x:Name="MetarGrid"  Background="{x:Null}" RowBackground="LightYellow" 
+        		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
+        		SelectionMode="Extended" Height="auto" VerticalAlignment="Top" Width="auto"  HorizontalGridLinesBrush="#FFC5C5C5" VerticalGridLinesBrush="#FFC5C5C5"  >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Gray"  />
+
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Date"   Binding="{Binding Dates}"/>
+                   
+                    <DataGridTextColumn Header="Max.temp" Binding="{Binding Maxs}" />
+                    <DataGridTextColumn Header="Min.temp"   Binding="{Binding Mins}"/>
+                    <DataGridTextColumn Header="Rainfall(mm)"   Binding="{Binding Actual}"/>
+                    <DataGridTextColumn Header="Anemometer height"   Binding="{Binding Anemometer}"/>
+                    <DataGridTextColumn Header="Wind run"   Binding="{Binding Wind}"/>
+                    <DataGridTextColumn Header="Rain"   Binding="{Binding Rainfall}"/>
+                    <DataGridTextColumn Header="Thunder"  Binding="{Binding Thunder}"/>
+                    <DataGridTextColumn Header="Fog" Binding="{Binding Fog}"/>
+                    <DataGridTextColumn Header="Haze"  Binding="{Binding Haze}"/>
+                    <DataGridTextColumn Header="Hail storm"  Binding="{Binding Storm}"/>
+                    <DataGridTextColumn Header="Earth Quake"   Binding="{Binding Quake}"/>
+                    <DataGridTextColumn Header="Rain duration"   Binding="{Binding Duration}"/>
+                    <DataGridTextColumn Header="Sunshine(Hrs)"   Binding="{Binding Sunshine}"/>
+                    <DataGridTextColumn Header="Radiation type"   Binding="{Binding Radiationtype}"/>
+                    <DataGridTextColumn Header="Radiation" Binding="{Binding Radiation}"/>
+                    <DataGridTextColumn Header="Evaporation type 1"   Binding="{Binding Evaptype1}"/>
+                    <DataGridTextColumn Header="Evaporation"   Binding="{Binding Evap1}"/>
+                    <DataGridTextColumn Header="Evaporation type 2"   Binding="{Binding Evaptype2}"/>
+                    <DataGridTextColumn Header="Evaporation 2"  Binding="{Binding Evap2}"/>
+                    <DataGridTextColumn Header="User"   Binding="{Binding Users}"/>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -29,17 +29,18 @@ namespace WimeaApplication
         public MetarPage()
         {
             InitializeComponent();
-            _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
-            stationTxtCbx.ItemsSource = null;
-            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
+           
             RefreshUserList();
         }
         private void RefreshUserList()
         {
 
             _metarList = new ObservableCollection<Metar>(App.WimeaApp.Metars);
+            _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
             MetarGrid.ItemsSource = null;
-            MetarGrid.ItemsSource = _metarList;
+            MetarGrid.ItemsSource = _metarList;           
+            stationTxtCbx.ItemsSource = null;
+            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
             
 
         }

@@ -1,6 +1,8 @@
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.csprojResolveAssemblyReference.cache
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\PageDictionary.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\MetarReport.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\RainCardPage.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\SettingPage.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\station\AddStation.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\station\EditStation.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\user\AddUser.baml
@@ -13,7 +15,9 @@ C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\ob
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\MetarPage.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\station\StationPage.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\user\UserPage.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\MetarReport.g.cs
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\RainCardPage.g.cs
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\SettingPage.g.cs
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\station\AddStation.g.cs
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\station\EditStation.g.cs
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\user\AddUser.g.cs
@@ -35,9 +39,11 @@ C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bi
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WimeaApplication.exe.config
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WimeaApplication.exe
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WimeaApplication.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\Newtonsoft.Json.dll
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WimeaLibrary.dll
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WimeaLibrary.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\Newtonsoft.Json.xml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.exe
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.pdb
-C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\Newtonsoft.Json.dll
-C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\DailyReport.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\DailyReport.g.cs
