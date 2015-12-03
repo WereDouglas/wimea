@@ -82,5 +82,10 @@ namespace WimeaApplication
         {
             _mainFrame.NavigationService.Navigate(new Uri("view/MetarReport.xaml", UriKind.Relative));
         }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/SynopticPage.xaml", UriKind.Relative));
+        }
     }
 }

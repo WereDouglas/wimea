@@ -69,6 +69,17 @@ namespace WimeaLibrary
               return _syncs;
           }
       }
+      private SynopticCollection _synoptics;
+      public SynopticCollection Synoptics
+      {
+          get
+          {
+              if (!_synoptics.IsLoaded)
+                  _synoptics.Refresh();
+              _synoptics.Load();
+              return _synoptics;
+          }
+      }
 
 
 
@@ -81,6 +92,7 @@ namespace WimeaLibrary
             _metars = new MetarCollection(this);
             _dailys = new DailyCollection(this);
             _syncs = new SyncsCollection(this);
+            _synoptics = new SynopticCollection(this);
            
         }
       

@@ -56,6 +56,8 @@
     <Compile Include="StationCollection.cs" />
     <Compile Include="Syncs.cs" />
     <Compile Include="SyncsCollection.cs" />
+    <Compile Include="Synoptic.cs" />
+    <Compile Include="SynopticCollection.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\DBObject.cs" />

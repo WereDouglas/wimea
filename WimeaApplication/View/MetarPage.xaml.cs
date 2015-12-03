@@ -28,8 +28,7 @@ namespace WimeaApplication
         private ObservableCollection<Station> _StationsList = null;
         public MetarPage()
         {
-            InitializeComponent();
-           
+            InitializeComponent();           
             RefreshUserList();
         }
         private void RefreshUserList()

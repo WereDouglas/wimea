@@ -25,7 +25,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Synoptic" HorizontalAlignment="Left" Margin="28,368,0,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
+        <Button Content="Synoptic" HorizontalAlignment="Left" Margin="28,368,0,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_6"/>
         <Button Content="Station" HorizontalAlignment="Left" Margin="28,393,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Elements" HorizontalAlignment="Left" Margin="28,418,0,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Instruments" HorizontalAlignment="Left" Margin="28,443,0,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>

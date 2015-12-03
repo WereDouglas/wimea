@@ -1,0 +1,372 @@
+﻿<Page x:Class="WimeaApplication.SynopticPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"
+	Title="MetarPage" Background="White" MinWidth="800" MinHeight="500" Height="763.836">
+
+    <Grid>
+        <Label Content="Station" HorizontalAlignment="Left" Margin="215,8,0,0" VerticalAlignment="Top" Width="48"/>
+        <ComboBox HorizontalAlignment="Left" Margin="273,10,0,0" Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
+        <Label Content="Select date" HorizontalAlignment="Left" Margin="14,7,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="87,10,0,0" VerticalAlignment="Top" Width="122"/>
+        <Label Content="Label" Name="stationNumber" HorizontalAlignment="Left" Margin="400,7,0,0" VerticalAlignment="Top"/>
+        <ScrollViewer Height="97" Margin="0,525,20,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible" >
+            <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
+        		x:Name="SynopticGrid"  Background="{x:Null}" RowBackground="LightYellow" 
+        		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
+        		SelectionMode="Extended" Height="auto" VerticalAlignment="Top" Width="auto"  HorizontalGridLinesBrush="#FFC5C5C5" VerticalGridLinesBrush="#FFC5C5C5" SelectionChanged="dataGridEvaluation_SelectionChanged" >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Gray"  />
+
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Time [GGG]" Binding="{Binding Time}" />
+                    <DataGridTextColumn Header="Inclusion or omission of precipitation[ir]"  Binding="{Binding Ir}" />
+                    <DataGridTextColumn Header="Type of station/present and past weather[ix]"   Binding="{Binding Ix}"/>
+                    <DataGridTextColumn Header="Height of lowest cloud cover[h] "  Binding="{Binding H}"/>
+                    <DataGridTextColumn Header="Horizontal visibility[VV]"  Binding="{Binding Vv}"/>
+                    <DataGridTextColumn Header="Total cloud cover[N]"   Binding="{Binding N}"/>
+                    <DataGridTextColumn Header="Wind speed(KT) [dd]"  Binding="{Binding Dd}"/>
+                    <DataGridTextColumn Header="Wind direction [ff]"  Binding="{Binding Ff}"/>
+                    <DataGridTextColumn Header="Air temperature[TTT]"   Binding="{Binding T}"/>
+                    <DataGridTextColumn Header="Dew point temperature"   Binding="{Binding Td}"/>
+                    <DataGridTextColumn Header="Pressure at station level"   Binding="{Binding Po}"/>
+                    <DataGridTextColumn Header="Group Indicator Standard isobaric surface" Binding="{Binding Gisis}"/>
+                    <DataGridTextColumn Header="Geopotential of standard Isobaric surface "  Binding="{Binding Hhh}"/>
+                    <DataGridTextColumn Header="Amount of precipitation"   Binding="{Binding Rr}"/>
+                    <DataGridTextColumn Header="Duration period of precipitation"  Binding="{Binding Tr}"/>
+                    <DataGridTextColumn Header="Present weather" Binding="{Binding Present}"/>
+                    <DataGridTextColumn Header="Past weather"  Binding="{Binding Past}"/>
+                    <DataGridTextColumn Header="Amount of clouds(Cl)"  Binding="{Binding Nh}"/>
+                    <DataGridTextColumn Header="Clouds (Sc,St,Cu,Cb)"  Binding="{Binding Cl}"/>
+                    <DataGridTextColumn Header="Clouds (Ac,As,Ns)"   Binding="{Binding Cm}"/>
+                    <DataGridTextColumn Header="Clouds (C,Cc,Cs)"  Binding="{Binding Ch}"/>
+                    <DataGridTextColumn Header="Grass minimum temperature"   Binding="{Binding Tq}"/>
+                    <DataGridTextColumn Header="Character and intensity of precipitation"   Binding="{Binding Ro}"/>
+                    <DataGridTextColumn Header="Beginning or end of precipitation"  Binding="{Binding R1}"/>
+                    <DataGridTextColumn Header="Maximum temperature"   Binding="{Binding Tx}"/>
+                    <DataGridTextColumn Header="Minimum temperature"   Binding="{Binding Tm}"/>
+                    <DataGridTextColumn Header="Amount of evaporation"   Binding="{Binding Ee}"/>
+                    <DataGridTextColumn Header="Indicator of type of instrument"  Binding="{Binding E}"/>
+                    <DataGridTextColumn Header="Duration of sunshine"  Binding="{Binding Sss}"/>
+                    <DataGridTextColumn Header="Sign of pressure change"   Binding="{Binding Pchange}"/>
+                    <DataGridTextColumn Header="Pressure change in 24 hours"   Binding="{Binding P24}"/>
+                    <DataGridTextColumn Header="Amount of precipitation"   Binding="{Binding Rr}"/>
+                    <DataGridTextColumn Header="Duration period of precipitation"  Binding="{Binding Tr1}"/>
+                    <DataGridTextColumn Header="Amount of individual cloud layer[Ns]"  Binding="{Binding Ns}"/>
+                    <DataGridTextColumn Header="Genus of cloud[C]"   Binding="{Binding C}"/>
+                    <DataGridTextColumn Header="Height of base cloud layer or mass [hshs]"  Binding="{Binding Hs}"/>
+                    <DataGridTextColumn Header="Amount of individual cloud layer[Ns]"   Binding="{Binding Ns1}"/>
+                    <DataGridTextColumn Header="Genus of cloud[C]"   Binding="{Binding C1}"/>
+                    <DataGridTextColumn Header="Height of base cloud layer or mass [hshs]"  Binding="{Binding Hs1}"/>
+                    <DataGridTextColumn Header="Amount of individual cloud layer[Ns]"   Binding="{Binding Ns2}"/>
+                    <DataGridTextColumn Header="Genus of cloud[C]"   Binding="{Binding C2}"/>
+                    <DataGridTextColumn Header="Height of base cloud layer or mass [hshs]"  Binding="{Binding Hs2}"/>
+                    <DataGridTextColumn Header="Supplementary information"  Binding="{Binding Supplementary}"/>
+                    <DataGridTextColumn Header="Wet bulb Temperature"  Binding="{Binding Wb}"/>
+                    <DataGridTextColumn Header="Relative Humidity(RH)%"  Binding="{Binding Rh}"/>
+                    <DataGridTextColumn Header="Vapour Pressure(VAP)"  Binding="{Binding Vap}"/>
+
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="Delete" Margin="3"  Width="50" Click="deleteClick"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+        </ScrollViewer>
+        <ScrollViewer Margin="10,32,10,0" HorizontalScrollBarVisibility="Visible" Height="488" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" >
+            <Grid Height="478" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" Width="1440" >
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="280" Margin="763,153,0,0" VerticalAlignment="Top" Width="435"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="51" Margin="763,98,0,0" VerticalAlignment="Top" Width="436"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="70" Margin="340,297,0,0" VerticalAlignment="Top" Width="415"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="114" Margin="339,180,0,0" VerticalAlignment="Top" Width="419"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="101" Margin="339,10,0,0" VerticalAlignment="Top" Width="419"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="70" Margin="0,398,0,0" VerticalAlignment="Top" Width="338"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="30" Margin="-4,366,0,0" VerticalAlignment="Top" Width="338"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="263" Margin="-4,10,0,0" VerticalAlignment="Top" Width="338"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="30" Margin="-4,335,0,0" VerticalAlignment="Top" Width="338"/>
+
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="61" Margin="339,116,0,0" VerticalAlignment="Top" Width="416"/>
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="159" Margin="1203,10,0,0" VerticalAlignment="Top" Width="227"/>
+
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" Margin="-4,278,0,0" VerticalAlignment="Top" Width="338"/>
+
+
+                <Label Content="Time" HorizontalAlignment="Left" Margin="170,36,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Inclusion or omission of precipitation" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Type of station/present and past weather" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="time" Height="23" Margin="251,38,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Height of lowest cloud cover " HorizontalAlignment="Left" Margin="41,119,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Horizontal visibility " HorizontalAlignment="Left" Margin="92,150,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Total cloud cover" HorizontalAlignment="Left" Margin="105,181,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Wind speed(KT) " HorizontalAlignment="Left" Margin="109,212,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Wind direction  " HorizontalAlignment="Left" Margin="111,243,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="GGG" HorizontalAlignment="Left" Margin="211,35,0,0" VerticalAlignment="Top" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="IR" HorizontalAlignment="Left" Margin="211,61,0,0" VerticalAlignment="Top" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="IX" HorizontalAlignment="Left" Margin="211,86,0,0" VerticalAlignment="Top" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="h" HorizontalAlignment="Left" Margin="211,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="VV" HorizontalAlignment="Left" Margin="211,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="N" HorizontalAlignment="Left" Margin="211,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="dd" HorizontalAlignment="Left" Margin="211,213,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <Label Content="ff" HorizontalAlignment="Left" Margin="211,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" FontWeight="Normal" Foreground="#FF3399FF"/>
+                <TextBox x:Name="ir" Height="23" Margin="251,67,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ix" Height="23" Margin="251,95,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="h" Height="23" Margin="251,123,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="vv" Height="23" Margin="251,150,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="n" Height="23" Margin="251,185,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="dd" Height="23" Margin="251,215,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ff" Height="23" Margin="251,247,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="AAXX Info" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="Air temperature" HorizontalAlignment="Left" Margin="105,305,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Dew point temperature" HorizontalAlignment="Left" Margin="70,338,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Pressure at station level" HorizontalAlignment="Left" Margin="77,368,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="t" Height="23" Margin="251,303,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Group Indicator Standard isobaric surface" HorizontalAlignment="Left" Margin="0,410,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Geopotential of standard Isobaric surface " HorizontalAlignment="Left" Margin="4,442,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of precipitation" HorizontalAlignment="Left" Margin="505,47,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Duration period of precipitation" HorizontalAlignment="Left" Margin="464,77,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Present weather" HorizontalAlignment="Left" Margin="554,121,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="TTT" HorizontalAlignment="Left" Margin="207,304,0,0" VerticalAlignment="Top" Foreground="#FF3399FF" FontSize="8"/>
+                <Label Content="TdTdTd" HorizontalAlignment="Left" Margin="192,338,0,0" VerticalAlignment="Top" Foreground="#FF3399FF" FontSize="8"/>
+                <Label Content="PoPo" HorizontalAlignment="Left" Margin="201,368,0,0" VerticalAlignment="Top" Foreground="#FF3399FF" FontSize="8"/>
+                <Label Content="hhh" HorizontalAlignment="Left" Margin="207,438,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8"/>
+                <Label Content="RRR" HorizontalAlignment="Left" Margin="660,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Tr" HorizontalAlignment="Left" Margin="667,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="WWW" HorizontalAlignment="Left" Margin="654,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="W1W1" HorizontalAlignment="Left" Margin="652,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <TextBox x:Name="td" Height="23" Margin="251,336,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="po" Height="23" Margin="251,370,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="gisis" Height="23" Margin="251,410,1127,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="hhh" Height="23" Margin="253,441,1125,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="rrr" Height="23" Margin="694,47,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="tr" Height="23" Margin="694,77,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="present" Height="23" Margin="694,125,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Section one" HorizontalAlignment="Left" Margin="154,277,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="1 Sn 1 0 " HorizontalAlignment="Left" Margin="21,304,0,0" VerticalAlignment="Top"/>
+                <Label Content="2 Sn 2 0 " HorizontalAlignment="Left" Margin="19,338,0,0" VerticalAlignment="Top" Height="25"/>
+                <Label Content="indicator 3" HorizontalAlignment="Left" Margin="15,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="62" Background="{x:Null}" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+
+                </Label>
+                <Label Content="Past weather" HorizontalAlignment="Left" Margin="564,147,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of clouds(Cl)" HorizontalAlignment="Left" Margin="520,178,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Clouds (Sc,St,Cu,Cb)" HorizontalAlignment="Left" Margin="520,204,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="past" Height="23" Margin="694,153,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="nh" Height="23" Margin="694,181,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="cl" Height="23" Margin="694,206,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Nh" HorizontalAlignment="Left" Margin="670,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Cl" HorizontalAlignment="Left" Margin="675,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Clouds (Ac,As,Ns)" HorizontalAlignment="Left" Margin="520,235,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Clouds (C,Cc,Cs)" HorizontalAlignment="Left" Margin="523,266,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Cm" HorizontalAlignment="Left" Margin="669,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Ch" HorizontalAlignment="Left" Margin="672,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <TextBox x:Name="cm" Height="23" Margin="694,238,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ch" Height="23" Margin="694,266,684,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="4 8" HorizontalAlignment="Left" Margin="211,410,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8"/>
+                <Label Content="Group indicator 6" HorizontalAlignment="Left" Margin="313,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Group indicator 7" HorizontalAlignment="Left" Margin="352,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" FontSize="10" FontWeight="Bold" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.096"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Group indicator 8" HorizontalAlignment="Left" Margin="304,212,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="34" Width="122" Background="{x:Null}" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="86" Margin="763,10,0,0" VerticalAlignment="Top" Width="436"/>
+                <Label Content="Grass minimum temperature" HorizontalAlignment="Left" Margin="484,311,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Character and intensity of precipitation" HorizontalAlignment="Left" Margin="434,335,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Beginning or end of precipitation" HorizontalAlignment="Left" Margin="451,363,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="tq" Height="23" Margin="693,311,685,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Maximum temperature" HorizontalAlignment="Left" Margin="489,397,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Minimum temperature" HorizontalAlignment="Left" Margin="505,430,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of evaporation" HorizontalAlignment="Left" Margin="965,34,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Indicator of type of instrument" HorizontalAlignment="Left" Margin="929,61,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Duration of sunshine" HorizontalAlignment="Left" Margin="970,95,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Width="109"/>
+                <Label Content="TqTq" HorizontalAlignment="Left" Margin="662,312,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Ro" HorizontalAlignment="Left" Margin="672,338,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="R1" HorizontalAlignment="Left" Margin="672,361,0,0" VerticalAlignment="Top" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="TmTmTm" HorizontalAlignment="Left" Margin="641,430,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="EE" HorizontalAlignment="Left" Margin="1090,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="E" HorizontalAlignment="Left" Margin="1092,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="SSS" HorizontalAlignment="Left" Margin="1084,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="9 8" HorizontalAlignment="Left" Margin="1087,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <TextBox x:Name="ro" Height="23" Margin="693,340,685,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="r1" Height="23" Margin="693,366,685,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="tx" Height="23" Margin="693,400,685,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="tm" Height="23" Margin="693,427,685,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ee" Height="23" Margin="1118,30,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="es" Height="23" Margin="1118,60,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="sss" Height="23" Margin="1118,98,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Section indicator 333" HorizontalAlignment="Left" Margin="950,10,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="Group 0 " HorizontalAlignment="Left" Margin="334,314,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFF8500" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90.163"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Group indicator 6" HorizontalAlignment="Left" Margin="309,399,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFF8500" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-88.846"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Group indicator 7" HorizontalAlignment="Left" Margin="780,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="124" Height="23" Background="{x:Null}" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+
+                </Label>
+                <Label Content="Sign of pressure change" HorizontalAlignment="Left" Margin="965,121,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Width="125"/>
+                <Label Content="Pressure change in 24 hours" HorizontalAlignment="Left" Margin="943,164,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of precipitation" HorizontalAlignment="Left" Margin="961,190,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="pchange" Height="23" Margin="1118,126,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="p24" Height="23" Margin="1118,162,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="rr" Height="23" Margin="1118,189,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="P24" HorizontalAlignment="Left" Margin="1085,165,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="RRR" HorizontalAlignment="Left" Margin="1081,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Duration period of precipitation" HorizontalAlignment="Left" Margin="924,221,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of individual cloud layer" HorizontalAlignment="Left" Margin="920,252,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="tr" HorizontalAlignment="Left" Margin="1087,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Ns" HorizontalAlignment="Left" Margin="1089,251,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <TextBox x:Name="tr1" Height="23" Margin="1118,223,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ns" Height="23" Margin="1118,251,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="TxTxTx" HorizontalAlignment="Left" Margin="652,402,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF007ACC" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Group indicator 8" HorizontalAlignment="Left" Margin="688,259,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="221" Background="{x:Null}" Height="32" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-89.729"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Group indicator 9" HorizontalAlignment="Left" Margin="1176,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="27" FontSize="10" FontWeight="Bold" Width="98" Background="{x:Null}" Foreground="#FFFF8500">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Section one" HorizontalAlignment="Left" Margin="487,11,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="Section indicator 333" HorizontalAlignment="Left" Margin="520,297,0,0" VerticalAlignment="Top" Width="120" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="Genus of cloud" HorizontalAlignment="Left" Margin="1005,283,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Height of base cloud layer or mass" HorizontalAlignment="Left" Margin="913,311,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Amount of individual cloud layer" HorizontalAlignment="Left" Margin="920,339,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Genus of cloud" HorizontalAlignment="Left" Margin="1005,367,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Height of base cloud layer or mass" HorizontalAlignment="Left" Margin="913,395,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Supplementary information" HorizontalAlignment="Left" Margin="1277,70,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="9 11 ff highest gust" HorizontalAlignment="Left" Margin="1317,24,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="9 12 ff highest mean wind speed" HorizontalAlignment="Left" Margin="1255,52,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="9 43CL DP movement of C clouds" HorizontalAlignment="Left" Margin="1252,90,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <TextBox x:Name="c" Height="23" Margin="1118,282,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="hs" Height="23" Margin="1118,310,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="ns1" Height="23" Margin="1118,341,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="c2" Height="23" Margin="1118,366,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="hs2" Height="23" Margin="1118,395,260,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="supplementary" Height="23" Margin="1255,120,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Label Content="Section 555" HorizontalAlignment="Left" Margin="1317,178,0,0" VerticalAlignment="Top" Width="66" FontWeight="Bold" Foreground="#FF3399FF"/>
+                <Label Content="Group indicator Sign of data 1 S" HorizontalAlignment="Left" Margin="1143,280,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Background="{x:Null}" Foreground="#FFFF8500" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Wet bulb Temperature" HorizontalAlignment="Left" Margin="1291,218,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                <Label Content="Relative Humidity(RH)" HorizontalAlignment="Left" Margin="1291,264,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" RenderTransformOrigin="0.519,2.87"/>
+                <Label Content="Vapour Pressure(VAP)" HorizontalAlignment="Left" Margin="1294,311,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" RenderTransformOrigin="0.519,2.87"/>
+                <TextBox x:Name="wb" Height="23" Margin="1317,236,33,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="rh" Height="23" Margin="1317,284,33,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <TextBox x:Name="vap" Height="23" Margin="1317,337,33,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.09,0.613"/>
+                <Button Content="Submit" Margin="0,386,33,0" VerticalAlignment="Top" Height="32" HorizontalAlignment="Right" Width="90" Click="Button_Click"/>
+                <Label Content="C" HorizontalAlignment="Left" Margin="1095,282,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="hshs" HorizontalAlignment="Left" Margin="1080,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="Ns" HorizontalAlignment="Left" Margin="1089,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="C" HorizontalAlignment="Left" Margin="1095,371,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+                <Label Content="hshs" HorizontalAlignment="Left" Margin="1080,398,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.275,3.058" Foreground="#FF3399FF" FontSize="8" FontWeight="Normal"/>
+
+
+            </Grid>
+        </ScrollViewer>
+
+
+    </Grid>
+</Page>

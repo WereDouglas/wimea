@@ -155,8 +155,7 @@ namespace WimeaApplication.View
             twentyoneTxtBx.Text = filltext("21");
             twentythreeTxtBx.Text = filltext("23");
             fourtTxtBx.Text = filltext("14");
-            thirtyoneTxtBx.Text = filltext("31");
-           
+            thirtyoneTxtBx.Text = filltext("31");        
           
 
             // }
