@@ -43,10 +43,7 @@ namespace WimeaApplication
 
         }
 
-        private void deleteClick(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void stationTxtCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,6 +52,24 @@ namespace WimeaApplication
 
         private void dataGridEvaluation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+        private void deleteClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as System.Windows.Controls.Button;
+            Synoptic synoptic = button.DataContext as Synoptic;
+
+            if (MessageBox.Show("Are you sure you want to delete this synoptic ?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                synoptic.Delete(synoptic.Id.ToString());
+                RefreshUserList();
+            }
+            else
+            {
+
+                return;
+            }
+
 
         }
 
@@ -66,10 +81,7 @@ namespace WimeaApplication
                 {
 
                     u = App.WimeaApp.Synoptics.Add();
-
                     u.Station = stationTxtCbx.Text;
-                   
-                  
                     u.Date = DateTime.Now.ToString() ;
                     u.Time = time.Text;
                     u.Ir = ir.Text;
@@ -105,6 +117,7 @@ namespace WimeaApplication
                     u.P24 = p24.Text;
                     u.Rr = rr.Text;
                     u.Tr1 = tr1.Text;
+                    u.Ns = ns.Text;
                     u.Ns1 = ns1.Text;
                     u.C = c.Text;
                     u.Hs = hs.Text;
@@ -118,7 +131,7 @@ namespace WimeaApplication
                     u.Wb = wb.Text;
                     u.Rh = rh.Text;
                     u.Vap = vap.Text;
-                    u.User = "";
+                    u.Users = "test";
                     u.Submitted = DateTime.Now.ToString();
 
                     u.Save();
@@ -132,11 +145,11 @@ namespace WimeaApplication
                     return;
                 }
             }
-            catch (Exception ex)
+           catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message.ToString());
-                return;
+               return;
 
             }
         }

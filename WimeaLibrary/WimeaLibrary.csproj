@@ -46,6 +46,7 @@
     <Compile Include="Daily.cs" />
     <Compile Include="DailyCollection.cs" />
     <Compile Include="DailyOnline.cs" />
+    <Compile Include="Dekadal.cs" />
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\Encryption.cs" />
     <Compile Include="Helpers\Validator.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="SyncsCollection.cs" />
     <Compile Include="Synoptic.cs" />
     <Compile Include="SynopticCollection.cs" />
+    <Compile Include="SynopticOnline.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\DBObject.cs" />

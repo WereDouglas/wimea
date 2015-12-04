@@ -72,6 +72,9 @@
     <Compile Include="View\DailyReport.xaml.cs">
       <DependentUpon>DailyReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DekadalPage.xaml.cs">
+      <DependentUpon>DekadalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MetarReport.xaml.cs">
       <DependentUpon>MetarReport.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,12 @@
     </Compile>
     <Compile Include="View\SynopticPage.xaml.cs">
       <DependentUpon>SynopticPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SynopticReport.xaml.cs">
+      <DependentUpon>SynopticReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SynopticsPage.xaml.cs">
+      <DependentUpon>SynopticsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\user\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
@@ -114,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DekadalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MetarReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +148,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SynopticPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SynopticReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SynopticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

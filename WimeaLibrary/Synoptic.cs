@@ -379,12 +379,12 @@ namespace WimeaLibrary
             get { return _vap; }
             set { _vap = value; }
         }
-        private string _user;
+        private string _users;
 
-        public string User
+        public string Users
         {
-            get { return _user; }
-            set { _user = value; }
+            get { return _users; }
+            set { _users = value; }
         }
         private string _submitted;
 
@@ -396,7 +396,7 @@ namespace WimeaLibrary
 
         public override void Save()
         {
-            if (Station == "" || User == "")
+            if (Station == "" || Users == "")
             {
                 throw new Exception("Empty fields");
             }
@@ -404,7 +404,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [synoptic](id,station,dates,times,ir,ix,h,www,vv,n,dd,ff,t,td,po,gisis,hhh,rrr,tr,present,past,nh,cl,cm,ch,tq,ro,r1,tx,tm,ee,e,sss,pchange,p24,rr,tr1,ns,c,hs,ns1,c1,hs1,ns2,c2,hs2,supplementary,wb,rh,vap,user,submitted)VALUES(@id,@station,@dates,@times,@ir,@ix,@h,@www,@vv,@n,@dd,@ff,@t,@td,@po,@gisis,@hhh,@rrr,@tr,@present,@past,@nh,@cl,@cm,@ch,@tq,@ro,@r1,@tx,@tm,@ee,@e,@sss,@pchange,@p24,@rr,@tr1,@ns,@c,@hs,@ns1,@c1,@hs1,@ns2,@c2,@hs2,@supplementary,@wb,@rh,@vap,@user,@submitted)";
+                cmd.CommandText = "INSERT INTO [synoptic](id,station,dates,times,ir,ix,h,www,vv,n,dd,ff,t,td,po,gisis,hhh,rrr,tr,present,past,nh,cl,cm,ch,tq,ro,r1,tx,tm,ee,e,sss,pchange,p24,rr,tr1,ns,c,hs,ns1,c1,hs1,ns2,c2,hs2,supplementary,wb,rh,vap,users,submitted)VALUES(@id,@station,@dates,@times,@ir,@ix,@h,@www,@vv,@n,@dd,@ff,@t,@td,@po,@gisis,@hhh,@rrr,@tr,@present,@past,@nh,@cl,@cm,@ch,@tq,@ro,@r1,@tx,@tm,@ee,@e,@sss,@pchange,@p24,@rr,@tr1,@ns,@c,@hs,@ns1,@c1,@hs1,@ns2,@c2,@hs2,@supplementary,@wb,@rh,@vap,@users,@submitted)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@station", Station);
                 cmd.Parameters.AddWithValue("@dates", Date);
@@ -422,7 +422,7 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@po", Po);
                 cmd.Parameters.AddWithValue("@gisis", Gisis);
                 cmd.Parameters.AddWithValue("@hhh", Hhh);
-                cmd.Parameters.AddWithValue("@rr", Rr);
+                cmd.Parameters.AddWithValue("@rrr", Rr);
                 cmd.Parameters.AddWithValue("@tr", Tr);
                 cmd.Parameters.AddWithValue("@present", Present);
                 cmd.Parameters.AddWithValue("@past", Past);
@@ -455,7 +455,7 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@wb", Wb);
                 cmd.Parameters.AddWithValue("@rh", Rh);
                 cmd.Parameters.AddWithValue("@vap", Vap);
-                cmd.Parameters.AddWithValue("@user", User);
+                cmd.Parameters.AddWithValue("@users", Users);
                 cmd.Parameters.AddWithValue("@submitted", Submitted);               
                 ExecuteNonQuery(cmd);
 

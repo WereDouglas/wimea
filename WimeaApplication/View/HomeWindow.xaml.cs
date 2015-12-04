@@ -70,7 +70,7 @@ namespace WimeaApplication
 
         private void reportS_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainFrame.NavigationService.Navigate(new Uri("view/SynopticReport.xaml", UriKind.Relative));
         }
 
         private void reportD_Click(object sender, RoutedEventArgs e)
@@ -86,6 +86,21 @@ namespace WimeaApplication
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.Navigate(new Uri("view/SynopticPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_view(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/SynopticsPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/DekadalPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_dekadals(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/DekadalPage.xaml", UriKind.Relative));
         }
     }
 }

@@ -106,10 +106,8 @@ namespace WimeaLibrary
                     u.Wb = row["wb"].ToString();
                     u.Rh = row["rh"].ToString();
                     u.Vap = row["vap"].ToString();
-                    u.User = row["user"].ToString();
+                    u.Users = row["users"].ToString();
                     u.Submitted = row["submitted"].ToString();
-
-
             }
             IsLoaded = true;
         }

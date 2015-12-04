@@ -74,8 +74,9 @@ namespace WimeaApplication.View
                 }
                 if (synopticChk.IsChecked == true)
                 {
-                    urls = "http://localhost/weather/index.php/api/tasks/station/" + stationTxtCbx.Text + "/format/json";
+                    urls = "http://localhost/weather/index.php/apisynoptic/synoptic/station/" + stationTxtCbx.Text + "/format/json";
                     syncs(urls, "synoptic");
+                    validate("synoptic");
                 }
                 if (rainChk.IsChecked == true)
                 {
@@ -108,8 +109,6 @@ namespace WimeaApplication.View
             if (_syncList.Count <= 0)
             {
                 save(stationTxtCbx.Text + "-" + content, DateTime.Today.ToString(), "new-users");
-
-
             }
             else
             {

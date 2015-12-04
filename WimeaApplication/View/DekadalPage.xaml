@@ -1,0 +1,249 @@
+﻿<Page x:Class="WimeaApplication.DekadalPage"     
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
+      mc:Ignorable="d"
+	Title="Daily weather records" MinWidth="800" MinHeight="600" Background="White" >
+
+    <Grid >
+        <Grid Height="42" VerticalAlignment="Top" Margin="0,6,0,0">
+            <Label Content="Station" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="48"/>
+            <ComboBox HorizontalAlignment="Left" Margin="63,10,0,0" x:Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
+            <Label Content="Info" x:Name="stationNumber" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="43" RenderTransformOrigin="2.081,0.728"/>
+            <Button Content="Generate" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="27" Click="Button_Click"/>
+            <Label Content="Month" HorizontalAlignment="Left" Margin="191,8,0,0" VerticalAlignment="Top"/>
+            <Label Content="Year" HorizontalAlignment="Left" Margin="323,9,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="254,12,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.302,-0.056" />
+            <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="23" Margin="361,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+        </Grid>
+        <ScrollViewer Margin="0,53,0,5" HorizontalScrollBarVisibility="Visible" >
+            <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
+        		x:Name="DekadalGrid"  Background="{x:Null}" RowBackground="LightYellow" 
+        		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
+        		SelectionMode="Extended" Height="auto" VerticalAlignment="Top" Width="auto"  HorizontalGridLinesBrush="#FFC5C5C5" VerticalGridLinesBrush="#FFC5C5C5"  >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#A5A5A5"  />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Width="50"  Binding="{Binding Date}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>Date</TextBlock>
+                                    <TextBlock ></TextBlock>                                   
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="100"  Binding="{Binding Min}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="24" Foreground="White"></TextBlock>
+                                   
+                                    <TextBlock >Min(c)</TextBlock>                                   
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Max}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Max(c)</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Rainfall(mm)" Width="80"  Binding="{Binding Rain}"/>
+                    <DataGridTextColumn  Width="80"  Binding="{Binding Db9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="20" Width="100" Foreground="White">9:00am</TextBlock>
+                                    <TextBlock FontWeight="Bold" Foreground="#FF0086FF">Temperatures</TextBlock>
+                                    <TextBlock >Dry bulb</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                   <DataGridTextColumn  Width="50"  Binding="{Binding Wb9}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Wet bulb</TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Dp9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Dew point</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>                    
+                    <DataGridTextColumn Header="RH(%)" Width="40"  Binding="{Binding Rh9}"/>
+                 
+
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Windd9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                   
+                                    <TextBlock></TextBlock>
+                                    <TextBlock FontWeight="Bold" Foreground="#FFFFD600">Wind</TextBlock>
+                                    <TextBlock >Direction</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Width="50"  Binding="{Binding Windc9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Compass</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Speedk9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Speed(KT)</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Speedm9}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Speed(m/s)</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="40" ></DataGridTextColumn>
+
+                        <DataGridTextColumn  Width="100"  Binding="{Binding Db3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock> <TextBlock FontWeight="Bold" FontSize="20" Width="100" Foreground="White">3:00pm</TextBlock></TextBlock>
+                                    <TextBlock Foreground="#FF0086FF" FontWeight="Bold">Temperatures</TextBlock>
+                                    <TextBlock >Dry bulb</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Wb3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Wet bulb</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Dp3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Dew point</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="RH(%)" Width="40"  Binding="{Binding Rh3}"/>
+                   
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Windd3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                   
+                                    <TextBlock></TextBlock>
+                                    <TextBlock Foreground="#FFFFD600" FontWeight="Bold">Wind</TextBlock>
+                                    <TextBlock >Direction</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Width="50"  Binding="{Binding Windc3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Compass</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Speedk3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Speed(KT)</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn  Width="50"  Binding="{Binding Speedm3}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock></TextBlock>
+                                    <TextBlock >Speed(m/s)</TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+
+
+
+
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
