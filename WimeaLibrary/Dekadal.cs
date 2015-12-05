@@ -28,6 +28,15 @@ namespace WimeaLibrary
             get;
             set;
         }
+
+        private string dam;
+
+        public string Dam
+        {
+            get;
+            set;
+        }
+
         private string min;
 
         public string Min
@@ -50,6 +59,132 @@ namespace WimeaLibrary
             get;
             set;
         }
+        private string sun;
+
+        public string Sun
+        {
+            get;
+            set;
+        }
+
+        private string winrrun;
+
+        public string Windrun
+        {
+            get;
+            set;
+        }
+        private string rf;
+
+        public string Rf
+        {
+            get;
+            set;
+        }
+        private string rainday;
+
+        public string Rainday
+        {
+            get;
+            set;
+        }
+        private string ts;
+
+        public string Ts
+        {
+            get;
+            set;
+        }
+        private string fg;
+
+        public string Fg
+        {
+            get;
+            set;
+        }
+        private string hz;
+
+        public string Hz
+        {
+            get;
+            set;
+        }
+        private string hail;
+
+        public string Hail
+        {
+            get;
+            set;
+        }
+        private string quake;
+
+        public string Quake
+        {
+            get;
+            set;
+        }
+        private string height;
+
+        public string Height
+        {
+            get;
+            set;
+        }
+
+         
+        private string _radiationtype;
+
+        public string Radiationtype
+        {
+           get;
+            set;
+        }
+        private string radiation;
+
+        public string Radiation
+        {
+            get;
+            set;
+        }
+        private string evaptype1;
+
+        public string Evaptype1
+        {
+            get;
+            set;
+        }
+        private string evap1;
+
+        public string Evap1
+        {
+            get;
+            set;
+        }
+        private string evaptype2;
+
+        public string Evaptype2
+        {
+            get;
+            set;
+        }
+        private string evap2;
+
+        public string Evap2
+        {
+            get;
+            set;
+        }
+       
+
+
+
+
+
+
+
+      /// <summary>
+      /// ///
+      /// </summary>
         private string time9;
 
         public string Time9
@@ -74,6 +209,32 @@ namespace WimeaLibrary
             get;
             set;
         }
+
+        private string clp9;
+
+        public string Clp9
+        {
+            get;
+            set;
+        }
+
+        private string gpm9;
+
+        public string Gpm9
+        {
+            get;
+            set;
+        }
+
+        private string vp9;
+
+        public string Vp9
+        {
+            get;
+            set;
+        }
+
+        
         private string wb9;
 
         public string Wb9
@@ -132,7 +293,33 @@ namespace WimeaLibrary
         }
 
       ////////
-      
+
+
+
+        private string clp3;
+
+        public string Clp3
+        {
+            get;
+            set;
+        }
+
+        private string gpm3;
+
+        public string Gpm3
+        {
+            get;
+            set;
+        }
+        private string vp3;
+
+        public string Vp3
+        {
+            get;
+            set;
+        }
+
+
 
         private string db3;
 

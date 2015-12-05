@@ -65,6 +65,9 @@
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\DBObject.cs" />
     <Compile Include="Helpers\ListViewPrinterBase.cs" />
+    <Compile Include="View\ClimReport.xaml.cs">
+      <DependentUpon>ClimReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\convertTextInputToVisibility.cs" />
     <Compile Include="ViewModel\ObservableObject.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -78,8 +81,14 @@
     <Compile Include="View\MetarReport.xaml.cs">
       <DependentUpon>MetarReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MonthlyReport.xaml.cs">
+      <DependentUpon>MonthlyReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RainCardPage.xaml.cs">
       <DependentUpon>RainCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RainReport.xaml.cs">
+      <DependentUpon>RainReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
@@ -119,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ClimReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DailyReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,7 +144,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MonthlyReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RainCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RainReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

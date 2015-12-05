@@ -53,6 +53,8 @@
     <Compile Include="Metar.cs" />
     <Compile Include="MetarCollection.cs" />
     <Compile Include="MetarOnline.cs" />
+    <Compile Include="Months.cs" />
+    <Compile Include="Sending.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="StationCollection.cs" />
     <Compile Include="Syncs.cs" />

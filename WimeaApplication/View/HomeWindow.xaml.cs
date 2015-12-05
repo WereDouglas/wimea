@@ -102,5 +102,20 @@ namespace WimeaApplication
         {
             _mainFrame.NavigationService.Navigate(new Uri("view/DekadalPage.xaml", UriKind.Relative));
         }
+
+        private void Button_Click_report(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/RainReport.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_monthly(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/MonthlyReport.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_clim(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/ClimReport.xaml", UriKind.Relative));
+        }
     }
 }

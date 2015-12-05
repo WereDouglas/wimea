@@ -108,7 +108,7 @@ namespace WimeaApplication.View
             var objects = "";
             if (_syncList.Count <= 0)
             {
-                save(stationTxtCbx.Text + "-" + content, DateTime.Today.ToString(), "new-users");
+                save(stationTxtCbx.Text + "-" + content, DateTime.Now.ToString(), "new-users");
             }
             else
             {
@@ -120,16 +120,16 @@ namespace WimeaApplication.View
                 if (objects == "")
                 {
 
-                    save(stationTxtCbx.Text + "-" + content, DateTime.Today.ToString(), "new-users");
+                    save(stationTxtCbx.Text + "-" + content, DateTime.Now.ToString(), "new-users");
                 }
                 else
                 {
-                    update(objects, DateTime.Today.ToString(), "update-users");
+                    update(objects, DateTime.Now.ToString(), "update-users");
                 }
                 }
                 catch
                 {
-                    save(stationTxtCbx.Text + "-" + content, DateTime.Today.ToString(), "new-users");
+                    save(stationTxtCbx.Text + "-" + content, DateTime.Now.ToString(), "new-users");
                 }
             }
 

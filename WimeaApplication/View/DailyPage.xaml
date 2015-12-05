@@ -11,7 +11,7 @@
 
     </Page.Resources>
     <Grid Margin="0,0,0,10">
-        <Grid Height="106" VerticalAlignment="Top">
+        <Grid Height="166" VerticalAlignment="Top">
             <Label Content="Select date" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top"/>
             <Label Content="Min.temp" HorizontalAlignment="Left" Margin="81,54,0,0" VerticalAlignment="Top" Width="54"/>
             <Label Content="No." HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.251,0.334"/>
@@ -43,7 +43,7 @@
             <TextBox HorizontalAlignment="Left" Name="Evap2" Height="23" Margin="649,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" RenderTransformOrigin="5.732,-1.578"/>
             <TextBox HorizontalAlignment="Left" Name="Radiation" Height="23" Margin="952,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" RenderTransformOrigin="5.732,-1.578"/>
             <Button Content="Submit" HorizontalAlignment="Left" Margin="952,71,0,0" Width="59" Click="Button_Click" Height="26" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Name="RainDuration" Height="23" Margin="249,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59"/>
+            <TextBox HorizontalAlignment="Left" Name="RainDuration" Height="23" Margin="225,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
             <TextBox HorizontalAlignment="Left" Name="Rainfall" Height="23" Margin="344,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59"/>
             <ComboBox Name="stationTxtCbx" HorizontalAlignment="Left" Margin="81,35,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationTxtCbx_SelectionChanged"/>
             <TextBox HorizontalAlignment="Left" Name="maxTemp" Height="23" Margin="145,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="56"/>
@@ -52,8 +52,14 @@
             <ComboBox HorizontalAlignment="Left" Name="Radtype" Margin="812,11,0,0" VerticalAlignment="Top" Width="64"/>
             <ComboBox HorizontalAlignment="Left" Name="EvapType" Margin="509,39,0,0" VerticalAlignment="Top" Width="64"/>
             <Label Content="Max.temp" HorizontalAlignment="Left" Margin="140,53,0,0" VerticalAlignment="Top" Width="65"/>
+            <Label Content="Sync"  Name="tbProgress" HorizontalAlignment="Left" Margin="489,116,0,0" VerticalAlignment="Top" Width="38"/>
+            <Label Content="Month" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Height="26"/>
+            <ComboBox HorizontalAlignment="Left" Margin="81,108,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" Height="26" SelectionChanged="monthTxtCbx_SelectionChanged" />
+            <Label Content="Year" HorizontalAlignment="Left" Margin="206,108,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.576,-0.231"/>
+            <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="26" Margin="244,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+            <Button Content="Sync" HorizontalAlignment="Left" Margin="360,108,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="26" Click="Button_Sync"/>
         </Grid>
-        <ScrollViewer Height="401" Margin="0,122,0,0" VerticalAlignment="Top"  HorizontalScrollBarVisibility="Visible" >
+        <ScrollViewer Margin="0,171,0,10"  HorizontalScrollBarVisibility="Visible" >
             <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
         		x:Name="MetarGrid"  Background="{x:Null}" RowBackground="LightYellow" 
         		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
@@ -65,7 +71,7 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" Binding="{Binding Id}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Dates}" />
                     <DataGridTextColumn Header="Max.temp" Binding="{Binding Maxs}" />
                     <DataGridTextColumn Header="Min.temp"   Binding="{Binding Mins}"/>
                     <DataGridTextColumn Header="Rainfall(mm)"   Binding="{Binding Actual}"/>

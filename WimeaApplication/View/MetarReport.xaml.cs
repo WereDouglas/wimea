@@ -48,8 +48,8 @@ namespace WimeaApplication
             {
                 monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
             }
-            
 
+            yearTxtBx.Text = DateTime.Now.Year.ToString();
 
         }
         private void deleteClick(object sender, RoutedEventArgs e)

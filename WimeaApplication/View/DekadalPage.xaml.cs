@@ -81,8 +81,9 @@ namespace WimeaApplication
             for (int d = 0; d < model.Count; d++)
             {
                 u = new Dekadal();
-                u.Station = model.ElementAt(d).Station;              
-                u.Date = model.ElementAt(d).Date;
+                u.Station = model.ElementAt(d).Station;
+                u.Date = Convert.ToDateTime(model.ElementAt(d).Date).Day.ToString();
+                u.Dam = model.ElementAt(d).Date;
                 u.Min = model.ElementAt(d).Min;
                 u.Max = model.ElementAt(d).Max;
                 u.Rain = model.ElementAt(d).Actual;
@@ -103,7 +104,7 @@ namespace WimeaApplication
                System.Diagnostics.Debug.WriteLine( Convert.ToDateTime(model2.ElementAt(d2).Day).Date.Day.ToString());
 
 
-                if(model2.ElementAt(d2).Datetime.Contains(datetime9) && model2.ElementAt(d2).Day==u.Date){
+                if(model2.ElementAt(d2).Datetime.Contains(datetime9) && model2.ElementAt(d2).Day==u.Dam){
 
                     u.Db9 = model2.ElementAt(d2).Air_temperature;
                     u.Wb9 = model2.ElementAt(d2).Wet_bulb;
@@ -115,7 +116,7 @@ namespace WimeaApplication
                     u.Speedm9 = KtToMs(Convert.ToDouble(model2.ElementAt(d2).Wind_speed)).ToString();
                     u.Time9 = model2.ElementAt(d2).Datetime;
                 }
-                if (model2.ElementAt(d2).Datetime.Contains(datetime3) && model2.ElementAt(d2).Day == u.Date)
+                if (model2.ElementAt(d2).Datetime.Contains(datetime3) && model2.ElementAt(d2).Day == u.Dam)
                 {
 
                     u.Db3 = model2.ElementAt(d2).Air_temperature;
@@ -141,7 +142,7 @@ namespace WimeaApplication
 
             DekadalGrid.ItemsSource = null;
 
-             DekadalGrid.ItemsSource = (dekadalList.Where(c => Convert.ToDateTime(c.Date).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Date).Year.ToString() == yearTxtBx.Text));
+             DekadalGrid.ItemsSource = (dekadalList.Where(c => Convert.ToDateTime(c.Dam).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Dam).Year.ToString() == yearTxtBx.Text).OrderBy(c=>c.Dam));
 
            }
             catch (Exception ex)

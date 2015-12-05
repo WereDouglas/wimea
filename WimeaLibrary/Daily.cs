@@ -100,6 +100,13 @@ namespace WimeaLibrary
             get { return _rain; }
             set { _rain = value; }
         }
+        private string _sync;
+
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
         private string _thunder;
 
         public string Thunder
@@ -211,7 +218,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [daily](id,dates,station,maxs,mins,actual,anemometer,wind,maxi,rain,thunder,fog,haze,storm,quake,height,duration,sunshine,radiationtype,radiation,evaptype1,evap1,evaptype2,evap2,users)VALUES(@id,@dates,@station,@maxs,@mins,@actual,@anemometer,@wind,@maxi,@rain,@thunder,@fog,@haze,@storm,@quake,@height,@duration,@sunshine,@radiationtype,@radiation,@evaptype1,@evap1,@evaptype2,@evap2,@users)";
+                cmd.CommandText = "INSERT INTO [daily](id,dates,station,maxs,mins,actual,anemometer,wind,maxi,rain,thunder,fog,haze,storm,quake,height,duration,sunshine,radiationtype,radiation,evaptype1,evap1,evaptype2,evap2,users,sync)VALUES(@id,@dates,@station,@maxs,@mins,@actual,@anemometer,@wind,@maxi,@rain,@thunder,@fog,@haze,@storm,@quake,@height,@duration,@sunshine,@radiationtype,@radiation,@evaptype1,@evap1,@evaptype2,@evap2,@users,@sync)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@station", Station);
                 cmd.Parameters.AddWithValue("@dates", Dates);
@@ -237,19 +244,18 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@evaptype2", Evaptype2);
                 cmd.Parameters.AddWithValue("@evap2", Evap2);               
                 cmd.Parameters.AddWithValue("@users", Users);
-              
+                cmd.Parameters.AddWithValue("@sync", Sync);              
                 ExecuteNonQuery(cmd);
              
 
             }
 
         }
-        public void Update(string id, string name, string number, string code, string latitude, string longitude,string altitude,string type,string location,string status,string commissioned)
+        public void Update(string id, string sync)
         {
-
             
             SqlCeCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE [Daily] SET name='" + name + "',code='" + code + "',number='" + number + "',latitude='" + latitude + "',longitude ='" + longitude + "',altitude='" + altitude + "',type='" + type + "',location='" + location + "',status='" + status + "',commissioned='" + commissioned + "' WHERE id = '" + id + "'";
+            cmd.CommandText = "UPDATE [daily] SET sync='" + sync + "' WHERE id = '" + id + "'";
            
          
         ExecuteNonQuery(cmd);            

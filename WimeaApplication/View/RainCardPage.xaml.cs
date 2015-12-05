@@ -47,6 +47,7 @@ namespace WimeaApplication.View
             {
                 monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
             }
+            yearTxtBx.Text = DateTime.Now.Year.ToString();
 
 
 

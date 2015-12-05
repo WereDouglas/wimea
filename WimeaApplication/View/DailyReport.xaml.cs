@@ -44,7 +44,7 @@ namespace WimeaApplication
             {
                 monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
             }
-
+            yearTxtBx.Text = DateTime.Now.Year.ToString();
 
 
         }
@@ -96,13 +96,13 @@ namespace WimeaApplication
                     u.Evap1 =  model.ElementAt(d).Evap1;
                     u.Evaptype2 =  model.ElementAt(d).Evaptype2;
                     u.Evap2 =  model.ElementAt(d).Evap2;
-                    u.Users =  model.ElementAt(d).User;
+                    u.Users =  model.ElementAt(d).User;                    
                     u.Dates = model.ElementAt(d).Date;
                     metList.Add(u);
                 }
 
 
-                List<Daily> metLists = new List<Daily>(metList.Where(c => Convert.ToDateTime(c.Dates).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString()  && Convert.ToDateTime(c.Dates).Year.ToString() == yearTxtBx.Text));
+                List<Daily> metLists = new List<Daily>(metList.Where(c => Convert.ToDateTime(c.Dates).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString()  && Convert.ToDateTime(c.Dates).Year.ToString() == yearTxtBx.Text).OrderBy(c=>c.Dates));
 
                 MetarGrid.ItemsSource = null;
                 MetarGrid.ItemsSource = metLists;

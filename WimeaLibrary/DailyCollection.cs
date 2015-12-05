@@ -81,6 +81,7 @@ namespace WimeaLibrary
                     u.Evap2 = row["evap2"].ToString();
                     u.Users = row["users"].ToString();
                     u.Dates = row["dates"].ToString();
+                    u.Sync = row["sync"].ToString();
               
         }
             IsLoaded = true;

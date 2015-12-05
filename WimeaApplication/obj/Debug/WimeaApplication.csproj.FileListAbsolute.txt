@@ -55,3 +55,9 @@ C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\ob
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\SynopticReport.g.cs
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\DekadalPage.baml
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\DekadalPage.g.cs
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\RainReport.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\RainReport.g.cs
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\MonthlyReport.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\MonthlyReport.g.cs
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\ClimReport.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\ClimReport.g.cs

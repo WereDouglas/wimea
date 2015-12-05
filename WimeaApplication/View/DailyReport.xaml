@@ -12,14 +12,15 @@
     </Page.Resources>
     <Grid Margin="0,0,0,10">
         <Grid Height="42" VerticalAlignment="Top">
-            <Label Content="Station" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="48"/>
-            <ComboBox HorizontalAlignment="Left" Margin="63,10,0,0" x:Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
-            <Label Content="Info" x:Name="stationNumber" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="43" RenderTransformOrigin="2.081,0.728"/>
-            <Button Content="Generate" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="27" Click="Button_Click"/>
-            <Label Content="Month" HorizontalAlignment="Left" Margin="191,8,0,0" VerticalAlignment="Top"/>
-            <Label Content="Year" HorizontalAlignment="Left" Margin="323,9,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="254,12,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.302,-0.056" />
-            <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="23" Margin="361,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+            <Label Content="Station" HorizontalAlignment="Left" Margin="171,8,0,0" VerticalAlignment="Top" Width="48"/>
+            <ComboBox HorizontalAlignment="Left" Margin="224,8,0,0" x:Name="stationTxtCbx" VerticalAlignment="Top" Width="107" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged" Height="26"/>
+            <Label Content="Info" x:Name="stationNumber" HorizontalAlignment="Left" Margin="605,10,0,0" VerticalAlignment="Top" Width="43" RenderTransformOrigin="2.081,0.728" Height="26"/>
+            <Button Content="Generate" HorizontalAlignment="Left" Margin="653,8,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="26" Click="Button_Click"/>
+            <Label Content="Month" HorizontalAlignment="Left" Margin="336,9,0,0" VerticalAlignment="Top" Height="26"/>
+            <Label Content="Year" HorizontalAlignment="Left" Margin="484,8,0,0" VerticalAlignment="Top" Height="26"/>
+            <ComboBox HorizontalAlignment="Left" Margin="386,8,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.302,-0.056" Height="26" />
+            <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="26" Margin="522,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+            <Label Content="Daily weather records" Margin="10,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FF424242" HorizontalAlignment="Left" Width="156"/>
         </Grid>
         <ScrollViewer Height="533" Margin="0,47,0,0" VerticalAlignment="Top"  HorizontalScrollBarVisibility="Visible" >
             <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
@@ -34,7 +35,7 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date"   Binding="{Binding Dates}"/>
-                   
+
                     <DataGridTextColumn Header="Max.temp" Binding="{Binding Maxs}" />
                     <DataGridTextColumn Header="Min.temp"   Binding="{Binding Mins}"/>
                     <DataGridTextColumn Header="Rainfall(mm)"   Binding="{Binding Actual}"/>
