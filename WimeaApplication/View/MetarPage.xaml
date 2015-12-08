@@ -8,11 +8,10 @@
 
     <Grid>
         <Label Content="Station" HorizontalAlignment="Left" Margin="215,8,0,0" VerticalAlignment="Top" Width="48"/>
-        <ComboBox HorizontalAlignment="Left" Margin="273,10,0,0" Name="stationTxtCbx" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.302,-0.056" SelectionChanged="stationTxtCbx_SelectionChanged"/>
         <Label Content="Select date" HorizontalAlignment="Left" Margin="14,7,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Margin="87,10,0,0" VerticalAlignment="Top" Width="122"/>
-        <Label Content="Label" Name="stationNumber" HorizontalAlignment="Left" Margin="400,7,0,0" VerticalAlignment="Top"/>
-        <ScrollViewer Height="401" Margin="0,122,0,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible" >
+        <Label Content="Label" Name="stationNumber" HorizontalAlignment="Left" Margin="590,8,0,0" VerticalAlignment="Top"/>
+        <ScrollViewer Height="371" Margin="0,162,0,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible" >
             <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
         		x:Name="MetarGrid"  Background="{x:Null}" RowBackground="LightYellow" 
         		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
@@ -23,7 +22,10 @@
 
                     </Style>
                 </DataGrid.Resources>
+
                 <DataGrid.Columns>
+
+                    <DataGridCheckBoxColumn Header="#" x:Name="cbSelectRow"  Binding="{Binding Id}" />
                     <DataGridTextColumn Header="#" Binding="{Binding Id}" Visibility="Hidden"/>
                     <DataGridTextColumn Header="METAR/SPECI" Width="100" Binding="{Binding Types}" />
                     <DataGridTextColumn Header="CCCC" Width="50"  Binding="{Binding Station}"/>
@@ -54,7 +56,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <ScrollViewer Margin="0,39,0,0" HorizontalScrollBarVisibility="Visible" Height="78" VerticalAlignment="Top" >
+        <ScrollViewer Margin="-10,79,10,0" HorizontalScrollBarVisibility="Visible" Height="78" VerticalAlignment="Top" >
             <Grid Height="58" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" Width="1440" >
                 <Label Content="METAR/SPECI" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top"/>
                 <Label Content="W1W1" HorizontalAlignment="Left" Margin="344,6,0,0" VerticalAlignment="Top"/>
@@ -107,6 +109,28 @@
 
             </Grid>
         </ScrollViewer>
+        <Label Content="Sync"  x:Name="tbProgress" HorizontalAlignment="Left" Margin="628,7,0,0" VerticalAlignment="Top" Width="108" Height="27" Foreground="#FF00B4FF"/>
+        <Button Content="Delete selected" HorizontalAlignment="Left" Command="{Binding AddCommand}" Margin="480,12,0,0" x:Name="btnAdd_Copy"  VerticalAlignment="Top" Width="105" Height="21" Click="btnDeleteAll_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <TextBlock><Run Text="Delete selected"/></TextBlock>
+                        <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/Deletes.png" HorizontalAlignment="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <CheckBox Margin="398,13,0,0" x:Name="chkSelectAll" Click="chkSelectAll_Click" HorizontalAlignment="Left" Width="77" Height="18" VerticalAlignment="Top" Content="Select all"/>
+        <Label Content="Select day" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Info" x:Name="stationNumber_Copy" HorizontalAlignment="Left" Margin="391,48,0,0" VerticalAlignment="Top" Width="35" RenderTransformOrigin="2.081,0.728" Height="26"/>
+        <Button Content="Generate" HorizontalAlignment="Left" Margin="431,48,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.032,0.741" Height="26" Click="Button_Click_generate"/>
+        <Label Content="Month" HorizontalAlignment="Left" Margin="118,48,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Year" HorizontalAlignment="Left" Margin="265,48,0,0" VerticalAlignment="Top" Height="26"/>
+        <ComboBox HorizontalAlignment="Left" Margin="79,48,0,0" x:Name="dayTxtCbx" VerticalAlignment="Top" Width="34" RenderTransformOrigin="0.302,-0.056" Height="26" />
+        <ComboBox HorizontalAlignment="Left" Margin="168,48,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.302,-0.056" Height="26" />
+        <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="26" Margin="303,48,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+        <Label Content="" x:Name="internet" HorizontalAlignment="Left" Margin="511,51,0,0" VerticalAlignment="Top" Width="173"/>
+        <TextBox HorizontalAlignment="Left" x:Name="stationTxtCbx" Height="23" Margin="263,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
 
 
     </Grid>

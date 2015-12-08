@@ -79,7 +79,7 @@ namespace WimeaApplication
             try
             {
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "synoptic" + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "synoptic" + ".json");
                 foreach (string line in lines)
                 {
 
@@ -151,9 +151,6 @@ namespace WimeaApplication
 
                 SynopticGrid.ItemsSource = null;
                 SynopticGrid.ItemsSource = metLists;
-
-
-
 
             }
             catch (Exception ex)

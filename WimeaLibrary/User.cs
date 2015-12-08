@@ -53,9 +53,7 @@ namespace WimeaLibrary
         {
             get { return _contact; }
             set {
-
-                if (!Validator.IsDigitsOnly(value))
-                    throw new Exception("Contact can only take on numbers");                
+                              
                 _contact = value; 
             }
         }
@@ -73,6 +71,13 @@ namespace WimeaLibrary
             get { return _station; }
             set { _station = value; }
         }
+        private string _sync;
+
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
        
      
         public override void Save()
@@ -85,7 +90,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [user](id,name,email,contact,role,station)VALUES(@id,@name,@email,@contact,@role,@station)";
+                cmd.CommandText = "INSERT INTO [users](id,name,email,contact,role,station)VALUES(@id,@name,@email,@contact,@role,@station)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", Name);
                 cmd.Parameters.AddWithValue("@email", Email);
@@ -107,7 +112,7 @@ namespace WimeaLibrary
             if (!Validator.emailIsValid(email))
                 throw new Exception("Invalid email");
             SqlCeCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE [user] SET name='" + name + "',contact='" + contact + "',email='" + email + "',role='" + role + "',station ='" + station + "' WHERE id = '"+id+"'" ;
+            cmd.CommandText = "UPDATE [users] SET name='" + name + "',contact='" + contact + "',email='" + email + "',role='" + role + "',station ='" + station + "' WHERE id = '"+id+"'" ;
            
          
         ExecuteNonQuery(cmd);            
@@ -118,7 +123,7 @@ namespace WimeaLibrary
         {
             System.Diagnostics.Debug.Write(Id + "|");            
             SqlCeCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE FROM [user] WHERE id ='" + Id + "'";
+            cmd.CommandText = "DELETE FROM [users] WHERE id ='" + Id + "'";
             try
             {
 
@@ -131,6 +136,26 @@ namespace WimeaLibrary
             finally
             {
                
+            }
+            return true;
+
+        }
+        public bool Deleteall()
+        {           
+            SqlCeCommand cmd = con.CreateCommand();
+            cmd.CommandText = "DELETE FROM [users]";
+            try
+            {
+
+                ExecuteNonQuery(cmd);
+            }
+            catch (SqlCeException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
             }
             return true;
 

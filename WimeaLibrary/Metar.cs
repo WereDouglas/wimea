@@ -164,7 +164,13 @@ namespace WimeaLibrary
             set { _days = value; }
         }
 
+        private string _sync;
 
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
 
 
 
@@ -178,7 +184,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [metar](id,station,types,datetimes,timezones,direction,speed,unit,visibility,weather,cloud,temperature,humidity,dew,wet,stationhpa,seahpa,recent,users,days)VALUES(@id,@station,@types,@datetimes,@timezones,@direction,@speed ,@unit,@visibility,@weather,@cloud,@temperature,@humidity,@dew,@wet,@stationhpa,@seahpa,@recent,@users,@days)";
+                cmd.CommandText = "INSERT INTO [metar](id,station,types,datetimes,timezones,direction,speed,unit,visibility,weather,cloud,temperature,humidity,dew,wet,stationhpa,seahpa,recent,users,days,sync)VALUES(@id,@station,@types,@datetimes,@timezones,@direction,@speed ,@unit,@visibility,@weather,@cloud,@temperature,@humidity,@dew,@wet,@stationhpa,@seahpa,@recent,@users,@days,@sync)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@station", Station);
                 cmd.Parameters.AddWithValue("@types", Types);
@@ -199,18 +205,18 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@recent", Recent);
                 cmd.Parameters.AddWithValue("@users", Users);
                 cmd.Parameters.AddWithValue("@days", Days);
+                cmd.Parameters.AddWithValue("@sync", Sync); 
                 ExecuteNonQuery(cmd);
 
 
             }
 
         }
-        public void Update(string id, string name, string number, string code, string latitude, string longitude, string altitude, string type, string location, string status, string commissioned)
+        public void Update(string id, string sync)
         {
 
-
             SqlCeCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE [Metar] SET name='" + name + "',code='" + code + "',number='" + number + "',latitude='" + latitude + "',longitude ='" + longitude + "',altitude='" + altitude + "',type='" + type + "',location='" + location + "',status='" + status + "',commissioned='" + commissioned + "' WHERE id = '" + id + "'";
+            cmd.CommandText = "UPDATE [metar] SET sync='" + sync + "' WHERE id = '" + id + "'";
 
 
             ExecuteNonQuery(cmd);

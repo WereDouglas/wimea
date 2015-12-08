@@ -56,7 +56,7 @@ namespace WimeaApplication
             try
             {
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "daily" + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "daily" + ".json");
                 foreach (string line in lines)
                 {
 

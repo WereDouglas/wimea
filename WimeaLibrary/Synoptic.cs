@@ -393,6 +393,13 @@ namespace WimeaLibrary
             get { return _submitted; }
             set { _submitted = value; }
         }
+        private string _sync;
+
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
 
         public override void Save()
         {
@@ -404,7 +411,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [synoptic](id,station,dates,times,ir,ix,h,www,vv,n,dd,ff,t,td,po,gisis,hhh,rrr,tr,present,past,nh,cl,cm,ch,tq,ro,r1,tx,tm,ee,e,sss,pchange,p24,rr,tr1,ns,c,hs,ns1,c1,hs1,ns2,c2,hs2,supplementary,wb,rh,vap,users,submitted)VALUES(@id,@station,@dates,@times,@ir,@ix,@h,@www,@vv,@n,@dd,@ff,@t,@td,@po,@gisis,@hhh,@rrr,@tr,@present,@past,@nh,@cl,@cm,@ch,@tq,@ro,@r1,@tx,@tm,@ee,@e,@sss,@pchange,@p24,@rr,@tr1,@ns,@c,@hs,@ns1,@c1,@hs1,@ns2,@c2,@hs2,@supplementary,@wb,@rh,@vap,@users,@submitted)";
+                cmd.CommandText = "INSERT INTO [synoptic](id,station,dates,times,ir,ix,h,www,vv,n,dd,ff,t,td,po,gisis,hhh,rrr,tr,present,past,nh,cl,cm,ch,tq,ro,r1,tx,tm,ee,e,sss,pchange,p24,rr,tr1,ns,c,hs,ns1,c1,hs1,ns2,c2,hs2,supplementary,wb,rh,vap,users,submitted,sync)VALUES(@id,@station,@dates,@times,@ir,@ix,@h,@www,@vv,@n,@dd,@ff,@t,@td,@po,@gisis,@hhh,@rrr,@tr,@present,@past,@nh,@cl,@cm,@ch,@tq,@ro,@r1,@tx,@tm,@ee,@e,@sss,@pchange,@p24,@rr,@tr1,@ns,@c,@hs,@ns1,@c1,@hs1,@ns2,@c2,@hs2,@supplementary,@wb,@rh,@vap,@users,@submitted,@sync)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@station", Station);
                 cmd.Parameters.AddWithValue("@dates", Date);
@@ -456,19 +463,19 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@rh", Rh);
                 cmd.Parameters.AddWithValue("@vap", Vap);
                 cmd.Parameters.AddWithValue("@users", Users);
-                cmd.Parameters.AddWithValue("@submitted", Submitted);               
+                cmd.Parameters.AddWithValue("@submitted", Submitted);
+                cmd.Parameters.AddWithValue("@sync", Sync);  
                 ExecuteNonQuery(cmd);
 
 
             }
 
         }
-        public void Update(string id, string name, string number, string code, string latitude, string longitude, string altitude, string type, string location, string status, string commissioned)
+        public void Update(string id, string sync)
         {
 
-
             SqlCeCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE [Synoptic] SET name='" + name + "',code='" + code + "',number='" + number + "',latitude='" + latitude + "',longitude ='" + longitude + "',altitude='" + altitude + "',type='" + type + "',location='" + location + "',status='" + status + "',commissioned='" + commissioned + "' WHERE id = '" + id + "'";
+            cmd.CommandText = "UPDATE [synoptic] SET sync='" + sync + "' WHERE id = '" + id + "'";
 
 
             ExecuteNonQuery(cmd);

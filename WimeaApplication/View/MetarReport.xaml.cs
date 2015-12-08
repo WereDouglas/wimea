@@ -35,8 +35,7 @@ namespace WimeaApplication
         }
         private void RefreshUserList()
         {
-
-           
+                       
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);           
             stationTxtCbx.ItemsSource = null;
             stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
@@ -83,10 +82,9 @@ namespace WimeaApplication
             try
             {
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "metar" + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "metar" + ".json");
                 foreach (string line in lines)
-                {
-                  
+                {                  
                     total += line;
                 }
 
@@ -116,16 +114,10 @@ namespace WimeaApplication
                     u.Days = model.ElementAt(d).Day;
                     metList.Add(u);
                 }
-
-
                 List<Metar> metLists = new List<Metar>(metList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (monthTxtCbx.SelectedIndex+1).ToString() &&  Convert.ToDateTime(c.Days).Day.ToString() == dayTxtCbx.Text  &&  Convert.ToDateTime(c.Days).Year.ToString() == yearTxtBx.Text ));
          
                 MetarGrid.ItemsSource = null;
-                MetarGrid.ItemsSource = metLists;
-
-                   
-
-                
+                MetarGrid.ItemsSource = metLists;                
             }
             catch (Exception ex)
             {

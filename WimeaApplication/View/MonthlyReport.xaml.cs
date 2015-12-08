@@ -35,12 +35,9 @@ namespace WimeaApplication
         }
         private void RefreshUserList()
         {
-
-
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
             stationTxtCbx.ItemsSource = null;
             stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
-
 
             for (int p = 1; p < 13; p++)
             {

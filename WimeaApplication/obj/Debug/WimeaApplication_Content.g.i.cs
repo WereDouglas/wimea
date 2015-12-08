@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wimea.sdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wimea.ico")]
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +27,30 @@ namespace WimeaApplication
         private ObservableCollection<Synoptic> _metarList = null;
         private Synoptic u;
         private ObservableCollection<Station> _StationsList = null;
+        private BackgroundWorker bw = new BackgroundWorker();
         public SynopticPage()
         {
             InitializeComponent();
             RefreshUserList();
+
+            if (Sending.IsInternetAvailable())
+            {
+                internet.Content = "internet connection available";
+                bw.RunWorkerAsync();
+                bw.WorkerReportsProgress = true;
+                //  bw.WorkerSupportsCancellation = true;
+                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            }
+            else
+            {
+
+                internet.Content = "no internet connection";
+
+            }
+
+
         }
         private void RefreshUserList()
         {
@@ -37,8 +59,7 @@ namespace WimeaApplication
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
             SynopticGrid.ItemsSource = null;
             SynopticGrid.ItemsSource = _metarList;
-            stationTxtCbx.ItemsSource = null;
-            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
+            stationTxtCbx.Text = Sending.currentstation;
 
 
         }
@@ -133,6 +154,7 @@ namespace WimeaApplication
                     u.Vap = vap.Text;
                     u.Users = "test";
                     u.Submitted = DateTime.Now.ToString();
+                    u.Sync = "F";
 
                     u.Save();
                     RefreshUserList();
@@ -153,5 +175,104 @@ namespace WimeaApplication
 
             }
         }
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                this.tbProgress.Content = "Canceled!";
+            }
+
+            else if (!(e.Error == null))
+            {
+                this.tbProgress.Content = ("Error: " + e.Error.Message);
+            }
+
+            else
+            {
+                this.tbProgress.Content = "synchronised information!";
+            }
+        }
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.tbProgress.Content = (e.ProgressPercentage.ToString() + "Count");
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int counter = _metarList.Count(c => c.Sync == "F" || c.Sync == "");
+
+            List<Synoptic> sendies = new List<Synoptic>();
+            sendies = _metarList.Where(c => c.Sync == "F" || c.Sync == "").ToList();
+
+            string URL = Sending.genUrl + "apisynoptic/synoptic";
+
+
+            foreach (Synoptic row in sendies)
+            {
+
+                NameValueCollection formData = new NameValueCollection();
+                formData["time"] = row.Time;
+                formData["datenow"] = row.Date;
+                formData["station"] = row.Station;
+                formData["ir"] = row.Ir;
+                formData["ix"] = row.Ix;
+                formData["h"] = row.H;
+                formData["www"] = row.Www;
+                formData["vv"] = row.Vv;
+                formData["n"] = row.N;
+                formData["dd"] = row.Dd;
+                formData["ff"] = row.Ff;
+                formData["t"] = row.T;
+                formData["td"] = row.Td;
+                formData["Po"] = row.Po;
+                formData["gisis"] = row.Gisis;
+                formData["hhh"] = row.Hhh;
+                formData["rrr"] = row.Rrr;
+                formData["tr"] = row.Tr;
+                formData["present"] = row.Present;
+                formData["past"] = row.Past;
+                formData["nh"] = row.Nh;
+                formData["cl"] = row.Cl;
+                formData["cm"] = row.Cm;
+                formData["ch"] = row.Ch;
+                formData["Tq"] = row.Tq;
+                formData["Ro"] = row.Ro;
+                formData["R1"] = row.R1;
+                formData["Tx"] = row.Tx;
+                formData["Tm"] = row.Tm;
+                formData["EE"] = row.Ee;
+                formData["E"] = row.E;
+                formData["sss"] = row.Sss;
+                formData["pchange"] = row.Pchange;
+                formData["p24"] = row.P24;
+                formData["rr"] = row.Rr;
+                formData["tr1"] = row.Tr1;
+                formData["ns"] = row.Ns;
+                formData["c"] = row.C;
+                formData["hs"] = row.Hs;
+                formData["ns1"] = row.Ns1;
+                formData["c1"] = row.C1; 
+                formData["hs1"] = row.Hs1;
+                formData["ns2"] = row.Ns2;
+
+                formData["c2"] = row.C2;
+                formData["supplementary"] = row.Supplementary;
+                formData["wb"] = row.Wb;
+                formData["rh"] = row.Rh;
+                formData["vap"] = row.Vap;
+                formData["user"] = row.Users;
+
+                String results = Sending.send(URL, formData);
+
+                // row.Update(row.Id, "F");
+                row.Update(row.Id, results);
+               // Console.WriteLine(results);
+                worker.ReportProgress(((counter--)));
+            }
+            System.Threading.Thread.Sleep(500);
+
+        }
+        
     }
 }

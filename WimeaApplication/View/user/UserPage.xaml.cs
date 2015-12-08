@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,11 +27,12 @@ namespace WimeaApplication
     /// </summary>
     public partial class UserPage : Page
     {
-
+        private BackgroundWorker bw = new BackgroundWorker();
+        private User r;
 
         private ObservableCollection<User> _UsersList= null;
-      
-      
+
+        public string name = "";
      
         public UserPage()
         {
@@ -37,7 +41,7 @@ namespace WimeaApplication
             lblName.Visibility = System.Windows.Visibility.Hidden;
             alert.Visibility = System.Windows.Visibility.Hidden;
            
-        
+            name = Sending.currentstation;
             
         }
         private void RefreshUserList()
@@ -169,8 +173,7 @@ namespace WimeaApplication
 
         private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete all these users?",
-   "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete all these users?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (User u in UserGrid.SelectedItems)
                 {
@@ -192,6 +195,113 @@ namespace WimeaApplication
         private void print_Click(object sender, RoutedEventArgs e)
         {
            
+        }
+
+        private void sync_Click(object sender, RoutedEventArgs e)
+        {
+            if (Sending.IsInternetAvailable())
+            {
+                r = new User(null) ;
+                r.Deleteall();
+              //  r.Save();
+                bw.RunWorkerAsync();
+                bw.WorkerReportsProgress = true;
+                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            }
+            else {
+                this.lblName.Text = ("No internet connection");
+            }
+        }
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                this.lblName.Text = "Canceled!";
+            }
+
+            else if (!(e.Error == null))
+            {
+                this.lblName.Text = ("Error: " + e.Error.Message);
+            }
+
+            else
+            {
+                this.lblName.Text = "synchronised information!";
+                RefreshUserList();
+               
+            }
+        }
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.lblName.Text = ("File download " + e.ProgressPercentage.ToString() + " file");
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int counter = 1;
+            BackgroundWorker worker = sender as BackgroundWorker;
+            syncs(Sending.genUrl + "apiuser/user/station/" + name + "/format/json", "user", name);
+            counter = 4;
+            
+            worker.ReportProgress(((counter)));
+           
+            Loading_user(name);
+
+
+            System.Threading.Thread.Sleep(5000);
+
+
+        }
+        private void syncs(string url, string content, string station)
+        {
+
+            using (var client = new WebClient())
+            {
+                var json = client.DownloadString(url);
+                System.IO.File.WriteAllText(@"D:\" + station + "-" + content + ".json", json);
+            }
+
+        }
+        private string Loading_user(string station)
+        {
+            string reply = "";
+            try
+            {
+                string total = "";
+                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "user" + ".json");
+                foreach (string line in lines)
+                {
+
+                    total += line;
+                }
+
+                List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
+
+                for (int d = 0; d < model.Count; d++)
+                {
+                    r =  App.WimeaApp.Users.Add();
+                    r.Station = model.ElementAt(d).Station;
+                    r.Name = model.ElementAt(d).Name;
+                    r.Email = model.ElementAt(d).Email;
+                    r.Contact = model.ElementAt(d).Contact;
+                    r.Role = model.ElementAt(d).Role;
+                    r.Save();
+
+                }
+                return "Loaded synoptic information into local database!";
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+                return "done loading metars";
+
+            }
+
+
         }
 
     }

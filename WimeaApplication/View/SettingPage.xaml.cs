@@ -43,64 +43,83 @@ namespace WimeaApplication.View
 
             stationTxtCbx.ItemsSource = null;
             stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
+            if (Sending.IsInternetAvailable())
+            {
+                internet.Content = "internet connection available";
+            }
+            else
+            {
+
+                internet.Content = "no internet connection";
+
+            }
 
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            string urls = "";
-
-            try
-              {
-
-            if (stationTxtCbx.Text != "")
+            if (Sending.IsInternetAvailable())
             {
 
-                if (dailyChk.IsChecked == true)
+                string urls = "";
+
+                try
                 {
-                    urls = "http://localhost/weather/index.php/api/tasks/station/" + stationTxtCbx.Text + "/format/json";
-                    syncs(urls, "daily");
-                    validate("daily");
+
+                    if (stationTxtCbx.Text != "")
+                    {
+
+                        if (dailyChk.IsChecked == true)
+                        {
+                            urls = Sending.genUrl+"api/tasks/station/" + stationTxtCbx.Text + "/format/json";
+                            syncs(urls, "daily");
+                            validate("daily");
+
+                        }
+
+                        if (metarChk.IsChecked == true)
+                        {
+                            urls = Sending.genUrl+"apimetar/metar/station/" + stationTxtCbx.Text + "/format/json";
+                            syncs(urls, "metar");
+                            validate("metar");
+
+
+                        }
+                        if (synopticChk.IsChecked == true)
+                        {
+                            urls = Sending.genUrl + "apisynoptic/synoptic/station/" + stationTxtCbx.Text + "/format/json";
+                            syncs(urls, "synoptic");
+                            validate("synoptic");
+                        }
+                        if (rainChk.IsChecked == true)
+                        {
+                            urls = Sending.genUrl + "api/tasks/station/" + stationTxtCbx.Text + "/format/json";
+                            syncs(urls, "rain");
+                        }
+                        if (stationChk.IsChecked == true)
+                        {
+                            urls = Sending.genUrl + "api/tasks/station/" + stationTxtCbx.Text + "/format/json";
+                            syncs(urls, "station");
+                        }
+                        RefreshStationList();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a station");
+                    }
 
                 }
-
-                if (metarChk.IsChecked == true)
+                catch
                 {
-                    urls = "http://localhost/weather/index.php/apimetar/metar/station/" + stationTxtCbx.Text + "/format/json";
-                    syncs(urls, "metar");
-                    validate("metar");
-
-
+                    MessageBox.Show("no data for specified station");
                 }
-                if (synopticChk.IsChecked == true)
-                {
-                    urls = "http://localhost/weather/index.php/apisynoptic/synoptic/station/" + stationTxtCbx.Text + "/format/json";
-                    syncs(urls, "synoptic");
-                    validate("synoptic");
-                }
-                if (rainChk.IsChecked == true)
-                {
-                    urls = "http://localhost/weather/index.php/api/tasks/station/" + stationTxtCbx.Text + "/format/json";
-                    syncs(urls, "rain");
-                }
-                if (stationChk.IsChecked == true)
-                {
-                    urls = "http://localhost/weather/index.php/api/tasks/station/" + stationTxtCbx.Text + "/format/json";
-                    syncs(urls, "station");
-                }
-                RefreshStationList();
-
             }
-            else
-            {
-                MessageBox.Show("Please select a station");
-            }
+            else {
 
-              }
-            catch
-           {
-                MessageBox.Show("no data for specified station");
-          }
+                internet.Content = "no internet connection";
+            
+            }
         }
         private void validate(string content)
         {
@@ -166,7 +185,6 @@ namespace WimeaApplication.View
                 MessageBox.Show(ex.Message.ToString());
             }
 
-
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -190,10 +208,10 @@ namespace WimeaApplication.View
             using (var client = new WebClient())
             {
                 var json = client.DownloadString(url);
-                System.IO.File.WriteAllText(@"D:\" + stationTxtCbx.Text + "-" + content + ".json", json);
+                System.IO.File.WriteAllText(Sending.directoryUrl + stationTxtCbx.Text + "-" + content + ".json", json);
 
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + stationTxtCbx.Text + "-" + content + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + stationTxtCbx.Text + "-" + content + ".json");
                 foreach (string line in lines)
                 {
                     // Use a tab to indent each line of the file.
@@ -208,8 +226,6 @@ namespace WimeaApplication.View
                     // System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Actual);
                 }
             }
-
-
 
         }
         private void chkSelectAll_Click(object sender, RoutedEventArgs e)

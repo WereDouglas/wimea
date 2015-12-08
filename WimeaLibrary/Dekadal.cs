@@ -174,9 +174,15 @@ namespace WimeaLibrary
             get;
             set;
         }
-       
 
 
+        private string _sync;
+
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
 
 
 

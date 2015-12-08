@@ -84,8 +84,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Image Width="26" Name="alert"  HorizontalAlignment="Left" Source="/WimeaApplication;component/image/redalert.png" Margin="297,5,0,0" Height="19" VerticalAlignment="Top"/>
-        <TextBlock x:Name="lblName" Margin="346,5,0,0" TextAlignment="Center" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="#FF0A518F" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="214"><InlineUIContainer>
+        <Image Width="26" Name="alert"  HorizontalAlignment="Left" Source="/WimeaApplication;component/image/redalert.png" Margin="388,6,0,0" Height="19" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblName" Margin="414,5,0,0" TextAlignment="Center" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="#FF0A518F" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="146"><InlineUIContainer>
         		
         	</InlineUIContainer></TextBlock>
         <TextBox Name="txtFilter" TextChanged="txtFilter_TextChanged" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="146" Margin="0,0,1,0" />
@@ -96,6 +96,16 @@
                     <Grid Background="Transparent">
                         <TextBlock><Run Text="Print"/></TextBlock>
                         <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/Print.png" HorizontalAlignment="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Delete selected" HorizontalAlignment="Left" Command="{Binding AddCommand}" Margin="273,4,0,0" x:Name="btnAdd_Copy1"  VerticalAlignment="Top" Width="105" Height="21" Click="sync_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <TextBlock><Run Text="sync user list"/></TextBlock>
+                        <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/synchronizes.png" HorizontalAlignment="Right" />
                     </Grid>
                 </ControlTemplate>
             </Button.Template>

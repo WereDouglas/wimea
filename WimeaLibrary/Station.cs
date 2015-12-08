@@ -97,8 +97,14 @@ namespace WimeaLibrary
         {
             get { return _commissioned; }
             set { _commissioned = value; }
-        }     
-       
+        }
+        private string _sync;
+
+        public string Sync
+        {
+            get { return _sync; }
+            set { _sync = value; }
+        }
      
         public override void Save()
         {
@@ -110,7 +116,7 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [Station](id,name,number,code,latitude,longitude,altitude,type,location,status,commissioned)VALUES(@id,@name,@number,@code,@latitude,@longitude,@altitude,@type,@location,@status,@commissioned)";
+                cmd.CommandText = "INSERT INTO [station](id,name,number,code,latitude,longitude,altitude,type,location,status,commissioned)VALUES(@id,@name,@number,@code,@latitude,@longitude,@altitude,@type,@location,@status,@commissioned)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", Name);
                 cmd.Parameters.AddWithValue("@number", Number);
@@ -122,8 +128,7 @@ namespace WimeaLibrary
                 cmd.Parameters.AddWithValue("@location", Location);
                 cmd.Parameters.AddWithValue("@status", Status);
                 cmd.Parameters.AddWithValue("@commissioned",Commissioned);
-                ExecuteNonQuery(cmd);
-             
+                ExecuteNonQuery(cmd);             
 
             }
 

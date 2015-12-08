@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,21 +29,120 @@ namespace WimeaApplication
         private ObservableCollection<Metar> _metarList = null;
         private Metar u;
         private ObservableCollection<Station> _StationsList = null;
+        private BackgroundWorker bw = new BackgroundWorker();
         public MetarPage()
         {
-            InitializeComponent();           
+            InitializeComponent();
             RefreshUserList();
+
+
+            if (Sending.IsInternetAvailable())
+            {
+                internet.Content = "internet connection available";
+                bw.RunWorkerAsync();
+                bw.WorkerReportsProgress = true;
+                //  bw.WorkerSupportsCancellation = true;
+                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            }
+            else
+            {
+
+                internet.Content = "no internet connection";
+
+            }
+
         }
         private void RefreshUserList()
         {
 
             _metarList = new ObservableCollection<Metar>(App.WimeaApp.Metars);
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
+           // List<Metar> metLists = new List<Metar>(metList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Days).Day.ToString() == dayTxtCbx.Text && Convert.ToDateTime(c.Days).Year.ToString() == yearTxtBx.Text));
+
+            for (int p = 1; p < 32; p++)
+            {
+                dayTxtCbx.Items.Add(p);
+            }
+            for (int p = 1; p < 13; p++)
+            {
+                monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
+            }
+
+            yearTxtBx.Text = DateTime.Now.Year.ToString();
+            stationTxtCbx.Text = Sending.currentstation;
+
             MetarGrid.ItemsSource = null;
-            MetarGrid.ItemsSource = _metarList;           
-            stationTxtCbx.ItemsSource = null;
-            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
-            
+            MetarGrid.ItemsSource = _metarList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (DateTime.Now.Month).ToString() && Convert.ToDateTime(c.Days).Day == DateTime.Now.Day && Convert.ToDateTime(c.Days).Year == DateTime.Now.Year);
+           
+
+
+        }
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                this.tbProgress.Content = "Canceled!";
+            }
+
+            else if (!(e.Error == null))
+            {
+                this.tbProgress.Content = ("Error: " + e.Error.Message);
+            }
+
+            else
+            {
+                this.tbProgress.Content = "synchronised information!";
+            }
+        }
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.tbProgress.Content = (e.ProgressPercentage.ToString() + "Count");
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            int counter = _metarList.Count(c => c.Sync == "F" || c.Sync == "");
+
+            List<Metar> sendies = new List<Metar>();
+            sendies = _metarList.Where(c => c.Sync == "F" || c.Sync == "").ToList();
+
+            string URL = Sending.genUrl + "apimetar/metar";
+
+
+            foreach (Metar row in sendies)
+            {               
+
+                NameValueCollection formData = new NameValueCollection();
+                formData["type"] = row.Types;
+                formData["code"] = row.Station;
+                formData["datetime"] = row.Station;
+                formData["wind"] = row.Direction +" "+row.Speed +" "+row.Unit;
+                formData["visibility"] = row.Visibility;
+                formData["present"] = row.Weather;
+                formData["cloud"] = row.Cloud;
+                formData["stationhpa"] = row.Stationhpa;
+                formData["seahpa"] = row.Seahpa;
+                formData["recent"] = row.Recent;
+                formData["temperatue"] = row.Temperature;
+                formData["humidity"] = row.Humidity;
+                formData["dew"] = row.Dew;
+                formData["wet"] = row.Wet;
+                formData["datenow"] = row.Datetimes;               
+                formData["user"] = row.Users;
+
+                String results = Sending.send(URL, formData);              
+                row.Update(row.Id, results);
+               
+                worker.ReportProgress(((counter--)));
+
+
+            }
+
+
+            System.Threading.Thread.Sleep(500);
 
         }
         private void deleteClick(object sender, RoutedEventArgs e)
@@ -70,52 +172,54 @@ namespace WimeaApplication
         {
 
 
-            stationNumber.Content = _StationsList.Where(c => c.Name == stationTxtCbx.SelectedItem.ToString()).Select(p => p.Number).SingleOrDefault().ToString();
-            codeTxtBx.Text = _StationsList.Where(c => c.Name == stationTxtCbx.SelectedItem.ToString()).Select(c => c.Code).SingleOrDefault().ToString();
-            DatetimeTxtBx.Text = DateTime.Now.Date.Day.ToString() + DateTime.Now.Hour.ToString()+"00Z";
-        
-        
+            stationNumber.Content = _StationsList.Where(c => c.Name == stationTxtCbx.Text.ToString()).Select(p => p.Number).SingleOrDefault().ToString();
+            codeTxtBx.Text = _StationsList.Where(c => c.Name == stationTxtCbx.Text.ToString()).Select(c => c.Code).SingleOrDefault().ToString();
+            DatetimeTxtBx.Text = DateTime.Now.Date.Day.ToString() + DateTime.Now.Hour.ToString() + "00Z";
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           try {
-               if (MessageBox.Show("confirm this information ?" + typeTxtBx.Text + " " + DatetimeTxtBx.Text + " " + VisibilityTxtBx.Text, "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-               {
+            try
+            {
+                if (MessageBox.Show("confirm this information ?" + typeTxtBx.Text + " " + DatetimeTxtBx.Text + " " + VisibilityTxtBx.Text, "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
 
-            u = App.WimeaApp.Metars.Add();
+                    u = App.WimeaApp.Metars.Add();
 
-            u.Station = stationTxtCbx.Text;
-            u.Types = typeTxtBx.Text;
-            u.Datetimes = DatetimeTxtBx.Text;
-            u.Timezones = "GMT";
-            u.Direction = WindDirectionTxtBx.Text;
-            u.Speed = "13";
-            u.Unit = "KT";
-            u.Visibility = VisibilityTxtBx.Text;
-            u.Weather = weatherTxtBx.Text;
-            u.Cloud = CloudTxtBx.Text;
-            u.Temperature = AirTempTxtBx.Text;
-            u.Humidity = HumidityTxtBx.Text;
-            u.Dew = DewTxtBx.Text;
-            u.Wet =WetTxtBx.Text;
-            u.Stationhpa = StationHpaTxtBx.Text;
-            u.Seahpa = SeaHpaTxtBx.Text;
-            u.Recent = RecentTxtBx.Text;
-            u.Users = "test";
-            u.Days = DateTime.Now.Date.ToString();
+                    u.Station = stationTxtCbx.Text;
+                    u.Types = typeTxtBx.Text;
+                    u.Datetimes = DatetimeTxtBx.Text;
+                    u.Timezones = "GMT";
+                    u.Direction = WindDirectionTxtBx.Text;
+                    u.Speed = "13";
+                    u.Unit = "KT";
+                    u.Visibility = VisibilityTxtBx.Text;
+                    u.Weather = weatherTxtBx.Text;
+                    u.Cloud = CloudTxtBx.Text;
+                    u.Temperature = AirTempTxtBx.Text;
+                    u.Humidity = HumidityTxtBx.Text;
+                    u.Dew = DewTxtBx.Text;
+                    u.Wet = WetTxtBx.Text;
+                    u.Stationhpa = StationHpaTxtBx.Text;
+                    u.Seahpa = SeaHpaTxtBx.Text;
+                    u.Recent = RecentTxtBx.Text;
+                    u.Users = "test";
+                    u.Days = DateTime.Now.Date.ToString();
+                    u.Sync = "F";
 
-            u.Save();
-            RefreshUserList();
-            clear();
+                    u.Save();
+                    RefreshUserList();
+                    clear();
 
-               }
-               else
-               {
+                }
+                else
+                {
 
-                   return;
-               }
-                     }
+                    return;
+                }
+            }
             catch (Exception ex)
             {
 
@@ -123,18 +227,17 @@ namespace WimeaApplication
                 return;
 
             }
-                    
-        }
-        private void clear() {
 
-       
-           DatetimeTxtBx.Text="";
-         
-         WindDirectionTxtBx.Text="";
-        
-        VisibilityTxtBx.Text="";
-          weatherTxtBx.Text="";
-            CloudTxtBx.Text="";
+        }
+        private void clear()
+        {
+
+
+            DatetimeTxtBx.Text = "";
+            WindDirectionTxtBx.Text = "";
+            VisibilityTxtBx.Text = "";
+            weatherTxtBx.Text = "";
+            CloudTxtBx.Text = "";
             AirTempTxtBx.Text = "";
             HumidityTxtBx.Text = "";
             DewTxtBx.Text = "";
@@ -142,8 +245,8 @@ namespace WimeaApplication
             StationHpaTxtBx.Text = "";
             SeaHpaTxtBx.Text = "";
             RecentTxtBx.Text = "";
-         
-        
+
+
         }
 
         private void HumidityTxtBx_LostFocus(object sender, RoutedEventArgs e)
@@ -158,18 +261,20 @@ namespace WimeaApplication
                 TtTxtBx.Text = AirTempTxtBx.Text;
                 TdTxtBx.Text = dew.ToString();
             }
-            catch {
+            catch
+            {
 
                 MessageBox.Show("please use numbers/integers for these values !");
-            
+
             }
-        
+
         }
 
         private void StationHpaTxtBx_LostFocus(object sender, RoutedEventArgs e)
         {
-            try { 
-            StationHpaInTxtBx.Text = (0.02952998751 * Convert.ToDouble(StationHpaTxtBx.Text)).ToString();
+            try
+            {
+                StationHpaInTxtBx.Text = (0.02952998751 * Convert.ToDouble(StationHpaTxtBx.Text)).ToString();
             }
             catch
             {
@@ -181,8 +286,9 @@ namespace WimeaApplication
 
         private void SeaHpaTxtBx_LostFocus(object sender, RoutedEventArgs e)
         {
-            try { 
-            SeaHpaInTxtBx.Text = (0.02952998751 * Convert.ToDouble(SeaHpaTxtBx.Text)).ToString();
+            try
+            {
+                SeaHpaInTxtBx.Text = (0.02952998751 * Convert.ToDouble(SeaHpaTxtBx.Text)).ToString();
             }
             catch
             {
@@ -191,6 +297,43 @@ namespace WimeaApplication
 
             }
         }
+
+        private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Are you sure you want to delete all this information?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (Metar u in MetarGrid.SelectedItems)
+                {
+                    u.Delete(u.Id.ToString());
+                }
+                RefreshUserList();
+                
+            }
+            else
+            {
+                return;
+            } 
+           
+        }
+        private void chkSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkSelectAll.IsChecked.Value == true)
+            {
+                MetarGrid.SelectAll();
+            }
+            else
+            {
+                MetarGrid.UnselectAll();
+            }
+        }
+
+        private void Button_Click_generate(object sender, RoutedEventArgs e)
+        {
+            MetarGrid.ItemsSource = null;
+            MetarGrid.ItemsSource =  _metarList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Days).Day.ToString() == dayTxtCbx.Text && Convert.ToDateTime(c.Days).Year.ToString() == yearTxtBx.Text);
+
+        }
     }
-    
+
 }

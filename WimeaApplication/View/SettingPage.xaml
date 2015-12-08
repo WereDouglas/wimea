@@ -36,6 +36,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <Label Content="" Name="internet" HorizontalAlignment="Left" Margin="544,7,0,0" VerticalAlignment="Top" Width="173"/>
         </Grid>
         <ListView Name="SyncGrid" Margin="-1,73,1,0"    SelectedItem="{Binding CurrentStation}" SelectionChanged="StationGrid_SelectionChanged_1"   >
             <ListView.Effect>
@@ -53,7 +54,7 @@
 
                     </GridViewColumn>
 
-                  
+
                     <GridViewColumn Header="Content name" DisplayMemberBinding="{Binding Objects}"  />
                     <GridViewColumn Header="Last updated" DisplayMemberBinding="{Binding Dates}"  />
                     <GridViewColumn Header="User" DisplayMemberBinding="{Binding Users}"  />

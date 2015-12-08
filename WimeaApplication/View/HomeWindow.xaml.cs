@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoUpdaterDotNET;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WimeaLibrary;
 
 namespace WimeaApplication
 {
@@ -22,12 +24,14 @@ namespace WimeaApplication
         public HomeWindow()
         {
             InitializeComponent();
+            username.Content = Sending.currentusername;
+            station.Content = Sending.currentstation;
+            AutoUpdater.Start(Sending.genUrl + "wimea.xml");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new Uri("view/DailyPage.xaml", UriKind.Relative));
- 
+            _mainFrame.NavigationService.Navigate(new Uri("view/DailyPage.xaml", UriKind.Relative)); 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -48,14 +52,18 @@ namespace WimeaApplication
 
        
         private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-        
+        {        
             _mainFrame.NavigationService.Navigate(new Uri("view/user/UserPage.xaml", UriKind.Relative));
         }
 
         private void btnAdd_Click_1(object sender, RoutedEventArgs e)
         {
+            Login w = new Login();
+            w.Owner = Window.GetWindow(this);
+            w.Show();
+            w.Visibility = Visibility.Visible;          
             this.Close();
+            
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -117,5 +125,16 @@ namespace WimeaApplication
         {
             _mainFrame.NavigationService.Navigate(new Uri("view/ClimReport.xaml", UriKind.Relative));
         }
+
+        private void Button_Click_Update(object sender, RoutedEventArgs e)
+        {
+            AutoUpdater.OpenDownloadPage = true;
+            //   string URL = Sending.genUrl + "api/tasks";
+            AutoUpdater.Start(Sending.genUrl + "wimea.xml");
+        }
+
+       
+
+       
     }
 }

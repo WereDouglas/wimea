@@ -48,7 +48,7 @@ namespace WimeaLibrary
         internal void Load()
         {
             _users.Clear();
-            string sql = "select * from [user]";
+            string sql = "select * from [users]";
 
             DataTable table = new DataTable();
             ExecuteQuery(sql, table);

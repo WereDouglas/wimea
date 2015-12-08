@@ -29,42 +29,51 @@ namespace WimeaApplication
         private static ObservableCollection<Daily> _dailyList = new ObservableCollection<Daily>();
         private Daily u;
         private ObservableCollection<Station> _StationsList = new ObservableCollection<Station>();
-        private static string status;
+     
         private BackgroundWorker bw = new BackgroundWorker();
-         
+
         public DailyPage()
         {
             InitializeComponent();
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
-            stationTxtCbx.ItemsSource = null;
-            stationTxtCbx.ItemsSource = _StationsList.Select(c => c.Name);
+           
+            stationTxtCbx.Text = Sending.currentstation;
             RefreshUserList();
-            
+
+           
+          
+           
+            if (Sending.IsInternetAvailable())
+            {
+                internet.Content = "internet connection available";
+                bw.RunWorkerAsync();
+                bw.WorkerReportsProgress = true;
+                //  bw.WorkerSupportsCancellation = true;
+                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            }
+            else
+            {
+
+                internet.Content = "no internet connection";
+
+            }
+
         }
         private void RefreshUserList()
         {
             dates.Text = DateTime.Now.Date.ToString("yyyy-MM-dd");
             _dailyList = new ObservableCollection<Daily>(App.WimeaApp.Dailys);
             MetarGrid.ItemsSource = null;
-            MetarGrid.ItemsSource = _dailyList.Where(w=>Convert.ToDateTime(w.Dates).Month == DateTime.Now.Month && Convert.ToDateTime(w.Dates).Year == DateTime.Now.Year ).OrderBy(w=>w.Dates);
+            MetarGrid.ItemsSource = _dailyList.Where(w => Convert.ToDateTime(w.Dates).Month == DateTime.Now.Month && Convert.ToDateTime(w.Dates).Year == DateTime.Now.Year).OrderBy(w => w.Dates);
             tbProgress.Content = _dailyList.Count(c => c.Sync == "F" || c.Sync == " ").ToString();
-            
+
             for (int p = 1; p < 13; p++)
             {
                 monthTxtCbx.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(p));
             }
             yearTxtBx.Text = DateTime.Now.Year.ToString();
-           
-           if (bw.IsBusy != true)
-            {
-                bw.RunWorkerAsync();
-            }
-           bw.WorkerReportsProgress = true;
-           bw.WorkerSupportsCancellation = true;
-           bw.DoWork += new DoWorkEventHandler(bw_DoWork);
-           bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-           bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-         
 
         }
         private void deleteClick(object sender, RoutedEventArgs e)
@@ -84,8 +93,8 @@ namespace WimeaApplication
             }
 
         }
-       
-      
+
+
 
         private void dataGridEvaluation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -111,7 +120,7 @@ namespace WimeaApplication
                         u.Rain = "true";
                     else u.Rain = "false";
 
-                    if(ThunderstormChk.IsChecked==true)
+                    if (ThunderstormChk.IsChecked == true)
                         u.Thunder = "true";
                     else u.Thunder = "false";
                     if (FogChk.IsChecked == true)
@@ -131,8 +140,8 @@ namespace WimeaApplication
                     else u.Storm = "false";
                     if (QuakeChk.IsChecked == true)
                         u.Quake = "true";
-                    else u.Quake = "false"; 
-                 
+                    else u.Quake = "false";
+
                     u.Height = AnemometerHeight.Text;
                     u.Duration = RainDuration.Text;
                     u.Sunshine = Sunshine.Text;
@@ -168,7 +177,7 @@ namespace WimeaApplication
         {
 
 
-            stationTxtCbx.Text="";
+            stationTxtCbx.Text = "";
             maxTemp.Text = "";
             minTemp.Text = "";
             maxTemp.Text = "";
@@ -176,12 +185,12 @@ namespace WimeaApplication
             WindRun.Text = "";
             maxTemp.Text = "";
             Rainfall.Text = "";
-           ThunderstormChk.IsChecked = false;             
-           FogChk.IsChecked = false;
-           HazeChk.IsChecked = false; 
-           ThunderstormChk.IsChecked = false;
+            ThunderstormChk.IsChecked = false;
+            FogChk.IsChecked = false;
+            HazeChk.IsChecked = false;
+            ThunderstormChk.IsChecked = false;
             HailChk.IsChecked = false;
-            QuakeChk.IsChecked = false; 
+            QuakeChk.IsChecked = false;
             AnemometerHeight.Text = "";
             RainDuration.Text = "";
             Sunshine.Text = "";
@@ -190,10 +199,7 @@ namespace WimeaApplication
             EvapType.Text = "";
             Evap.Text = "";
             Evaptype2.Text = "";
-            Evap2.Text = "";         
-         
-
-
+            Evap2.Text = "";
         }
 
         private void stationTxtCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -206,12 +212,12 @@ namespace WimeaApplication
             _dailyList = new ObservableCollection<Daily>(App.WimeaApp.Dailys);
             MetarGrid.ItemsSource = null;
             MetarGrid.ItemsSource = _dailyList.Where(w => Convert.ToDateTime(w.Dates).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(w.Dates).Year.ToString() == yearTxtBx.Text).OrderBy(w => w.Dates); ;
-       
+
         }
 
         private void Button_Sync(object sender, RoutedEventArgs e)
         {
-          // MessageBox.Show( send(null,null));
+            // MessageBox.Show( send(null,null));
         }
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -228,83 +234,98 @@ namespace WimeaApplication
 
             else
             {
-                this.tbProgress.Content = "Done!";
+                this.tbProgress.Content = "synchronised information!";
             }
         }
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            this.tbProgress.Content = (e.ProgressPercentage.ToString() + "%");
+            this.tbProgress.Content = (e.ProgressPercentage.ToString() + "Count");
         }
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
-             for (int i = 1; (i <= 10); i++)
-            {
-                if ((worker.CancellationPending == true))
-                {
-                    e.Cancel = true;
-                    break;
-                }
-                else
-                {
             int counter = _dailyList.Count(c => c.Sync == "F" || c.Sync == "");
 
             List<Daily> sendies = new List<Daily>();
             sendies = _dailyList.Where(c => c.Sync == "F" || c.Sync == "").ToList();
 
-            string URL = "http://localhost/weather/index.php/api/tasks";
-            WebClient webClient = new WebClient();
-
-            foreach (Daily row in sendies)
-            {
-
-                NameValueCollection formData = new NameValueCollection();
-                formData["actual"] = row.Actual;
-                formData["date"] = row.Dates;
-                formData["station"] = row.Station;
-                formData["max"] = row.Maxs;
-                formData["min"] = row.Mins;
-                formData["anemometer"] = row.Anemometer;
-                formData["wind"] = row.Wind;
-                formData["rain"] = row.Rain;
-                formData["thunder"] = row.Thunder;
-                formData["fog"] = row.Fog;
-                formData["haze"] = row.Haze;
-                formData["storm"] = row.Storm;
-                formData["quake"] = row.Quake;
-                formData["height"] = row.Height;
-                formData["duration"] = row.Duration;
-                formData["sunshine"] = row.Sunshine;
-                formData["type"] = row.Radiationtype;
-                formData["radiation"] = row.Radiation;
-                formData["evaptype1"] = row.Evaptype1;
-                formData["evap1"] = row.Evap1;
-                formData["evaptype2"] = row.Evaptype2;
-                formData["evap2"] = row.Evap2;
-                formData["user"] = row.Users;
-
-                byte[] responseBytes = webClient.UploadValues(URL, "POST", formData);
-                string responsefromserver = Encoding.UTF8.GetString(responseBytes);
-               // row.Update(row.Id, "F");
-                row.Update(row.Id, responsefromserver);
-                Console.WriteLine(responsefromserver);
-                webClient.Dispose();
-                System.Threading.Thread.Sleep(500);
-                worker.ReportProgress((i * 10));
-
-            }
-            }
-
-
-
-
+            string URL = Sending.genUrl + "api/tasks";
          
+
+                    foreach (Daily row in sendies)
+                    {                     
+
+                        NameValueCollection formData = new NameValueCollection();
+                        formData["actual"] = row.Actual;
+                        formData["date"] = row.Dates;
+                        formData["station"] = row.Station;
+                        formData["max"] = row.Maxs;
+                        formData["min"] = row.Mins;
+                        formData["anemometer"] = row.Anemometer;
+                        formData["wind"] = row.Wind;
+                        formData["rain"] = row.Rain;
+                        formData["thunder"] = row.Thunder;
+                        formData["fog"] = row.Fog;
+                        formData["haze"] = row.Haze;
+                        formData["storm"] = row.Storm;
+                        formData["quake"] = row.Quake;
+                        formData["height"] = row.Height;
+                        formData["duration"] = row.Duration;
+                        formData["sunshine"] = row.Sunshine;
+                        formData["type"] = row.Radiationtype;
+                        formData["radiation"] = row.Radiation;
+                        formData["evaptype1"] = row.Evaptype1;
+                        formData["evap1"] = row.Evap1;
+                        formData["evaptype2"] = row.Evaptype2;
+                        formData["evap2"] = row.Evap2;
+                        formData["user"] = row.Users;
+
+                      String results =   Sending.send(URL,formData);                   
+                      
+                        // row.Update(row.Id, "F");
+                       row.Update(row.Id, results);
+                        Console.WriteLine(results);                       
+                        worker.ReportProgress((( counter--)));
+                       
+
+                    }
+                
+                   
+                    System.Threading.Thread.Sleep(500);
+             
         }
-             }
+        private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Are you sure you want to delete all this information?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (Daily u in MetarGrid.SelectedItems)
+                {
+                    u.Delete(u.Id.ToString());
+                }
+                RefreshUserList();
+
+            }
+            else
+            {
+                return;
+            }
+
+        }
+        private void chkSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkSelectAll.IsChecked.Value == true)
+            {
+                MetarGrid.SelectAll();
+            }
+            else
+            {
+                MetarGrid.UnselectAll();
+            }
+        }
     }
-    
-       
-   
+
+
+
 }

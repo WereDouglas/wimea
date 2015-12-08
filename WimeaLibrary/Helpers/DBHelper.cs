@@ -13,14 +13,12 @@ namespace VehicleManagementLibrary.Helpers
     {
         public string Database { get; set; }
         public string Server { get; set; }
-      //  public static SqlCeConnection con = new SqlCeConnection(@"Data Source="+ System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\wimea.sdf;Password=wimea; Persist Security Info=True;");
+        //  public static SqlCeConnection con = new SqlCeConnection(@"Data Source="+ System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\wimea.sdf;Password=wimea; Persist Security Info=True;");
         //ConnectionString = "Data Source=" + System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\Database.sdf"s
 
-       public static string conString = @"Data Source=C:\transporter\wimea.sdf;Password=wimea; Persist Security Info=True;";
-
-
+        public static string conString = @"Data Source=C:\wimea\wimeas.sdf;Password=wimea; Persist Security Info=True;";
         public static SqlCeConnection con = new SqlCeConnection(conString);
-         private static DBHelper _instance;
+        private static DBHelper _instance;
 
         public static DBHelper Instance
         {
@@ -60,7 +58,7 @@ namespace VehicleManagementLibrary.Helpers
         public void ExecuteNonQuery(SqlCeCommand cmd)
         {
             openConnection();
-            
+
             try
             {
                 cmd.ExecuteNonQuery();
@@ -77,7 +75,7 @@ namespace VehicleManagementLibrary.Helpers
 
         }
 
-        public void ExecuteQuery(string Query,DataTable table)
+        public void ExecuteQuery(string Query, DataTable table)
         {
             SqlCeCommand cmd;
             SqlCeDataAdapter adapter;
@@ -90,8 +88,8 @@ namespace VehicleManagementLibrary.Helpers
                 cmd.Connection = conn;
                 adapter.SelectCommand = cmd;
                 adapter.Fill(table);
-            }        
-            
+            }
+
 
 
         }
