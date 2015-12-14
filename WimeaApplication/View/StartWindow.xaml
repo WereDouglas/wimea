@@ -5,8 +5,8 @@
     <Grid>
         <Image Height="128" Margin="189,13,151,0" VerticalAlignment="Top" Source="/WimeaApplication;component/image/logo.fw.png"/>
         <Label Content="AWS" Margin="247,115,176,0" VerticalAlignment="Top"/>
-        <Button Content="Cancel" Margin="264,218,151,0" VerticalAlignment="Top" Name="cancels" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Cancel"/>
-        <Button Content="Register" Margin="181,218,244,0" Name="registers" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Click"/>
+        <Button Content="Cancel" Margin="275,218,140,0" VerticalAlignment="Top" Name="cancels" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Cancel"/>
+        <Button Content="Register" Margin="181,218,236,0" Name="registers" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Click"/>
         <ComboBox HorizontalAlignment="Left" Name="instance" Margin="181,146,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="Station"/>
             <ComboBoxItem Content="Data center"/>
@@ -16,7 +16,7 @@
             <TextBox Height="23" Margin="172,7,129,0" TextWrapping="Wrap" Text="" Name="station" VerticalAlignment="Top"/>
             <Label Content="Station name" Margin="76,7,308,0" VerticalAlignment="Top"/>
         </Grid>
-        <Label Content=""  x:Name="tbProgress" Margin="10,258,10,0" VerticalAlignment="Top" Height="27" Foreground="#FF3399FF" FontWeight="Bold" HorizontalAlignment="Center" Width="475"/>
+        <Label Content=""  x:Name="tbProgress" Margin="10,258,0,0" VerticalAlignment="Top" Height="27" Foreground="#FF3399FF" FontWeight="Bold" HorizontalAlignment="Center" Width="485"/>
         <Button Content="Continue" Name="continues" Margin="181,285,151,0" VerticalAlignment="Top" Height="35" Background="#FF6C8699" Foreground="WhiteSmoke" Click="Button_Click_continue"/>
 
     </Grid>

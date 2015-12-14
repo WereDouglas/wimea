@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VehicleManagementLibrary.Helpers;
+using WimeaLibrary.Helpers;
 
-namespace WimeaApplication.Helpers
+namespace WimeaLibrary.Helpers
 {
     public abstract class DBObject : DBHelper
     {

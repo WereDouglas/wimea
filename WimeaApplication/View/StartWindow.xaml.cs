@@ -35,19 +35,30 @@ namespace WimeaApplication
         private Synoptic u;
         private Metar m;
         private User r;
+        private Station s;
+        private Element e;
+        private Instrument i;
         private ObservableCollection<User> _UsersList = null;
 
         public StartWindow()
         {
             InitializeComponent();
-            CreateDB();
+            string fileName = @"c:\wimea\wimeas.sdf";
+            if (File.Exists(fileName))
+            {
+                Login w = new Login();
+                w.Show();
+                this.Close();
+            }
+            else
+            {
 
-            details.Visibility = System.Windows.Visibility.Hidden;
-            _stationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
-            continues.Visibility = System.Windows.Visibility.Hidden;
-            _UsersList = new ObservableCollection<User>(App.WimeaApp.Users);
-           
-
+                CreateDB();
+                details.Visibility = System.Windows.Visibility.Hidden;
+                _stationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
+                continues.Visibility = System.Windows.Visibility.Hidden;
+                _UsersList = new ObservableCollection<User>(App.WimeaApp.Users);
+            }
         }
         private void CreateDB()
         {
@@ -64,13 +75,13 @@ namespace WimeaApplication
             Directory.GetCreationTime(path));
 
 
-            string con;          
+            string con;
 
             //if (File.Exists(fileName))
             //{
             //    File.Delete(fileName);
             //}
-           // string pathString = System.IO.Path.Combine(path, fileName);
+            // string pathString = System.IO.Path.Combine(path, fileName);
             //File.Create(pathString);
 
             con = string.Format(@"Data Source=C:\wimea\wimeas.sdf;Password=wimea; Persist Security Info=True;");
@@ -80,11 +91,11 @@ namespace WimeaApplication
             SqlCeConnection conn = new SqlCeConnection(con);
             conn.Open();
             SqlCeCommand cmd = conn.CreateCommand();
-           
- //         CREATE TABLE daily (id nvarchar(255) NOT NULL, dates nvarchar(100) NULL, station nvarchar(100) NULL, maxs nvarchar(100) NULL, mins nvarchar(100) NULL, actual nvarchar(100) NULL, anemometer nvarchar(100) NULL, wind nvarchar(100) NULL, maxi nvarchar(100) NULL, rain nvarchar(100) NULL, thunder nvarchar(100) NULL, fog nvarchar(100) NULL, haze nvarchar(100) NULL,storm nvarchar(100) NULL, quake nvarchar(100) NULL,height nvarchar(100) NULL, duration nvarchar(100) NULL, sunshine nvarchar(100) NULL, radiationtype nvarchar(100) NULL, radiation nvarchar(100) NULL, evaptype1 nvarchar(100) NULL, evap1 nvarchar(100) NULL, evaptype2 nvarchar(100) NULL, evap2 nvarchar(100) NULL, users nvarchar(100) NULL, sync nvarchar(25) NULL);
+
+            //         CREATE TABLE daily (id nvarchar(255) NOT NULL, dates nvarchar(100) NULL, station nvarchar(100) NULL, maxs nvarchar(100) NULL, mins nvarchar(100) NULL, actual nvarchar(100) NULL, anemometer nvarchar(100) NULL, wind nvarchar(100) NULL, maxi nvarchar(100) NULL, rain nvarchar(100) NULL, thunder nvarchar(100) NULL, fog nvarchar(100) NULL, haze nvarchar(100) NULL,storm nvarchar(100) NULL, quake nvarchar(100) NULL,height nvarchar(100) NULL, duration nvarchar(100) NULL, sunshine nvarchar(100) NULL, radiationtype nvarchar(100) NULL, radiation nvarchar(100) NULL, evaptype1 nvarchar(100) NULL, evap1 nvarchar(100) NULL, evaptype2 nvarchar(100) NULL, evap2 nvarchar(100) NULL, users nvarchar(100) NULL, sync nvarchar(25) NULL);
             if (!TableExists(conn, "users"))
             {
-                cmd.CommandText = "CREATE TABLE users (id nvarchar(255) NOT NULL, name nvarchar(255) NOT NULL, contact nvarchar(255) NOT NULL, role nvarchar(255) NOT NULL, station nvarchar(255) NOT NULL,email nvarchar(255) NULL);";
+                cmd.CommandText = "CREATE TABLE users (id nvarchar(255) NOT NULL, name nvarchar(255) NOT NULL, contact nvarchar(255) NOT NULL, role nvarchar(255) NOT NULL, station nvarchar(255) NOT NULL,email nvarchar(255) NULL,password nvarchar(255) NULL);";
                 cmd.ExecuteNonQuery();
                 System.Diagnostics.Debug.WriteLine("Created table users");
             }
@@ -112,18 +123,29 @@ namespace WimeaApplication
                 cmd.ExecuteNonQuery();
                 System.Diagnostics.Debug.WriteLine("Created table sync");
             }
-         
-            //CREATE TABLE synoptic (  id nvarchar(100) NULL, station nvarchar(100) NULL, dates nvarchar(100) NULL, times nvarchar(100) NULL, ir nvarchar(100) NULL, ix nvarchar(100) NULL, h nvarchar(100) NULL, www nvarchar(100) NULL, vv nvarchar(100) NULL, n nvarchar(100) NULL, dd nvarchar(100) NULL, ff nvarchar(100) NULL, t nvarchar(100) NULL, td nvarchar(100) NULL, po nvarchar(100) NULL, gisis nvarchar(100) NULL, hhh nvarchar(100) NULL, rrr nvarchar(100) NULL, tr nvarchar(100) NULL, present nvarchar(100) NULL, past nvarchar(100) NULL, nh nvarchar(100) NULL, cl nvarchar(100) NULL, cm nvarchar(100) NULL, ch nvarchar(100) NULL, tq nvarchar(100) NULL, ro nvarchar(100) NULL, r1 nvarchar(100) NULL, tx nvarchar(100) NULL, tm nvarchar(100) NULL, ee nvarchar(100) NULL, e nvarchar(100) NULL, sss nvarchar(100) NULL, pchange nvarchar(100) NULL, p24 nvarchar(100) NULL, rr nvarchar(100) NULL, tr1 nvarchar(100) NULL, ns nvarchar(100) NULL, c nvarchar(100) NULL, hs nvarchar(100) NULL, ns1 nvarchar(100) NULL, c1 nvarchar(100) NULL, hs1 nvarchar(100) NULL, ns2 nvarchar(100) NULL, c2 nvarchar(100) NULL, hs2 nvarchar(100) NULL, supplementary nvarchar(100) NULL, wb nvarchar(100) NULL, rh nvarchar(100) NULL, vap nvarchar(100) NULL, users nvarchar(100) NULL, submitted nvarchar(100) NULL, sync nvarchar(25) NULL);
-             if (!TableExists(conn, "synoptic"))
-             {
-                 cmd.CommandText = "CREATE TABLE synoptic (id nvarchar(100) NULL, station nvarchar(100) NULL, dates nvarchar(100) NULL, times nvarchar(100) NULL, ir nvarchar(100) NULL, ix nvarchar(100) NULL, h nvarchar(100) NULL, www nvarchar(100) NULL, vv nvarchar(100) NULL, n nvarchar(100) NULL, dd nvarchar(100) NULL, ff nvarchar(100) NULL, t nvarchar(100) NULL, td nvarchar(100) NULL, po nvarchar(100) NULL, gisis nvarchar(100) NULL, hhh nvarchar(100) NULL, rrr nvarchar(100) NULL, tr nvarchar(100) NULL, present nvarchar(100) NULL, past nvarchar(100) NULL, nh nvarchar(100) NULL, cl nvarchar(100) NULL, cm nvarchar(100) NULL, ch nvarchar(100) NULL, tq nvarchar(100) NULL, ro nvarchar(100) NULL, r1 nvarchar(100) NULL, tx nvarchar(100) NULL, tm nvarchar(100) NULL, ee nvarchar(100) NULL, e nvarchar(100) NULL, sss nvarchar(100) NULL, pchange nvarchar(100) NULL, p24 nvarchar(100) NULL, rr nvarchar(100) NULL, tr1 nvarchar(100) NULL, ns nvarchar(100) NULL, c nvarchar(100) NULL, hs nvarchar(100) NULL, ns1 nvarchar(100) NULL, c1 nvarchar(100) NULL, hs1 nvarchar(100) NULL, ns2 nvarchar(100) NULL, c2 nvarchar(100) NULL, hs2 nvarchar(100) NULL, supplementary nvarchar(100) NULL, wb nvarchar(100) NULL, rh nvarchar(100) NULL, vap nvarchar(100) NULL, users nvarchar(100) NULL, submitted nvarchar(100) NULL, sync nvarchar(25) NULL);";
-                 cmd.ExecuteNonQuery();
-                 System.Diagnostics.Debug.WriteLine("Created table synoptic");
-             }
-            //CREATE TABLE user (  id nvarchar(255) NOT NULL, name nvarchar(255) NOT NULL, contact nvarchar(255) NOT NULL, role nvarchar(255) NOT NULL, station nvarchar(255) NOT NULL, email nvarchar(255) NULL);
 
-            
-             conn.Close();
+            //CREATE TABLE synoptic (  id nvarchar(100) NULL, station nvarchar(100) NULL, dates nvarchar(100) NULL, times nvarchar(100) NULL, ir nvarchar(100) NULL, ix nvarchar(100) NULL, h nvarchar(100) NULL, www nvarchar(100) NULL, vv nvarchar(100) NULL, n nvarchar(100) NULL, dd nvarchar(100) NULL, ff nvarchar(100) NULL, t nvarchar(100) NULL, td nvarchar(100) NULL, po nvarchar(100) NULL, gisis nvarchar(100) NULL, hhh nvarchar(100) NULL, rrr nvarchar(100) NULL, tr nvarchar(100) NULL, present nvarchar(100) NULL, past nvarchar(100) NULL, nh nvarchar(100) NULL, cl nvarchar(100) NULL, cm nvarchar(100) NULL, ch nvarchar(100) NULL, tq nvarchar(100) NULL, ro nvarchar(100) NULL, r1 nvarchar(100) NULL, tx nvarchar(100) NULL, tm nvarchar(100) NULL, ee nvarchar(100) NULL, e nvarchar(100) NULL, sss nvarchar(100) NULL, pchange nvarchar(100) NULL, p24 nvarchar(100) NULL, rr nvarchar(100) NULL, tr1 nvarchar(100) NULL, ns nvarchar(100) NULL, c nvarchar(100) NULL, hs nvarchar(100) NULL, ns1 nvarchar(100) NULL, c1 nvarchar(100) NULL, hs1 nvarchar(100) NULL, ns2 nvarchar(100) NULL, c2 nvarchar(100) NULL, hs2 nvarchar(100) NULL, supplementary nvarchar(100) NULL, wb nvarchar(100) NULL, rh nvarchar(100) NULL, vap nvarchar(100) NULL, users nvarchar(100) NULL, submitted nvarchar(100) NULL, sync nvarchar(25) NULL);
+            if (!TableExists(conn, "synoptic"))
+            {
+                cmd.CommandText = "CREATE TABLE synoptic (id nvarchar(100) NULL, station nvarchar(100) NULL, dates nvarchar(100) NULL, times nvarchar(100) NULL, ir nvarchar(100) NULL, ix nvarchar(100) NULL, h nvarchar(100) NULL, www nvarchar(100) NULL, vv nvarchar(100) NULL, n nvarchar(100) NULL, dd nvarchar(100) NULL, ff nvarchar(100) NULL, t nvarchar(100) NULL, td nvarchar(100) NULL, po nvarchar(100) NULL, gisis nvarchar(100) NULL, hhh nvarchar(100) NULL, rrr nvarchar(100) NULL, tr nvarchar(100) NULL, present nvarchar(100) NULL, past nvarchar(100) NULL, nh nvarchar(100) NULL, cl nvarchar(100) NULL, cm nvarchar(100) NULL, ch nvarchar(100) NULL, tq nvarchar(100) NULL, ro nvarchar(100) NULL, r1 nvarchar(100) NULL, tx nvarchar(100) NULL, tm nvarchar(100) NULL, ee nvarchar(100) NULL, e nvarchar(100) NULL, sss nvarchar(100) NULL, pchange nvarchar(100) NULL, p24 nvarchar(100) NULL, rr nvarchar(100) NULL, tr1 nvarchar(100) NULL, ns nvarchar(100) NULL, c nvarchar(100) NULL, hs nvarchar(100) NULL, ns1 nvarchar(100) NULL, c1 nvarchar(100) NULL, hs1 nvarchar(100) NULL, ns2 nvarchar(100) NULL, c2 nvarchar(100) NULL, hs2 nvarchar(100) NULL, supplementary nvarchar(100) NULL, wb nvarchar(100) NULL, rh nvarchar(100) NULL, vap nvarchar(100) NULL, users nvarchar(100) NULL, submitted nvarchar(100) NULL, sync nvarchar(25) NULL);";
+                cmd.ExecuteNonQuery();
+                System.Diagnostics.Debug.WriteLine("Created table synoptic");
+            }
+            //CREATE TABLE user (  id nvarchar(255) NOT NULL, name nvarchar(255) NOT NULL, contact nvarchar(255) NOT NULL, role nvarchar(255) NOT NULL, station nvarchar(255) NOT NULL, email nvarchar(255) NULL);
+            if (!TableExists(conn, "element"))
+            {
+                cmd.CommandText = "CREATE TABLE element (id nvarchar(100) NULL, name nvarchar(100) NULL, abbrev nvarchar(100) NULL, type nvarchar(100) NULL, units nvarchar(100) NULL,scale nvarchar(100) NULL, limits nvarchar(100) NULL,description nvarchar(100) NULL,submitted nvarchar(100) NULL);";
+                cmd.ExecuteNonQuery();
+                System.Diagnostics.Debug.WriteLine("Created table element");
+            }
+            if (!TableExists(conn, "instrument"))
+            {
+                cmd.CommandText = "CREATE TABLE instrument (id nvarchar(100) NULL, name nvarchar(100) NULL, station nvarchar(100) NULL, element nvarchar(100) NULL, dateRegister nvarchar(100) NULL,dateExpire nvarchar(100) NULL, code nvarchar(100) NULL, manufacturer nvarchar(100) NULL,description nvarchar(100) NULL,submitted nvarchar(100) NULL);";
+                cmd.ExecuteNonQuery();
+                System.Diagnostics.Debug.WriteLine("Created table instrument");
+            }
+
+            conn.Close();
         }
         public bool TableExists(SqlCeConnection connection, string tableName)
         {
@@ -146,13 +168,23 @@ namespace WimeaApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Sending.IsInternetAvailable())
+            if (instance.SelectedItem.ToString().Contains("center"))
+            {
+                Sending.currentinstance = "Data center";
+                Login w = new Login();
+                w.Owner = Window.GetWindow(this);
+                w.Show();
+                this.Visibility = Visibility.Collapsed;
+
+            }
+            if (!Sending.IsInternetAvailable())
             {
                 registers.Visibility = System.Windows.Visibility.Hidden;
                 cancels.Visibility = System.Windows.Visibility.Hidden;
 
                 if (station.Text != "")
                 {
+
                     string URL = Sending.genUrl + "apicheck/check";
                     NameValueCollection formData = new NameValueCollection();
                     formData["station"] = station.Text;
@@ -169,29 +201,27 @@ namespace WimeaApplication
                         // tbProgress.Content = "welcome "+ station.Text;
                         Station model = JsonConvert.DeserializeObject<Station>(results);
                         //System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Number);
-                       
-                            _station = App.WimeaApp.Stations.Add();
-                            _station.Name = model.Name;
-                            _station.Number = model.Number;
-                            _station.Code = model.Code;
-                            _station.Latitude = model.Latitude;
-                            _station.Longitude = model.Longitude;
-                            _station.Altitude = model.Altitude;
-                            _station.Type = model.Type;
-                            _station.Location = model.Location;
-                            _station.Status = model.Status+" ";
-                            _station.Commissioned = DateTime.Now.Date.ToString();
-                            _station.Save();
-                        
-                            name = model.Name;
-                            bw.RunWorkerAsync();
-                            bw.WorkerReportsProgress = true;
-                            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
-                            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-                            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-                            tbProgress.Content = "Station already in your database";
 
-                        
+                        _station = App.WimeaApp.Stations.Add();
+                        _station.Name = model.Name;
+                        _station.Number = model.Number;
+                        _station.Code = model.Code;
+                        _station.Latitude = model.Latitude;
+                        _station.Longitude = model.Longitude;
+                        _station.Altitude = model.Altitude;
+                        _station.Type = model.Type;
+                        _station.Location = model.Location;
+                        _station.Status = model.Status + " ";
+                        _station.Commissioned = DateTime.Now.Date.ToString();
+                        _station.Save();
+
+                        name = model.Name;
+                        bw.RunWorkerAsync();
+                        bw.WorkerReportsProgress = true;
+                        bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                        bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                        bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                        //  tbProgress.Content = "Station already in your database";                        
                     }
                 }
                 else
@@ -405,49 +435,108 @@ namespace WimeaApplication
         private string Loading_user(string station)
         {
             //string reply = "";
+           try
+            {
+            string total = "";
+            string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "user" + ".json");
+            foreach (string line in lines)
+            {
+
+                total += line;
+            }
+
+            List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
+
+            for (int d = 0; d < model.Count; d++)
+            {
+                try
+                {
+                    string usernames = _UsersList.Where(l => l.Email == model.ElementAt(d).Email).Select(l => l.Name).SingleOrDefault().ToString();
+
+                    if (usernames == "")
+                    {
+                        r = new User(null);
+                        r.Station = model.ElementAt(d).Station;
+                        r.Name = model.ElementAt(d).Name;
+                        r.Email = model.ElementAt(d).Email;
+                        r.Contact = model.ElementAt(d).Contact;
+                        r.Role = model.ElementAt(d).Role;
+                        r.Save();
+                    }
+                }
+                catch (Exception)
+                {
+                    r = new User(null);
+                    r.Station = model.ElementAt(d).Station;
+                    r.Name = model.ElementAt(d).Name;
+                    r.Email = model.ElementAt(d).Email;
+                    r.Contact = model.ElementAt(d).Contact;
+                    r.Role = model.ElementAt(d).Role;
+                    r.Save();
+
+                }
+
+            }
+            return "Loaded synoptic information into local database!";
+
+            }
+           catch (Exception ex)
+           {
+
+               MessageBox.Show(ex.Message.ToString());
+               return "done loading metars";
+
+           }
+
+
+        }
+
+        private string Loading_users()
+        {
+            //string reply = "";
             //try
             //{
-                string total = "";
-                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "user" + ".json");
-                foreach (string line in lines)
+            string total = "";
+            string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + "center-" + "users" + ".json");
+            foreach (string line in lines)
+            {
+
+                total += line;
+            }
+
+            List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
+
+            for (int d = 0; d < model.Count; d++)
+            {
+                try
                 {
+                    string usernames = _UsersList.Where(l => l.Email == model.ElementAt(d).Email).Select(l => l.Name).SingleOrDefault().ToString();
 
-                    total += line;
-                }
-
-                List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
-
-                for (int d = 0; d < model.Count; d++)
-                {
-                    try
+                    if (usernames == "")
                     {
-                        string usernames = _UsersList.Where(l => l.Email == model.ElementAt(d).Email).Select(l => l.Name).SingleOrDefault().ToString();
-
-                        if (usernames == "")
-                        {
-                            r = new User(null);
-                            r.Station = model.ElementAt(d).Station;
-                            r.Name = model.ElementAt(d).Name;
-                            r.Email = model.ElementAt(d).Email;
-                            r.Contact = model.ElementAt(d).Contact;
-                            r.Role = model.ElementAt(d).Role;
-                            r.Save();
-                        }
+                        r = new User(null);
+                        r.Station = "Data center";
+                        r.Name = model.ElementAt(d).Name;
+                        r.Email = model.ElementAt(d).Email;
+                        r.Contact = model.ElementAt(d).Contact;
+                        r.Role = model.ElementAt(d).Role;
+                        r.Save();
                     }
-                    catch (Exception)
-                    {                       
-                            r = new User(null);
-                            r.Station = model.ElementAt(d).Station;
-                            r.Name = model.ElementAt(d).Name;
-                            r.Email = model.ElementAt(d).Email;
-                            r.Contact = model.ElementAt(d).Contact;
-                            r.Role = model.ElementAt(d).Role;
-                            r.Save();
-                        
-                    }
-                   
                 }
-                return "Loaded synoptic information into local database!";
+                catch (Exception)
+                {
+                    r = new User(null);
+                    r.Station = "Data center";
+                    r.Name = model.ElementAt(d).Name;
+                    r.Email = model.ElementAt(d).Email;
+                    r.Contact = model.ElementAt(d).Contact;
+                    r.Role = model.ElementAt(d).Role;
+                    r.Save();
+
+                }
+
+            }
+            return "Loaded synoptic information into local database!";
 
             //}
             //catch (Exception ex)
@@ -460,6 +549,142 @@ namespace WimeaApplication
 
 
         }
+
+        private string Loading_stations()
+        {
+            //string reply = "";
+            //try
+            //{
+            string total = "";
+            string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + "center-" + "stations" + ".json");
+            foreach (string line in lines)
+            {
+
+                total += line;
+            }
+
+            List<Station> model = JsonConvert.DeserializeObject<List<Station>>(total);
+
+            for (int d = 0; d < model.Count; d++)
+            {
+                try
+                {
+                    string stations = _stationsList.Where(l => l.Name == model.ElementAt(d).Name).Select(l => l.Name).SingleOrDefault().ToString();
+
+                    if (stations == "")
+                    {
+                        s = new Station(null);
+                        s.Name = model.ElementAt(d).Name;
+                        s.Number = model.ElementAt(d).Number;
+                        s.Code = model.ElementAt(d).Code;
+                        s.Latitude = model.ElementAt(d).Latitude;
+                        s.Longitude = model.ElementAt(d).Longitude;
+                        s.Altitude = model.ElementAt(d).Altitude;
+                        s.Type = model.ElementAt(d).Type;
+                        s.Location = model.ElementAt(d).Location;
+                        s.Status = model.ElementAt(d).Status;
+                        s.Commissioned = model.ElementAt(d).Commissioned + " ";
+                        s.Sync = "T";
+                        s.Save();
+                    }
+                }
+                catch (Exception)
+                {
+                    s = new Station(null);
+                    s.Name = model.ElementAt(d).Name;
+                    s.Number = model.ElementAt(d).Number;
+                    s.Code = model.ElementAt(d).Code;
+                    s.Latitude = model.ElementAt(d).Latitude;
+                    s.Longitude = model.ElementAt(d).Longitude;
+                    s.Altitude = model.ElementAt(d).Altitude;
+                    s.Type = model.ElementAt(d).Type;
+                    s.Location = model.ElementAt(d).Location;
+                    s.Status = model.ElementAt(d).Status;
+                    s.Commissioned = model.ElementAt(d).Commissioned + " ";
+                    s.Sync = "T";
+                    s.Save();
+
+                }
+
+            }
+            return "Loaded synoptic information into local database!";
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message.ToString());
+            //    return "done loading metars";
+
+            //}
+
+
+        }
+
+        private string Loading_elements()
+        {
+            //string reply = "";
+            //try
+            //{
+            string total = "";
+            string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + "center-" + "elements" + ".json");
+            foreach (string line in lines)
+            {
+
+                total += line;
+            }
+
+            List<Element> model = JsonConvert.DeserializeObject<List<Element>>(total);
+
+            for (int d = 0; d < model.Count; d++)
+            {
+                try
+                {                  
+                        e = new Element(null);
+                        e.Name = model.ElementAt(d).Name;
+                        e.Abbrev = model.ElementAt(d).Abbrev;
+                        e.Type = model.ElementAt(d).Type;
+                        e.Units = model.ElementAt(d).Units;
+                        e.Scale = model.ElementAt(d).Scale;
+                        e.Limits = model.ElementAt(d).Limits;
+                        e.Description = model.ElementAt(d).Description;
+                        e.Submitted = model.ElementAt(d).Submitted;                       
+                        e.Sync = "T";
+                        e.Save();
+                   
+                }
+                catch (Exception)
+                {
+                    e = new Element(null);
+                    e.Name = model.ElementAt(d).Name;
+                    e.Abbrev = model.ElementAt(d).Abbrev;
+                    e.Type = model.ElementAt(d).Type;
+                    e.Units = model.ElementAt(d).Units;
+                    e.Scale = model.ElementAt(d).Scale;
+                    e.Limits = model.ElementAt(d).Limits;
+                    e.Description = model.ElementAt(d).Description;
+                    e.Submitted = model.ElementAt(d).Submitted;
+                    e.Sync = "T";
+                    e.Save();
+
+                }
+
+            }
+            return "Loaded synoptic information into local database!";
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message.ToString());
+            //    return "done loading metars";
+
+            //}
+
+
+        }
+
+
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -507,25 +732,119 @@ namespace WimeaApplication
             worker.ReportProgress(((counter)));
             syncs(Sending.genUrl + "api/tasks/station/" + name + "/format/json", "rain", name);
             worker.ReportProgress(((counter)));
+            syncs(Sending.genUrl + "apiinstrument/instrument/station/" + name + "/format/json", "instruments", name);
+            worker.ReportProgress(((counter)));
 
             Loading_daily(name);
             Loading_synoptic(name);
             Loading_metar(name);
             Loading_user(name);
+            Loading_instruments(name);
 
 
             System.Threading.Thread.Sleep(5000);
 
 
         }
+        private string Loading_instruments(string station)
+        {
+            string reply = "";
+            try
+            {
+                string total = "";
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "instruments" + ".json");
+                foreach (string line in lines)
+                {
+
+                    total += line;
+                }
+
+                List<Instrument> model = JsonConvert.DeserializeObject<List<Instrument>>(total);
+
+                for (int d = 0; d < model.Count; d++)
+                {
+                    i = new Instrument(null);
+                    i.Station = model.ElementAt(d).Station;
+                    i.Name = model.ElementAt(d).Name;
+                    i.Element = model.ElementAt(d).Element;
+                    i.DateRegister = model.ElementAt(d).DateRegister;
+                    i.DateExpire = model.ElementAt(d).DateExpire;
+                    i.Code =model.ElementAt(d).Code;
+                    i.Manufacturer=model.ElementAt(d).Manufacturer;
+                    i.Description=model.ElementAt(d).Description;
+                    i.Submitted = model.ElementAt(d).Submitted;
+                    i.Sync = "T";
+                    i.Save();
+
+                }
+                return "Loaded synoptic information into local database!";
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+                return "done loading instruments";
+
+            }
+
+
+        }
+
+        private string Loading_allinstruments()
+        {
+           
+            //try
+            //{
+                string total = "";
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + "center-" + "instruments" + ".json");
+                foreach (string line in lines)
+                {
+
+                    total += line;
+                }
+
+                List<Instrument> model = JsonConvert.DeserializeObject<List<Instrument>>(total);
+
+                for (int d = 0; d < model.Count; d++)
+                {
+                    i = new Instrument(null);
+                    i.Station = model.ElementAt(d).Station;
+                    i.Name = model.ElementAt(d).Name;
+                    i.Element = model.ElementAt(d).Element;
+                    i.DateRegister = model.ElementAt(d).DateRegister;
+                    i.DateExpire = model.ElementAt(d).DateExpire;
+                    i.Code = model.ElementAt(d).Code;
+                    i.Manufacturer = model.ElementAt(d).Manufacturer;
+                    i.Description = model.ElementAt(d).Description;
+                    i.Submitted = model.ElementAt(d).Submitted;
+                    i.Sync = "T";
+                    i.Save();
+
+                }
+                return "Loaded synoptic information into local database!";
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message.ToString());
+            //    return "done loading instruments";
+
+            //}
+
+
+        }
         private void syncs(string url, string content, string station)
         {
-
-            using (var client = new WebClient())
+            try
             {
-                var json = client.DownloadString(url);
-                System.IO.File.WriteAllText(Sending.directoryUrl + station + "-" + content + ".json", json);
-            }
+                using (var client = new WebClient())
+                {
+                    var json = client.DownloadString(url);
+                    System.IO.File.WriteAllText(Sending.directoryUrl + station + "-" + content + ".json", json);
+                }
+            }catch{}
 
         }
 
@@ -537,6 +856,18 @@ namespace WimeaApplication
             }
             else
             {
+                tbProgress.Content = "initial center setup";
+                CreateDB();
+
+                //syncs(string url, string content, string station)
+                syncs(Sending.genUrl + "apiuser/user/station/centers/format/json", "users", "center");
+                syncs(Sending.genUrl + "apistation/station/station/center/format/json", "stations", "center");
+                syncs(Sending.genUrl + "apielement/element/format/json", "elements", "center");
+                syncs(Sending.genUrl + "apiinstrument/instrument/format/json", "instruments", "center");   
+                 Loading_users();
+                Loading_stations();
+                Loading_elements();
+                Loading_allinstruments();
                 details.Visibility = System.Windows.Visibility.Hidden;
             }
 

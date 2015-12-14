@@ -11,7 +11,7 @@
 
         </DockPanel>
         <Button Content="Rainfall card" HorizontalAlignment="Left" Margin="6,307,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_4"/>
-        <Button Content="Dekadal" HorizontalAlignment="Left" Margin="6,211,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_7"/>
+        <Button Content="Dekadal" Name="Dekadal" HorizontalAlignment="Left" Margin="6,211,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_7"/>
         <Button Content="Add new" Command="{Binding Path=AddCommand}" Margin="70,135,0,0" x:Name="btnAdd"  VerticalAlignment="Top" Height="21" Click="btnAdd_Click_1" HorizontalAlignment="Left" Width="64" >
             <Button.Template>
                 <ControlTemplate>
@@ -22,12 +22,12 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Synoptic" HorizontalAlignment="Left" Margin="6,236,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_6"/>
+        <Button Content="Synoptic" Name="synoptic" HorizontalAlignment="Left" Margin="6,236,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_6"/>
         <Button Content="Stations" HorizontalAlignment="Left" Margin="6,528,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_2" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
-        <Button Content="Elements" HorizontalAlignment="Left" Margin="6,553,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
-        <Button Content="Instruments" HorizontalAlignment="Left" Margin="6,578,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
-        <Button Content="Daily" Margin="6,161,0,0" VerticalAlignment="Top" Click="Button_Click" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" HorizontalAlignment="Left" Width="125"/>
-        <Button Content="Metar" HorizontalAlignment="Left" Margin="6,186,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="-1.083,0.604" Click="Button_Click_1" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
+        <Button Content="Elements" HorizontalAlignment="Left" Margin="6,553,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_8"/>
+        <Button Content="Instruments" HorizontalAlignment="Left" Margin="6,578,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_9"/>
+        <Button Content="Daily" Name="daily" Margin="6,161,0,0" VerticalAlignment="Top" Click="Button_Click" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" HorizontalAlignment="Left" Width="125"/>
+        <Button Content="Metar" Name="metar" HorizontalAlignment="Left" Margin="6,186,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="-1.083,0.604" Click="Button_Click_1" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Archive" HorizontalAlignment="Left" Margin="6,604,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_3" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="users" HorizontalAlignment="Left" Margin="6,632,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_5" RenderTransformOrigin="0.915,0.455" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Add new" Command="{Binding AddCommand}" Margin="7,135,0,0" x:Name="btnAdd_Copy"  VerticalAlignment="Top" Height="21" Click="settings_Click" HorizontalAlignment="Left" Width="50" RenderTransformOrigin="0.328,0.286" >
@@ -44,7 +44,7 @@
         <Button Content="Synoptic" HorizontalAlignment="Left" Margin="6,357,0,0" VerticalAlignment="Top" Width="125" Click="reportS_Click" RenderTransformOrigin="0.915,0.455" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <Button Content="Daily" HorizontalAlignment="Left" Margin="6,382,0,0" VerticalAlignment="Top" Width="125" Click="reportD_Click" RenderTransformOrigin="0.915,0.455" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9"/>
         <TextBlock HorizontalAlignment="Left" Height="16" Margin="6,286,0,0" TextWrapping="Wrap" Text="Reports" VerticalAlignment="Top" Width="52" Foreground="White"/>
-        <Button Content="Synoptics view" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_view"/>
+        <Button Content="Synoptics view" Name="view" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_view"/>
         <Button Content="Dekadal" HorizontalAlignment="Left" Margin="6,407,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_dekadals"/>
         <Button Content="Rainfall report(6a)" HorizontalAlignment="Left" Margin="6,429,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_report"/>
         <Button Content="Monthly summary(F10)" HorizontalAlignment="Left" Margin="6,454,0,0" VerticalAlignment="Top" Width="125" BorderBrush="{x:Null}" Foreground="White" Background="#FF50B9D9" Click="Button_Click_monthly"/>

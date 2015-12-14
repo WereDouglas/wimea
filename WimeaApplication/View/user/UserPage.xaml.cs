@@ -39,8 +39,7 @@ namespace WimeaApplication
             InitializeComponent();
             RefreshUserList();
             lblName.Visibility = System.Windows.Visibility.Hidden;
-            alert.Visibility = System.Windows.Visibility.Hidden;
-           
+            alert.Visibility = System.Windows.Visibility.Hidden;           
             name = Sending.currentstation;
             
         }
@@ -49,7 +48,7 @@ namespace WimeaApplication
          
           _UsersList = new ObservableCollection<User>(App.WimeaApp.Users);
             UserGrid.ItemsSource= null;
-            UserGrid.ItemsSource = _UsersList;
+            UserGrid.ItemsSource = _UsersList.Where(n=>n.Station== Sending.currentstation);
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserGrid.ItemsSource);
             view.Filter = UserFilter;
 
@@ -260,7 +259,7 @@ namespace WimeaApplication
             using (var client = new WebClient())
             {
                 var json = client.DownloadString(url);
-                System.IO.File.WriteAllText(@"D:\" + station + "-" + content + ".json", json);
+                System.IO.File.WriteAllText(Sending.directoryUrl + station + "-" + content + ".json", json);
             }
 
         }
@@ -270,7 +269,7 @@ namespace WimeaApplication
             try
             {
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "user" + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "user" + ".json");
                 foreach (string line in lines)
                 {
 

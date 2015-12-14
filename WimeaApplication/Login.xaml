@@ -5,11 +5,13 @@
     <Grid>
         <Image Height="100" Margin="189,13,171,0" VerticalAlignment="Top" Source="image/logo.fw.png"/>
         <Label Content="AWS" Margin="247,115,176,0" VerticalAlignment="Top"/>
-        <Label Content="E-mail" Margin="70,146,319,0" VerticalAlignment="Top"/>
-        <TextBox Height="23" Name="EmailTxtBx" Margin="181,146,92,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Button Content="Cancel" Margin="305,205,92,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Cancel"/>
-        <Button Content="Continue" Margin="181,205,219,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Click"/>
-        <Label Content=""  x:Name="tbProgress" Margin="25,258,23,0" VerticalAlignment="Top" Height="27" Foreground="#FF3399FF" FontWeight="Bold" HorizontalAlignment="Center" Width="447"/>
+        <Label Content="E-mail" Margin="128,145,317,0" VerticalAlignment="Top"/>
+        <TextBox Height="28" Name="EmailTxtBx" Margin="181,141,92,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button Content="Cancel" Name="cancel" Margin="305,241,92,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Cancel"/>
+        <Button Content="Login" Name="login" Margin="181,240,219,0" VerticalAlignment="Top" Height="35" Background="#FF3399FF" Foreground="WhiteSmoke" Click="Button_Click"/>
+        <Label Content=""  x:Name="tbProgress" Margin="25,287,23,0" VerticalAlignment="Top" Height="27" Foreground="#FF3399FF" FontWeight="Bold" HorizontalAlignment="Center" Width="447"/>
+        <Label Content="Password" Margin="112,179,318,0" VerticalAlignment="Top"/>
+        <PasswordBox HorizontalAlignment="Left" Name="passwordTxt" Margin="181,179,0,0" VerticalAlignment="Top" Width="222" Height="28"/>
 
     </Grid>
 </Window>

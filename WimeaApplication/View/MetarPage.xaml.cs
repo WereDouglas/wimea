@@ -75,8 +75,10 @@ namespace WimeaApplication
 
             MetarGrid.ItemsSource = null;
             MetarGrid.ItemsSource = _metarList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (DateTime.Now.Month).ToString() && Convert.ToDateTime(c.Days).Day == DateTime.Now.Day && Convert.ToDateTime(c.Days).Year == DateTime.Now.Year);
-           
 
+            stationNumber.Content = _StationsList.Where(c => c.Name == stationTxtCbx.Text.ToString()).Select(p => p.Number).SingleOrDefault().ToString();
+            codeTxtBx.Text = _StationsList.Where(c => c.Name == stationTxtCbx.Text.ToString()).Select(c => c.Code).SingleOrDefault().ToString();
+            DatetimeTxtBx.Text = DateTime.Now.Date.Day.ToString() + DateTime.Now.Hour.ToString() + "00Z";
 
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

@@ -64,10 +64,10 @@ namespace WimeaApplication.View
         {
             metList = new List<Daily>();
             metLists = new List<Daily>();
-            //try
-            //{
+           try
+            {
             string total = "";
-            string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "daily" + ".json");
+            string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "daily" + ".json");
             foreach (string line in lines)
             {
 
@@ -156,17 +156,17 @@ namespace WimeaApplication.View
             twentyoneTxtBx.Text = filltext("21");
             twentythreeTxtBx.Text = filltext("23");
             fourtTxtBx.Text = filltext("14");
-            thirtyoneTxtBx.Text = filltext("31");        
-          
+            thirtyoneTxtBx.Text = filltext("31");
 
-            // }
-            //catch (Exception ex)
-            //{
 
-            //     MessageBox.Show(ex.Message.ToString());
-            //    return;
+            }
+           catch (Exception ex)
+           {
 
-            //}
+               MessageBox.Show(ex.Message.ToString());
+               return;
+
+           }
 
         }
         private string filltext(string value) { 

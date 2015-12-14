@@ -27,6 +27,14 @@ namespace WimeaApplication
             username.Content = Sending.currentusername;
             station.Content = Sending.currentstation;
             AutoUpdater.Start(Sending.genUrl + "wimea.xml");
+            if(Sending.currentinstance.Contains("center")){
+                metar.Visibility = Visibility.Hidden;
+                daily.Visibility = Visibility.Hidden;
+                Dekadal.Visibility = Visibility.Hidden;
+                synoptic.Visibility = Visibility.Hidden;
+                view.Visibility = Visibility.Hidden;
+            
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -128,9 +136,18 @@ namespace WimeaApplication
 
         private void Button_Click_Update(object sender, RoutedEventArgs e)
         {
-            AutoUpdater.OpenDownloadPage = true;
-            //   string URL = Sending.genUrl + "api/tasks";
-            AutoUpdater.Start(Sending.genUrl + "wimea.xml");
+            AutoUpdater.OpenDownloadPage = true;         
+            AutoUpdater.Start(Sending.fileUrl + "wimea.xml");
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/ElementPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Uri("view/InstrumentPage.xaml", UriKind.Relative));
         }
 
        

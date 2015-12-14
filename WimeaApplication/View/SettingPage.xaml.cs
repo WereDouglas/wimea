@@ -51,6 +51,7 @@ namespace WimeaApplication.View
             {
 
                 internet.Content = "no internet connection";
+                MessageBox.Show("no internet connection");
 
             }
 
@@ -118,6 +119,7 @@ namespace WimeaApplication.View
             else {
 
                 internet.Content = "no internet connection";
+                MessageBox.Show("no internet connection");
             
             }
         }

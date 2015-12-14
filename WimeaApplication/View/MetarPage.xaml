@@ -56,7 +56,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <ScrollViewer Margin="-10,79,10,0" HorizontalScrollBarVisibility="Visible" Height="78" VerticalAlignment="Top" >
+        <ScrollViewer Margin="0,79,10,0" HorizontalScrollBarVisibility="Visible" Height="78" VerticalAlignment="Top" >
             <Grid Height="58" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" Width="1440" >
                 <Label Content="METAR/SPECI" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top"/>
                 <Label Content="W1W1" HorizontalAlignment="Left" Margin="344,6,0,0" VerticalAlignment="Top"/>

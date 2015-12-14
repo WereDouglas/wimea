@@ -324,6 +324,11 @@ namespace WimeaApplication
                 MetarGrid.UnselectAll();
             }
         }
+
+        private void chkSelectAll_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 

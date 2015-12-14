@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WIA;
+using WimeaApplication.ViewModel;
 
 namespace WimeaApplication
 {
@@ -20,11 +22,12 @@ namespace WimeaApplication
     /// </summary>
     public partial class ArchivePage : Page
     {
+        
         public ArchivePage()
         {
             InitializeComponent();
+            this.DataContext = new ScanViewModel();          
         }
-
         private void dataGridEvaluation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -39,5 +42,11 @@ namespace WimeaApplication
 
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+      
     }
 }

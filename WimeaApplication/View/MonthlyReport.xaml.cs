@@ -63,7 +63,7 @@ namespace WimeaApplication
             try
             {
                 string total = "";
-                string[] lines = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "daily" + ".json");
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "daily" + ".json");
                 foreach (string line in lines)
                 {
 
@@ -91,7 +91,7 @@ namespace WimeaApplication
                     u.Quake = model.ElementAt(d).Quake;
                     ///////////////
                     string total2 = "";
-                    string[] line2 = System.IO.File.ReadAllLines(@"D:\" + station + "-" + "metar" + ".json");
+                    string[] line2 = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "metar" + ".json");
                     foreach (string line in line2)
                     {
 

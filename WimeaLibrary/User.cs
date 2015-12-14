@@ -4,7 +4,7 @@ using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WimeaApplication.Helpers;
+
 using WimeaLibrary.Helpers;
 
 namespace WimeaLibrary
@@ -71,12 +71,21 @@ namespace WimeaLibrary
             get { return _station; }
             set { _station = value; }
         }
+
         private string _sync;
 
         public string Sync
         {
             get { return _sync; }
             set { _sync = value; }
+        }
+
+        private string _password;
+
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
         }
        
      
@@ -90,14 +99,13 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [users](id,name,email,contact,role,station)VALUES(@id,@name,@email,@contact,@role,@station)";
+                cmd.CommandText = "INSERT INTO [users](id,name,email,contact,role,station,password)VALUES(@id,@name,@email,@contact,@role,@station,@password)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", Name);
                 cmd.Parameters.AddWithValue("@email", Email);
                 cmd.Parameters.AddWithValue("@contact", Contact);
                 cmd.Parameters.AddWithValue("@role", Role);
-                // cmd.Parameters.AddWithValue("@password", Encryption.SimpleEncrypt(Password));
-
+                cmd.Parameters.AddWithValue("@password", Encryption.SimpleEncrypt(Password));
                 cmd.Parameters.AddWithValue("@station", Station);
 
                 ExecuteNonQuery(cmd);
