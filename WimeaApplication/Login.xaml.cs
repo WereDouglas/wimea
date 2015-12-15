@@ -29,6 +29,7 @@ namespace WimeaApplication
     public partial class Login : Window
     {
         private ObservableCollection<User> _UsersList = null;
+        private ObservableCollection<Station> _stationList = null;
         private Station _station;
         private User r;
         private Station s;
@@ -49,236 +50,143 @@ namespace WimeaApplication
                 cancel.Visibility = System.Windows.Visibility.Hidden;
                 CreateDB();
 
+                if (Sending.IsInternetAvailable())
+                {
+                    tbProgress.Content = "updating user list.---------";
+                    login.Visibility = System.Windows.Visibility.Hidden;
+                    cancel.Visibility = System.Windows.Visibility.Hidden;
+                    syncs(Sending.genUrl + "user/all", "users", "center");
+                    Loading_users();
+
+                    tbProgress.Content = "user list upto date---------";
+                    login.Visibility = System.Windows.Visibility.Visible;
+                    cancel.Visibility = System.Windows.Visibility.Visible;
+                }
+
                 _UsersList = new ObservableCollection<User>(App.WimeaApp.Users);
             }
             _UsersList = new ObservableCollection<User>(App.WimeaApp.Users);
-
-
+            _stationList = new ObservableCollection<Station>(App.WimeaApp.Stations);
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string usernames = "";
-            string station = "";
-            string role = "";
+
             if (_UsersList.Count < 1)
             {
-                usernames = "";
-                if (Sending.IsInternetAvailable())
-                {
-
-                    string URL = Sending.genUrl + "user/login";
-                    NameValueCollection formData = new NameValueCollection();
-                    formData["email"] = EmailTxtBx.Text;
-                    formData["password"] = passwordTxt.Password;
-
-                    String results = Sending.send(URL, formData);
-
-                    Console.WriteLine(results);
-                    if (results != "")
-                    {
-                        tbProgress.Content = "valid user...................";
-                        login.Visibility = System.Windows.Visibility.Hidden;
-                        cancel.Visibility = System.Windows.Visibility.Hidden;
-                        tbProgress.Content = "processing information";
-                        // CreateDB();
-                        if (EmailTxtBx.Text != "")
-                        {
-                            User model = JsonConvert.DeserializeObject<User>(results);
-                            r = App.WimeaApp.Users.Add();
-                            r.Station = model.Station;
-                            r.Name = model.Name;
-                            r.Email = model.Email;
-                            r.Contact = model.Contact;
-                            r.Role = model.Role;
-                            r.Password = passwordTxt.Password;
-                            r.Save();
-                            if (r.Role.ToString().Contains("data") || r.Role.ToString().Contains("Manager"))
-                            {
-                                tbProgress.Content = "syncing information";
-                                //  syncs(Sending.genUrl + "apiuser/user/station/centers/format/json", "users", "center");
-                                syncs(Sending.genUrl + "apistation/station/station/center/format/json", "stations", "center");
-                                syncs(Sending.genUrl + "apielement/element/format/json", "elements", "center");
-                                syncs(Sending.genUrl + "apiinstrument/instrument/format/json", "instruments", "center");
-                                tbProgress.Content = "Loading to database";
-                                Loading_stations();
-                                Loading_elements();
-                                Loading_allinstruments();
-                                tbProgress.Content = "Redirecting..........";
-                                Sending.currentinstance = "center";
-                                Sending.currentusername = r.Name;
-                                Sending.currentstation = r.Station;
-                                HomeWindow w = new HomeWindow();
-                                w.Owner = Window.GetWindow(this);
-                                w.Show();
-
-
-                            }
-                            if (r.Role.ToString().Contains("Observer") || r.Role.ToString().Contains("O/C"))
-                            {
-                                tbProgress.Content = "welcome observer..........";
-                                login.Visibility = System.Windows.Visibility.Hidden;
-                                cancel.Visibility = System.Windows.Visibility.Hidden;
-                                string URLs = Sending.genUrl + "apicheck/check";
-                                NameValueCollection formDatas = new NameValueCollection();
-                                formDatas["station"] = r.Station;
-                                String resultss = Sending.send(URLs, formDatas);
-
-                                if (resultss == "F")
-                                {
-                                    tbProgress.Content = "Invalid station";
-                                    // registers.Visibility = System.Windows.Visibility.Visible;
-                                    //cancels.Visibility = System.Windows.Visibility.Visible;
-                                }
-                                else
-                                {
-                                    // tbProgress.Content = "welcome "+ station.Text;
-                                    Station models = JsonConvert.DeserializeObject<Station>(results);
-                                    //System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Number);
-
-                                    _station = App.WimeaApp.Stations.Add();
-                                    _station.Name = models.Name;
-                                    _station.Number = models.Number;
-                                    _station.Code = models.Code;
-                                    _station.Latitude = models.Latitude;
-                                    _station.Longitude = models.Longitude;
-                                    _station.Altitude = models.Altitude;
-                                    _station.Type = models.Type;
-                                    _station.Location = models.Location;
-                                    _station.Status = models.Status + " ";
-                                    _station.Commissioned = DateTime.Now.Date.ToString();
-                                    _station.Save();
-
-                                    name = models.Name;
-                                    bw.RunWorkerAsync();
-                                    bw.WorkerReportsProgress = true;
-                                    bw.DoWork += new DoWorkEventHandler(bw_DoWork);
-                                    bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-                                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-                                    Sending.currentinstance = "observer";
-                                    Sending.currentusername = r.Name;
-                                    Sending.currentstation = r.Station;
-
-                                }
-                            }
-                            if (results == "P")
-                            {
-                                tbProgress.Content = "invalid password";
-                            }
-                            if (results == "F")
-                            {
-                                tbProgress.Content = "invalid user";
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    tbProgress.Content = "first time logging in! you will need an internet connection";
-                }
+                tbProgress.Content = "you have no users in your list!";
 
             }
             else
             {
-                usernames = _UsersList.Where(l => l.Email == EmailTxtBx.Text && l.Password == Encryption.SimpleDecrypt(passwordTxt.Password)).Select(l => l.Name).SingleOrDefault().ToString();
-                station = _UsersList.Where(l => l.Email == EmailTxtBx.Text).Select(l => l.Station).SingleOrDefault().ToString();
-                role = _UsersList.Where(l => l.Email == EmailTxtBx.Text).Select(l => l.Role).SingleOrDefault().ToString();
+
+                string usernames = ""; string roles = ""; string station = ""; 
+            try {
+
+                       usernames = _UsersList.Where(l => l.Email == EmailTxtBx.Text && l.Password == Encryption.SimpleEncrypt(passwordTxt.Password)).Select(l => l.Name).SingleOrDefault().ToString();
+                       roles = _UsersList.Where(l => l.Email == EmailTxtBx.Text).Select(l => l.Role).SingleOrDefault().ToString();
+                       station = _UsersList.Where(l => l.Email == EmailTxtBx.Text).Select(l => l.Station).SingleOrDefault().ToString();
+              }
+                catch {
+
+                    tbProgress.Content = "invalid user!";                
+                }
+
                 if (usernames != "")
                 {
-                    if (role.ToString().Contains("data")|| role.ToString().Contains("Manager"))
+                    if (roles.ToString().Contains("Observer") || roles.ToString().Contains("O/C"))
+                    {
+                        Sending.currentinstance = "data";
+                        tbProgress.Content = "Welcome observer..........";
+
+                        if (_stationList.Count < 1)
+                        {
+                            login.Visibility = System.Windows.Visibility.Hidden;
+                            cancel.Visibility = System.Windows.Visibility.Hidden;
+                            string URLs = Sending.genUrl + "apicheck/check";
+                            NameValueCollection formDatas = new NameValueCollection();
+                            formDatas["station"] = station;
+                            String results = Sending.send(URLs, formDatas);
+
+                            if (results == "F")
+                            {
+                                tbProgress.Content = "Invalid station";
+                            }
+                            else
+                            {
+                                tbProgress.Content = "welcome " + station;
+                                Station models = JsonConvert.DeserializeObject<Station>(results);
+                                //System.Diagnostics.Debug.WriteLine(model.ElementAt(d).Number);
+
+                                _station = App.WimeaApp.Stations.Add();
+                                _station.Name = models.Name;
+                                _station.Number = models.Number;
+                                _station.Code = models.Code;
+                                _station.Latitude = models.Latitude;
+                                _station.Longitude = models.Longitude;
+                                _station.Altitude = models.Altitude;
+                                _station.Type = models.Type;
+                                _station.Location = models.Location;
+                                _station.Status = models.Status + " ";
+                                _station.Commissioned = DateTime.Now.Date.ToString();
+                                _station.Save();
+
+                                name = models.Name;
+                                bw.RunWorkerAsync();
+                                bw.WorkerReportsProgress = true;
+                                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+                                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+
+                                Sending.currentinstance = "observer";
+                                Sending.currentusername = r.Name;
+                                Sending.currentstation = r.Station;
+                                Sending.currentstation = station;
+                                Sending.currentusername = usernames;
+                                HomeWindow w = new HomeWindow();
+                                w.Owner = Window.GetWindow(this);
+                                w.Show();
+                            }
+                        }
+                        else {
+
+                            Sending.currentstation = station;
+                            Sending.currentusername = usernames;
+                            HomeWindow w = new HomeWindow();
+                            w.Owner = Window.GetWindow(this);
+                            w.Show();
+                        }
+                       
+                    }
+                    if (roles.ToString().Contains("Data") || roles.ToString().Contains("Manager"))
                     {
                         Sending.currentinstance = "center";
-                    }
-
-                    if (role.ToString().Contains("Observer") || role.ToString().Contains("O/C"))
-                    {
-                        Sending.currentinstance = "observer";
-                    }
-
-                    Sending.currentusername = usernames;
-                    Sending.currentstation = station;
-
-                    HomeWindow w = new HomeWindow();
-                    w.Owner = Window.GetWindow(this);
-                    w.Show();
-
-                }
-                else
-                {
-
-                    if (Sending.IsInternetAvailable())
-                    {
-
-                        string URL = Sending.genUrl + "user/login";
-                        NameValueCollection formData = new NameValueCollection();
-                        formData["email"] = EmailTxtBx.Text;
-                        formData["password"] = passwordTxt.Password;
-
-                        String results = Sending.send(URL, formData);
-
-                        Console.WriteLine(results);
-                        if (results != "")
+                        if (_stationList.Count < 1)
                         {
-                            tbProgress.Content = "valid user...................";
-                            // CreateDB();
-                            if (EmailTxtBx.Text == "")
-                            {
-                                User model = JsonConvert.DeserializeObject<User>(results);
-                                r = App.WimeaApp.Users.Add();
-                                r.Station = model.Station;
-                                r.Name = model.Name;
-                                r.Email = model.Email;
-                                r.Contact = model.Contact;
-                                r.Role = model.Role;
-                                r.Password = passwordTxt.Password;
-                                r.Save();
-                                if (r.Role.ToString().Contains("data") || r.Role.ToString().Contains("manager"))
-                                {                                   
+                            tbProgress.Content = "syncing information";
+                            //syncs(Sending.genUrl + "apiuser/user/station/centers/format/json", "users", "center");
+                            syncs(Sending.genUrl + "apistation/station/station/center/format/json", "stations", "center");
+                            syncs(Sending.genUrl + "apielement/element/format/json", "elements", "center");
+                            syncs(Sending.genUrl + "apiinstrument/instrument/format/json", "instruments", "center");
+                            tbProgress.Content = "Loading to database";
+                            Loading_stations();
+                            Loading_elements();
+                            Loading_allinstruments();
+                            tbProgress.Content = "Redirecting...................";
+                        }
 
-                                    Sending.currentinstance = "center";
-                                    Sending.currentusername = r.Name;
-                                    Sending.currentstation = r.Station;
-                                    HomeWindow w = new HomeWindow();
-                                    w.Owner = Window.GetWindow(this);
-                                    w.Show();
-
-
-                                }
-                                if (r.Role.ToString().Contains("observer") || r.Role.ToString().Contains("O/C")) {
-                                    Sending.currentusername = r.Name;
-                                    Sending.currentstation = r.Station;
-                                    Sending.currentinstance = "observer";
-                                    HomeWindow w = new HomeWindow();
-                                    w.Owner = Window.GetWindow(this);
-                                    w.Show();
-                                   
-                                }
-                                }
-                                if (results == "P")
-                                {
-                                    tbProgress.Content = "invalid password";
-                                }
-                                if (results == "F")
-                                {
-                                    tbProgress.Content = "invalid user";
-                                }
-                            }
-                        
-                    }
-                    else
-                    {
-
-                        tbProgress.Content = "first time logging in! you will need an internet connection";
-
+                        Sending.currentstation = station;
+                        Sending.currentusername = usernames;
+                        HomeWindow w = new HomeWindow();
+                        w.Owner = Window.GetWindow(this);
+                        w.Show();
 
                     }
-
-                }            
-            
+                 
+                }
             }
 
-
-           
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -297,7 +205,7 @@ namespace WimeaApplication
             else
             {
                 this.tbProgress.Content = "synchronised information!";
-               
+
                 HomeWindow w = new HomeWindow();
                 w.Owner = Window.GetWindow(this);
                 w.Show();
@@ -342,7 +250,7 @@ namespace WimeaApplication
         }
         private string Loading_instruments(string station)
         {
-           
+
             try
             {
                 string total = "";
@@ -647,64 +555,6 @@ namespace WimeaApplication
 
 
         }
-        private string Loading_user(string station)
-        {
-            //string reply = "";
-            try
-            {
-                string total = "";
-                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + station + "-" + "user" + ".json");
-                foreach (string line in lines)
-                {
-
-                    total += line;
-                }
-
-                List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
-
-                for (int d = 0; d < model.Count; d++)
-                {
-                    try
-                    {
-                        string usernames = _UsersList.Where(l => l.Email == model.ElementAt(d).Email).Select(l => l.Name).SingleOrDefault().ToString();
-
-                        if (usernames == "")
-                        {
-                            r = new User(null);
-                            r.Station = model.ElementAt(d).Station;
-                            r.Name = model.ElementAt(d).Name;
-                            r.Email = model.ElementAt(d).Email;
-                            r.Contact = model.ElementAt(d).Contact;
-                            r.Role = model.ElementAt(d).Role;
-                            r.Save();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        r = new User(null);
-                        r.Station = model.ElementAt(d).Station;
-                        r.Name = model.ElementAt(d).Name;
-                        r.Email = model.ElementAt(d).Email;
-                        r.Contact = model.ElementAt(d).Contact;
-                        r.Role = model.ElementAt(d).Role;
-                        r.Save();
-
-                    }
-
-                }
-                return "Loaded synoptic information into local database!";
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message.ToString());
-                return "done loading metars";
-
-            }
-
-
-        }
 
         private string Loading_stations()
         {
@@ -871,7 +721,7 @@ namespace WimeaApplication
             //         CREATE TABLE daily (id nvarchar(255) NOT NULL, dates nvarchar(100) NULL, station nvarchar(100) NULL, maxs nvarchar(100) NULL, mins nvarchar(100) NULL, actual nvarchar(100) NULL, anemometer nvarchar(100) NULL, wind nvarchar(100) NULL, maxi nvarchar(100) NULL, rain nvarchar(100) NULL, thunder nvarchar(100) NULL, fog nvarchar(100) NULL, haze nvarchar(100) NULL,storm nvarchar(100) NULL, quake nvarchar(100) NULL,height nvarchar(100) NULL, duration nvarchar(100) NULL, sunshine nvarchar(100) NULL, radiationtype nvarchar(100) NULL, radiation nvarchar(100) NULL, evaptype1 nvarchar(100) NULL, evap1 nvarchar(100) NULL, evaptype2 nvarchar(100) NULL, evap2 nvarchar(100) NULL, users nvarchar(100) NULL, sync nvarchar(25) NULL);
             if (!TableExists(conn, "users"))
             {
-                cmd.CommandText = "CREATE TABLE users (id nvarchar(255) NOT NULL, name nvarchar(255) NOT NULL, contact nvarchar(255) NOT NULL, role nvarchar(255) NOT NULL, station nvarchar(255) NOT NULL,email nvarchar(255) NULL,password nvarchar(255) NULL);";
+                cmd.CommandText = "CREATE TABLE users (id nvarchar(255)  NULL, name nvarchar(255) NULL, contact nvarchar(255)  NULL, role nvarchar(255)  NULL, station nvarchar(255)  NULL,email nvarchar(255) NULL,password nvarchar(255) NULL,sync nvarchar(255) NULL);";
                 cmd.ExecuteNonQuery();
                 System.Diagnostics.Debug.WriteLine("Created table users");
             }
@@ -930,14 +780,53 @@ namespace WimeaApplication
             using (var command = new SqlCeCommand())
             {
                 command.Connection = connection;
-                var sql = string.Format(
-                        "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '{0}'",
-                         tableName);
+                var sql = string.Format("SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '{0}'", tableName);
                 command.CommandText = sql;
                 var count = Convert.ToInt32(command.ExecuteScalar());
                 return (count > 0);
             }
         }
+        private string Loading_users()
+        {
+            try
+            {
+                string total = "";
+                string[] lines = System.IO.File.ReadAllLines(Sending.directoryUrl + "center-" + "users" + ".json");
+                foreach (string line in lines)
+                {
+                    total += line;
+                }
+
+                List<User> model = JsonConvert.DeserializeObject<List<User>>(total);
+
+                for (int d = 0; d < model.Count; d++)
+                {
+                    r = App.WimeaApp.Users.Add();
+                    r.Station = model.ElementAt(d).Station;
+                    r.Name = model.ElementAt(d).Name;
+                    r.Email = model.ElementAt(d).Email;
+                    r.Contact = model.ElementAt(d).Contact;
+                    r.Role = model.ElementAt(d).Role;
+                    r.Password = Encryption.SimpleEncrypt(model.ElementAt(d).Password);
+                    r.Sync = "T";
+                    r.Save();
+
+                }
+                return "Loaded synoptic information into local database!";
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+                return "done loading metars";
+
+            }
+
+
+        }
+
+
 
     }
 }

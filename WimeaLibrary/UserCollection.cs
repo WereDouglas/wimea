@@ -62,7 +62,9 @@ namespace WimeaLibrary
                     u.Contact = row["contact"].ToString();
                     u.Role = row["role"].ToString();
                     u.Email = row["email"].ToString();
-                    u.Station = row["station"].ToString();               
+                    u.Station = row["station"].ToString();
+                    u.Password = row["password"].ToString();
+                    u.Sync = row["sync"].ToString(); 
                //  _users.Add(u);
         }
             IsLoaded = true;

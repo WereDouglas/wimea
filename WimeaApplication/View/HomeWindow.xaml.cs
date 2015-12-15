@@ -26,7 +26,7 @@ namespace WimeaApplication
             InitializeComponent();
             username.Content = Sending.currentusername;
             station.Content = Sending.currentstation;
-            AutoUpdater.Start(Sending.genUrl + "wimea.xml");
+           
             if(Sending.currentinstance.Contains("center")){
                 metar.Visibility = Visibility.Hidden;
                 daily.Visibility = Visibility.Hidden;

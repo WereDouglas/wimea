@@ -99,14 +99,15 @@ namespace WimeaLibrary
             else
             {
                 SqlCeCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO [users](id,name,email,contact,role,station,password)VALUES(@id,@name,@email,@contact,@role,@station,@password)";
+                cmd.CommandText = "INSERT INTO [users](id,name,email,contact,role,station,password,sync)VALUES(@id,@name,@email,@contact,@role,@station,@password,@sync)";
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", Name);
                 cmd.Parameters.AddWithValue("@email", Email);
                 cmd.Parameters.AddWithValue("@contact", Contact);
                 cmd.Parameters.AddWithValue("@role", Role);
-                cmd.Parameters.AddWithValue("@password", Encryption.SimpleEncrypt(Password));
+                cmd.Parameters.AddWithValue("@password",Password);
                 cmd.Parameters.AddWithValue("@station", Station);
+                cmd.Parameters.AddWithValue("@sync", Sync);
 
                 ExecuteNonQuery(cmd);
                 //System.Diagnostics.Debug.WriteLine(cmd);

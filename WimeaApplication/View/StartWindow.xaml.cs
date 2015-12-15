@@ -52,7 +52,7 @@ namespace WimeaApplication
             }
             else
             {
-
+                
                 CreateDB();
                 details.Visibility = System.Windows.Visibility.Hidden;
                 _stationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
