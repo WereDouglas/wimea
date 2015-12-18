@@ -12,12 +12,12 @@ namespace WimeaLibrary
   public static class Sending
     {
         
-      public static string genUrl = "http://localhost/weather/index.php/";
-      public static string fileUrl = "http://localhost/weather/file/";
+      //public static string genUrl = "http://localhost/weather/index.php/";
+      //public static string fileUrl = "http://localhost/weather/file/";
 
 
-     // public static string genUrl = "http://wimea-ict.azurewebsites.net/index.php/";
-      //public static string fileUrl = "http://wimea-ict.azurewebsites.net/file/";
+      public static string genUrl = "http://wimea-ict.azurewebsites.net/index.php/";
+      public static string fileUrl = "http://wimea-ict.azurewebsites.net/file/";
       
 
       public static string directoryUrl = @"C:\wimea\";

@@ -21,4 +21,3 @@ C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaLibrary\bin\De
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaLibrary\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaLibrary\obj\Debug\WimeaLibrary.dll
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaLibrary\obj\Debug\WimeaLibrary.pdb
-C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaLibrary\obj\Debug\WimeaLibrary.csprojResolveAssemblyReference.cache
