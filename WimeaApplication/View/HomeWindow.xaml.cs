@@ -35,6 +35,7 @@ namespace WimeaApplication
                 view.Visibility = Visibility.Hidden;
             
             }
+            _mainFrame.NavigationService.Navigate(new Uri("view/StartPage.xaml", UriKind.Relative)); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

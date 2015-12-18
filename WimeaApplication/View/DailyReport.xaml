@@ -21,6 +21,16 @@
             <ComboBox HorizontalAlignment="Left" Margin="386,8,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.302,-0.056" Height="26" />
             <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="26" Margin="522,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
             <Label Content="Daily weather records" Margin="10,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FF424242" HorizontalAlignment="Left" Width="156"/>
+            <Button Content="Delete selected" Command="{Binding AddCommand}" Margin="745,11,0,0" x:Name="btnExport"  VerticalAlignment="Top" Height="21" Click="Button_Click_export" HorizontalAlignment="Left" Width="106">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid Background="Transparent">
+                            <TextBlock><Run Text="Export excel"/></TextBlock>
+                            <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/excel.png" HorizontalAlignment="Right" />
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
         <ScrollViewer Height="533" Margin="0,47,0,0" VerticalAlignment="Top"  HorizontalScrollBarVisibility="Visible" >
             <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"

@@ -106,5 +106,24 @@ namespace WimeaApplication
             SynopticGrid.ItemsSource = _metarList.Where(c => Convert.ToDateTime(c.Date).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Date).Day.ToString() == dayTxtCbx.Text && Convert.ToDateTime(c.Date).Year.ToString() == yearTxtBx.Text);
 
         }
+        private void ExportToExcel()
+        {
+            SynopticGrid.SelectAllCells();
+            SynopticGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, SynopticGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            SynopticGrid.UnselectAllCells();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Wimea\synoptic.xls");
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+
+            MessageBox.Show(" Exporting DataGrid data to Excel file created");
+        }
+
+        private void Button_Click_export(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel();
+        }
     }
 }

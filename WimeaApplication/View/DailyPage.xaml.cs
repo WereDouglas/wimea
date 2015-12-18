@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using WimeaLibrary;
 
 namespace WimeaApplication
@@ -29,20 +30,20 @@ namespace WimeaApplication
         private static ObservableCollection<Daily> _dailyList = new ObservableCollection<Daily>();
         private Daily u;
         private ObservableCollection<Station> _StationsList = new ObservableCollection<Station>();
-     
+
         private BackgroundWorker bw = new BackgroundWorker();
 
         public DailyPage()
         {
             InitializeComponent();
             _StationsList = new ObservableCollection<Station>(App.WimeaApp.Stations);
-           
+
             stationTxtCbx.Text = Sending.currentstation;
             RefreshUserList();
 
-           
-          
-           
+
+
+
             if (Sending.IsInternetAvailable())
             {
                 internet.Content = "internet connection available";
@@ -215,10 +216,7 @@ namespace WimeaApplication
 
         }
 
-        private void Button_Sync(object sender, RoutedEventArgs e)
-        {
-            // MessageBox.Show( send(null,null));
-        }
+
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -251,49 +249,49 @@ namespace WimeaApplication
             sendies = _dailyList.Where(c => c.Sync == "F" || c.Sync == "").ToList();
 
             string URL = Sending.genUrl + "api/tasks";
-         
 
-                    foreach (Daily row in sendies)
-                    {                     
 
-                        NameValueCollection formData = new NameValueCollection();
-                        formData["actual"] = row.Actual;
-                        formData["date"] = row.Dates;
-                        formData["station"] = row.Station;
-                        formData["max"] = row.Maxs;
-                        formData["min"] = row.Mins;
-                        formData["anemometer"] = row.Anemometer;
-                        formData["wind"] = row.Wind;
-                        formData["rain"] = row.Rain;
-                        formData["thunder"] = row.Thunder;
-                        formData["fog"] = row.Fog;
-                        formData["haze"] = row.Haze;
-                        formData["storm"] = row.Storm;
-                        formData["quake"] = row.Quake;
-                        formData["height"] = row.Height;
-                        formData["duration"] = row.Duration;
-                        formData["sunshine"] = row.Sunshine;
-                        formData["type"] = row.Radiationtype;
-                        formData["radiation"] = row.Radiation;
-                        formData["evaptype1"] = row.Evaptype1;
-                        formData["evap1"] = row.Evap1;
-                        formData["evaptype2"] = row.Evaptype2;
-                        formData["evap2"] = row.Evap2;
-                        formData["user"] = row.Users;
+            foreach (Daily row in sendies)
+            {
 
-                      String results =   Sending.send(URL,formData);                   
-                      
-                        // row.Update(row.Id, "F");
-                       row.Update(row.Id, results);
-                        Console.WriteLine(results);                       
-                        worker.ReportProgress((( counter--)));
-                       
+                NameValueCollection formData = new NameValueCollection();
+                formData["actual"] = row.Actual;
+                formData["date"] = row.Dates;
+                formData["station"] = row.Station;
+                formData["max"] = row.Maxs;
+                formData["min"] = row.Mins;
+                formData["anemometer"] = row.Anemometer;
+                formData["wind"] = row.Wind;
+                formData["rain"] = row.Rain;
+                formData["thunder"] = row.Thunder;
+                formData["fog"] = row.Fog;
+                formData["haze"] = row.Haze;
+                formData["storm"] = row.Storm;
+                formData["quake"] = row.Quake;
+                formData["height"] = row.Height;
+                formData["duration"] = row.Duration;
+                formData["sunshine"] = row.Sunshine;
+                formData["type"] = row.Radiationtype;
+                formData["radiation"] = row.Radiation;
+                formData["evaptype1"] = row.Evaptype1;
+                formData["evap1"] = row.Evap1;
+                formData["evaptype2"] = row.Evaptype2;
+                formData["evap2"] = row.Evap2;
+                formData["user"] = row.Users;
 
-                    }
-                
-                   
-                    System.Threading.Thread.Sleep(500);
-             
+                String results = Sending.send(URL, formData);
+
+                // row.Update(row.Id, "F");
+                row.Update(row.Id, results);
+                Console.WriteLine(results);
+                worker.ReportProgress(((counter--)));
+
+
+            }
+
+
+            System.Threading.Thread.Sleep(500);
+
         }
         private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
         {
@@ -329,6 +327,26 @@ namespace WimeaApplication
         {
 
         }
+
+        private void Button_Click_export(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel();
+        }
+        private void ExportToExcel()
+        {
+            MetarGrid.SelectAllCells();
+            MetarGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, MetarGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            MetarGrid.UnselectAllCells();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Wimea\daily.xls");
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+
+            MessageBox.Show(" Exporting DataGrid data to Excel file created");
+        }
+
     }
 
 

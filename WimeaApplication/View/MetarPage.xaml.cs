@@ -336,6 +336,25 @@ namespace WimeaApplication
             MetarGrid.ItemsSource =  _metarList.Where(c => Convert.ToDateTime(c.Days).Month.ToString() == (monthTxtCbx.SelectedIndex + 1).ToString() && Convert.ToDateTime(c.Days).Day.ToString() == dayTxtCbx.Text && Convert.ToDateTime(c.Days).Year.ToString() == yearTxtBx.Text);
 
         }
+        private void ExportToExcel()
+        {
+            MetarGrid.SelectAllCells();
+            MetarGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, MetarGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            MetarGrid.UnselectAllCells();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Wimea\dekadal.xls");
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+
+            MessageBox.Show(" Exporting DataGrid data to Excel file created");
+        }
+
+        private void Button_Click_export(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel();
+        }
     }
 
 }

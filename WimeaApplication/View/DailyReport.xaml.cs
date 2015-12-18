@@ -125,5 +125,23 @@ namespace WimeaApplication
             loadings(stationTxtCbx.Text);
 
         }
+        private void Button_Click_export(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel();
+        }
+        private void ExportToExcel()
+        {
+            MetarGrid.SelectAllCells();
+            MetarGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, MetarGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            MetarGrid.UnselectAllCells();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Wimea\daily.xls");
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+
+            MessageBox.Show(" Exporting DataGrid data to Excel file created");
+        }
     }
 }

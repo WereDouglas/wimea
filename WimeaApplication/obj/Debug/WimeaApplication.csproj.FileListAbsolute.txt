@@ -102,3 +102,12 @@ C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\ob
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.csproj.GenerateResource.Cache
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.exe
 C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\WimeaApplication.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WPFToolkit.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WPFToolkit.pdb
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\StartPage.baml
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\obj\Debug\View\StartPage.g.cs
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\WindowsBase.dll
+C:\Users\DOUGLAS\documents\visual studio 2013\Projects\wimea\WimeaApplication\bin\Debug\DocumentFormat.OpenXml.xml

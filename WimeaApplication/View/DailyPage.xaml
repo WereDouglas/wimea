@@ -23,7 +23,7 @@
             <Label Content="Wind run(KM)" HorizontalAlignment="Left" Margin="0,133,0,0" VerticalAlignment="Top"/>
             <Label Content="Anemometer Height" HorizontalAlignment="Left" Margin="0,161,0,0" VerticalAlignment="Top"/>
             <Label Content="Sunshine(Hrs)" HorizontalAlignment="Left" Margin="0,273,0,0" VerticalAlignment="Top"/>
-            <Label Content="GPM:" HorizontalAlignment="Left" Margin="0,358,0,0" VerticalAlignment="Top"/>
+            <Label Content="GPM:" HorizontalAlignment="Left" Margin="0,365,0,0" VerticalAlignment="Top"/>
             <Label Content="Evap.type:/mm" HorizontalAlignment="Left" Margin="0,303,0,0" VerticalAlignment="Top" Width="77"/>
             <Label Content="Type/mm:" HorizontalAlignment="Left" Margin="0,329,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.692,0.351" Width="77"/>
             <CheckBox Content="Rainfall" Name="RainfallChk" HorizontalAlignment="Left" Margin="120,464,0,0" VerticalAlignment="Top"/>
@@ -34,26 +34,26 @@
             <CheckBox Content="Earth Quake" Name="QuakeChk" HorizontalAlignment="Left" Margin="120,490,0,0" VerticalAlignment="Top"/>
             <DatePicker Name="dates" HorizontalAlignment="Left" Margin="83,7,0,0" VerticalAlignment="Top" Width="122"/>
             <TextBox HorizontalAlignment="Left" Height="23" Name="WindRun" Margin="83,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" RenderTransformOrigin="-0.602,0.5"/>
-            <TextBox HorizontalAlignment="Left" Name="AnemometerHeight" Height="23" Margin="80,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" RenderTransformOrigin="-0.347,0.543"/>
-            <TextBox HorizontalAlignment="Left" Name="Sunshine" Height="23" Margin="77,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
+            <TextBox HorizontalAlignment="Left" Name="AnemometerHeight" Height="23" Margin="83,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" RenderTransformOrigin="-0.347,0.543"/>
+            <TextBox HorizontalAlignment="Left" Name="Sunshine" Height="23" Margin="83,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121"/>
             <TextBox HorizontalAlignment="Left" Name="Gpm" Height="23" Margin="83,365,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" RenderTransformOrigin="0.407,-0.826"/>
             <TextBox HorizontalAlignment="Left" Name="Evap" Height="23" Margin="146,304,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" RenderTransformOrigin="5.732,-1.578"/>
             <TextBox HorizontalAlignment="Left" Name="Evap2" Height="23" Margin="146,333,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="59" RenderTransformOrigin="5.732,-1.578"/>
-            <TextBox HorizontalAlignment="Left" Name="Radiation" Height="23" Margin="85,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="5.732,-1.578"/>
+            <TextBox HorizontalAlignment="Left" Name="Radiation" Height="23" Margin="83,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="5.732,-1.578"/>
             <Button Content="Submit" HorizontalAlignment="Left" Margin="78,536,0,0" Width="120" Click="Button_Click" Height="26" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Name="RainDuration" Height="23" Margin="82,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="123"/>
-            <TextBox HorizontalAlignment="Left" Name="Rainfall" Height="23" Margin="81,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
+            <TextBox HorizontalAlignment="Left" Name="RainDuration" Height="23" Margin="83,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="123"/>
+            <TextBox HorizontalAlignment="Left" Name="Rainfall" Height="23" Margin="83,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
             <TextBox HorizontalAlignment="Left" Name="maxTemp" Height="23" Margin="149,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="56" RenderTransformOrigin="0.455,2.087"/>
-            <TextBox HorizontalAlignment="Left" Name="minTemp"  Height="23" Margin="84,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" ToolTip="min" Width="59"/>
-            <ComboBox HorizontalAlignment="Left" Name="Evaptype2" Margin="84,333,0,0" VerticalAlignment="Top" Width="64"/>
-            <ComboBox HorizontalAlignment="Left" Name="Radtype" Margin="85,393,0,0" VerticalAlignment="Top" Width="120"/>
-            <ComboBox HorizontalAlignment="Left" Name="EvapType" Margin="84,305,0,0" VerticalAlignment="Top" Width="64"/>
+            <TextBox HorizontalAlignment="Left" Name="minTemp"  Height="23" Margin="83,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" ToolTip="min" Width="59"/>
+            <ComboBox HorizontalAlignment="Left" Name="Evaptype2" Margin="83,333,0,0" VerticalAlignment="Top" Width="58"/>
+            <ComboBox HorizontalAlignment="Left" Name="Radtype" Margin="83,393,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox HorizontalAlignment="Left" Name="EvapType" Margin="83,305,0,0" VerticalAlignment="Top" Width="58"/>
             <Label Content="Max.temp" HorizontalAlignment="Left" Margin="141,76,0,0" VerticalAlignment="Top" Width="65"/>
-            <Label Content="Month" HorizontalAlignment="Left" Margin="235,7,-64,0" VerticalAlignment="Top" Height="26"/>
-            <TextBox HorizontalAlignment="Left" x:Name="stationTxtCbx" Height="23" Margin="81,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
+            <Label Content="Month" HorizontalAlignment="Left" Margin="231,7,-70,0" VerticalAlignment="Top" Height="26" Width="55"/>
+            <TextBox HorizontalAlignment="Left" x:Name="stationTxtCbx" Height="23" Margin="83,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
             <Label Content="Temperature" HorizontalAlignment="Left" Margin="0,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.251,0.334"/>
-        </Grid>
-        <ScrollViewer Margin="231,100,10,10"  HorizontalScrollBarVisibility="Visible" >
+               </Grid>
+        <ScrollViewer x:Name="dailyGrid" Margin="231,43,10,10"  HorizontalScrollBarVisibility="Visible" BorderBrush="#FF3399FF" BorderThickness="3" Padding="5" >
             <DataGrid  AutoGenerateColumns="False"  CanUserAddRows="False"
         		x:Name="MetarGrid"  Background="{x:Null}" RowBackground="LightYellow" 
         		AlternatingRowBackground="LightBlue" BorderBrush="#FFC5C5C5" BorderThickness="1" 
@@ -100,8 +100,8 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <CheckBox Margin="456,77,0,0" x:Name="chkSelectAll" Click="chkSelectAll_Click" Content="Select all " Height="18" VerticalAlignment="Top" Checked="chkSelectAll_Checked" HorizontalAlignment="Left" Width="76"/>
-        <Button Content="Delete selected" Command="{Binding AddCommand}" Margin="536,74,0,0" x:Name="btnAdd_Copy"  VerticalAlignment="Top" Height="21" Click="btnDeleteAll_Click" HorizontalAlignment="Left" Width="106">
+        <CheckBox Margin="569,15,0,0" x:Name="chkSelectAll" Click="chkSelectAll_Click" Content="Select all " Height="18" VerticalAlignment="Top" Checked="chkSelectAll_Checked" HorizontalAlignment="Left" Width="76"/>
+        <Button Content="Delete selected" Command="{Binding AddCommand}" Margin="643,12,0,0" x:Name="btnAdd_Copy"  VerticalAlignment="Top" Height="21" Click="btnDeleteAll_Click" HorizontalAlignment="Left" Width="106">
             <Button.Template>
                 <ControlTemplate>
                     <Grid Background="Transparent">
@@ -111,9 +111,18 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Sync"  x:Name="tbProgress" HorizontalAlignment="Left" Margin="231,45,0,0" VerticalAlignment="Top" Width="227" Height="27" Foreground="#FF00B4FF"/>
-        <Label Content="" x:Name="internet" HorizontalAlignment="Left" Margin="463,45,0,0" VerticalAlignment="Top" Width="327"/>
-        <Button Content="Sync" HorizontalAlignment="Left" Margin="600,12,0,0" VerticalAlignment="Top" Width="92" RenderTransformOrigin="-0.032,0.741" Height="26" Click="Button_Sync"/>
+        <Button Content="Delete selected" Command="{Binding AddCommand}" Margin="992,13,0,0" x:Name="btnExport"  VerticalAlignment="Top" Height="21" Click="Button_Click_export" HorizontalAlignment="Left" Width="106">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <TextBlock><Run Text="Export excel"/></TextBlock>
+                        <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/excel.png" HorizontalAlignment="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Sync"  x:Name="tbProgress" HorizontalAlignment="Left" Margin="782,9,0,0" VerticalAlignment="Top" Width="96" Height="27" Foreground="#FF00B4FF"/>
+        <Label Content="" x:Name="internet" HorizontalAlignment="Left" Margin="883,9,0,0" VerticalAlignment="Top" Width="85"/>
         <ComboBox HorizontalAlignment="Left" Margin="302,8,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.302,-0.056" Height="26" SelectionChanged="monthTxtCbx_SelectionChanged" />
         <Label Content="Year" HorizontalAlignment="Left" Margin="425,6,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.576,-0.231"/>
         <TextBox HorizontalAlignment="Left" x:Name="yearTxtBx" Height="26" Margin="463,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="101"/>

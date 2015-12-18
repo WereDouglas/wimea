@@ -368,7 +368,7 @@
         <Label Content="Sync"  x:Name="tbProgress" HorizontalAlignment="Left" Margin="476,5,0,0" VerticalAlignment="Top" Width="272" Height="27" Foreground="#FF00B4FF"/>
         <Label Content="" x:Name="internet" HorizontalAlignment="Left" Margin="753,7,0,0" VerticalAlignment="Top" Width="173"/>
         <TextBox HorizontalAlignment="Left" x:Name="stationTxtCbx" Height="23" Margin="263,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
-
+       
 
     </Grid>
 </Page>

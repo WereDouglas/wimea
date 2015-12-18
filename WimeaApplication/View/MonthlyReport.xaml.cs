@@ -194,5 +194,24 @@ namespace WimeaApplication
             loadings(stationTxtCbx.Text);
 
         }
+        private void ExportToExcel()
+        {
+            DekadalGrid.SelectAllCells();
+            DekadalGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, DekadalGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            DekadalGrid.UnselectAllCells();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Wimea\monthly.xls");
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+
+            MessageBox.Show(" Exporting DataGrid data to Excel file created");
+        }
+
+        private void Button_Click_export(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel();
+        }
     }
 }

@@ -53,6 +53,16 @@
         <ComboBox HorizontalAlignment="Left" Margin="425,10,0,0" x:Name="monthTxtCbx" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.302,-0.056" Height="26" />
         <TextBox HorizontalAlignment="Left" Name="yearTxtBx" Height="26" Margin="560,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
         <Label Content="Metar Book" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FF424242" HorizontalAlignment="Left" Width="92"/>
+        <Button Content="Delete selected" Command="{Binding AddCommand}" Margin="793,15,0,0" x:Name="btnExport"  VerticalAlignment="Top" Height="21" Click="Button_Click_export" HorizontalAlignment="Left" Width="106">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <TextBlock><Run Text="Export excel"/></TextBlock>
+                        <Image  Stretch="Uniform" Source="/WimeaApplication;component/image/excel.png" HorizontalAlignment="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
 
     </Grid>
